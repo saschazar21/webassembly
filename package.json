@@ -1,0 +1,13 @@
+{
+  "name": "@saschazar/webassembly",
+  "private": true,
+  "version": "0.0.0",
+  "description": "WebAssembly monorepo for my private projects",
+  "main": "index.js",
+  "author": "Sascha Zarhuber <sascha.zarhuber@gmail.com>",
+  "license": "MIT",
+  "repository": "https://github.com/saschazar21/webassembly",
+  "devDependencies": {
+    "lerna": "^3.20.2"
+  }
+}

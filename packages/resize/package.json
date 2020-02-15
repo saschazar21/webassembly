@@ -1,0 +1,20 @@
+{
+  "name": "@saschazar/wasm-resize",
+  "version": "0.0.0",
+  "description": "Resize images using WebAssembly",
+  "main": "index.js",
+  "repository": "https://github.com/saschazar21/webassembly",
+  "author": "Sascha Zarhuber <saschazar21@yahoo.de>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "install": "napa",
+    "build": "docker run --rm -v $(pwd):/src trzeci/emscripten ./build.sh"
+  },
+  "napa": {
+    "stb": "nothings/stb"
+  },
+  "devDependencies": {
+    "napa": "^3.0.0"
+  }
+}
