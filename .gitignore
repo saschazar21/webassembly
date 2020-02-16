@@ -1,3 +1,6 @@
+packages/**/*.js
+packages/**/*.wasm
+
 
 # Created by https://www.gitignore.io/api/node,vscode
 # Edit at https://www.gitignore.io/?templates=node,vscode

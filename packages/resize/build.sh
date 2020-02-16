@@ -22,9 +22,7 @@ echo "==========================================================================
     --std=c++11 \
     -o ./wasm_resize.js \
     -x c++ \
-    main.cpp \
-    node_modules/stb/stb_image.h \
-    node_modules/stb/stb_resize.h
+    main.cpp
 )
 
 
