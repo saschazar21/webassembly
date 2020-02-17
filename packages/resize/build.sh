@@ -7,6 +7,8 @@ export LDFLAGS="${OPTIMIZE}"
 export CFLAGS="${OPTIMIZE}"
 export CPPFLAGS="${OPTIMIZE}"
 
+TIME=
+
 echo "================================================================================"
 echo "=====                                                                      ====="
 echo "=====                   Compiling @saschazar/wasm-resize                   ====="
@@ -14,8 +16,9 @@ echo "=====                                                                     
 echo "================================================================================"
 
 (
-  emcc \
+  time emcc \
     --bind \
+    ${OPTIMIZE} \
     -s ALLOW_MEMORY_GROWTH=1 \
     -s MODULARIZE=1 \
     -s 'EXPORT_NAME="wasm_resize"' \
@@ -28,6 +31,6 @@ echo "==========================================================================
 
 echo "================================================================================"
 echo "=====                                                                      ====="
-echo "=====                   Compiling successfully completed                   ====="
+echo "=====                   Successfully completed compiling                   ====="
 echo "=====                                                                      ====="
 echo "================================================================================"
