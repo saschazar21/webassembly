@@ -46,10 +46,16 @@ describe('Image Loader', () => {
 
     expect(loader.getWidth()).toEqual(800);
     expect(loader.getHeight()).toEqual(600);
+    expect(loader.getBuffer()).toHaveLength(800 * 600 * 3);
 
-    console.log(loader.getBuffer());
-    console.log(loader.resize(400, 300));
-    console.log(loader.getBuffer());
+    loader.resize(
+      Math.floor(loader.getWidth() * 0.5),
+      Math.floor(loader.getHeight() * 0.5)
+    ) as Uint8Array;
+
+    expect(loader.getWidth()).toEqual(400);
+    expect(loader.getHeight()).toEqual(300);
+    expect(loader.getBuffer()).toHaveLength(400 * 300 * 3);
 
     loader.delete();
   });

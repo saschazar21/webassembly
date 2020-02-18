@@ -8,12 +8,6 @@
 #define STBI_ONLY_PNG
 #include "node_modules/stb/stb_image.h"
 
-static void progress(float progress_percentage)
-{
-  printf("Resize progress: %f%%\n", progress_percentage * 100);
-}
-#define STBIR_PROGRESS_REPORT(progress_percentage) progress(progress_percentage)
-
 #define STB_IMAGE_RESIZE_IMPLEMENTATION
 #include "node_modules/stb/stb_image_resize.h"
 
@@ -68,7 +62,7 @@ public:
 
   val getBuffer()
   {
-    return val(typed_memory_view(sizeof(buffer) / sizeof(uint8_t), buffer));
+    return val(typed_memory_view(width * height * channels, buffer));
   }
 
   int getHeight()
@@ -95,7 +89,7 @@ public:
     buffer = resized;
     width = output_width;
     height = output_height;
-    return val(typed_memory_view(sizeof(buffer) / sizeof(uint8_t), buffer));
+    return val(typed_memory_view(width * height * channels, buffer));
   }
 };
 
