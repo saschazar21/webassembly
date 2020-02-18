@@ -11,7 +11,7 @@ TIME=
 
 echo "================================================================================"
 echo "=====                                                                      ====="
-echo "=====                   Compiling @saschazar/wasm-resize                   ====="
+echo "=====                Compiling @saschazar/wasm-image-loader                ====="
 echo "=====                                                                      ====="
 echo "================================================================================"
 
@@ -21,9 +21,9 @@ echo "==========================================================================
     ${OPTIMIZE} \
     -s ALLOW_MEMORY_GROWTH=1 \
     -s MODULARIZE=1 \
-    -s 'EXPORT_NAME="wasm_resize"' \
+    -s 'EXPORT_NAME="wasm_image_loader"' \
     --std=c++11 \
-    -o ./wasm_resize.js \
+    -o ./wasm_image_loader.js \
     -x c++ \
     main.cpp
 )
@@ -31,6 +31,6 @@ echo "==========================================================================
 
 echo "================================================================================"
 echo "=====                                                                      ====="
-echo "=====                   Successfully completed compiling                   ====="
+echo "=====                        Successfully completed                        ====="
 echo "=====                                                                      ====="
 echo "================================================================================"

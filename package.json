@@ -7,7 +7,25 @@
   "author": "Sascha Zarhuber <sascha.zarhuber@gmail.com>",
   "license": "MIT",
   "repository": "https://github.com/saschazar21/webassembly",
+  "scripts": {
+    "lint": "eslint packages/ --ext .ts"
+  },
   "devDependencies": {
-    "lerna": "^3.20.2"
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
+    "@babel/preset-typescript": "^7.8.3",
+    "@types/emscripten": "^1.39.2",
+    "@types/jest": "^25.1.2",
+    "@types/node-fetch": "^2.5.4",
+    "@typescript-eslint/eslint-plugin": "^2.20.0",
+    "@typescript-eslint/parser": "^2.20.0",
+    "babel-jest": "^25.1.0",
+    "eslint": "^6.8.0",
+    "eslint-plugin-jest": "^23.7.0",
+    "jest": "^25.1.0",
+    "lerna": "^3.20.2",
+    "node-fetch": "^2.6.0",
+    "ts-jest": "^25.2.0",
+    "typescript": "^3.7.5"
   }
 }
