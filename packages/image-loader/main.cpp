@@ -79,7 +79,7 @@ public:
   {
     uint8_t stride = 0;
     uint8_t output_stride = 0;
-    uint8_t *resized = (uint8_t *)malloc(width * height * channels);
+    uint8_t *resized = new uint8_t[width * height * channels];
     if (!stbir_resize_uint8(buffer, width, height, stride, resized, output_width, output_height, output_stride, channels))
     {
       printf("Image resizing failed!\n");
