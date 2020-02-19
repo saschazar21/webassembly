@@ -1,0 +1,28 @@
+{
+  "name": "@saschazar/wasm-mean-color",
+  "version": "0.0.0",
+  "description": "Calculate the mean color of an image",
+  "keywords": [
+    "color",
+    "rgb",
+    "hsl",
+    "image",
+    "mean",
+    "average",
+    "median"
+  ],
+  "author": "Sascha Zarhuber <sascha.zarhuber@gmail.com>",
+  "homepage": "https://github.com/saschazar21/webassembly",
+  "license": "MIT",
+  "main": "wasm_mean_color.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saschazar21/webassembly.git"
+  },
+  "scripts": {
+    "build": "docker run --rm -v $(pwd):/src trzeci/emscripten ./build.sh"
+  },
+  "bugs": {
+    "url": "https://github.com/saschazar21/webassembly/issues"
+  }
+}

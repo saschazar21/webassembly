@@ -93,7 +93,7 @@ public:
   }
 };
 
-EMSCRIPTEN_BINDINGS(resize)
+EMSCRIPTEN_BINDINGS(ImageLoader)
 {
   enum_<COLOR_CHANNELS>("COLOR_CHANNELS")
       .value("DEFAULT", COLOR_CHANNELS::DEFAULT)
