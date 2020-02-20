@@ -11,34 +11,37 @@ describe('Mean Color', () => {
   let meanColor: MeanColorModule;
 
   beforeAll(async () => {
-    imageLoader = (await new Promise((resolve) => {
+    imageLoader = (await new Promise(resolve => {
       const wasm = wasm_image_loader({
         noInitialRun: true,
         onRuntimeInitialized() {
           const { then, ...other } = wasm;
           resolve(other);
-        },
+        }
       });
     })) as ImageLoaderModule;
 
-    meanColor = (await new Promise((resolve) => {
+    meanColor = (await new Promise(resolve => {
       const wasm = wasm_mean_color({
         noInitialRun: true,
         onRuntimeInitialized() {
           const { then, ...other } = wasm;
           resolve(other);
-        },
+        }
       });
     })) as MeanColorModule;
   });
 
   it('calculates the mean color of an image', async () => {
-    const [width, height] = [8, 6];
+    const [width, height] = [80, 60];
     const { ImageLoader } = imageLoader;
     const { MeanColor } = meanColor;
 
     const img = new Uint8Array(
-      await fetch(RANDOM_URL, {}).then((res) => res.buffer()),
+      await fetch(RANDOM_URL, {}).then(res => {
+        console.log(res.url);
+        return res.buffer();
+      })
     );
 
     const loader = new ImageLoader(img, img.length, 0);
@@ -50,11 +53,11 @@ describe('Mean Color', () => {
       loader.getBuffer() as Uint8Array,
       loader.getWidth(),
       loader.getHeight(),
-      3,
+      3
     );
     const color = mean.getColor();
 
-    // expect(color).toHaveLength(7);
+    expect(color).toHaveLength(7);
 
     loader.delete();
     mean.delete();
