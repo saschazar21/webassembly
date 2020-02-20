@@ -126,7 +126,7 @@ private:
 
     printf("RGB: %d, %d, %d\n", red, green, blue);
 
-    string hex = "#" + string(rgb_to_hex(red)) + string(rgb_to_hex(green)) + string(rgb_to_hex(blue));
+    string hex = "#" + rgb_to_hex(red) + rgb_to_hex(green) + rgb_to_hex(blue);
 
     return hex;
   }
