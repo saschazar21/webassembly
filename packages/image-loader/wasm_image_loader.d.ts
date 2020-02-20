@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/class-name-casing
 export enum COLOR_CHANNELS {
   DEFAULT = 0,
   GREYSCALE = 1,
