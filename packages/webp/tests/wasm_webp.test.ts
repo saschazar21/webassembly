@@ -81,8 +81,6 @@ describe('WebP', () => {
 
     expect(output.length).toBeLessThan(inWidth * inHeight * 3);
 
-    console.log(output.length);
-
     loader.delete();
     webP.delete();
   });
