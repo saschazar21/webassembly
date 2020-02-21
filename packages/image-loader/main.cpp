@@ -26,6 +26,7 @@ class ImageLoader
 {
 private:
   uint8_t *buffer;
+
   int width;
   int height;
   int channels;
@@ -60,17 +61,22 @@ public:
     delete buffer;
   }
 
-  val getBuffer()
+  val getBuffer() const
   {
     return val(typed_memory_view(width * height * channels, buffer));
   }
 
-  int getHeight()
+  int getChannels() const
+  {
+    return channels;
+  }
+
+  int getHeight() const
   {
     return height;
   }
 
-  int getWidth()
+  int getWidth() const
   {
     return width;
   }
@@ -105,8 +111,9 @@ EMSCRIPTEN_BINDINGS(ImageLoader)
   class_<ImageLoader>("ImageLoader")
       .constructor<std::string, int, int, int>()
       .constructor<std::string, int, COLOR_CHANNELS>()
-      .function("getBuffer", &ImageLoader::getBuffer)
-      .function("getHeight", &ImageLoader::getHeight)
-      .function("getWidth", &ImageLoader::getWidth)
+      .property("buffer", &ImageLoader::getBuffer)
+      .property("channels", &ImageLoader::getChannels)
+      .property("height", &ImageLoader::getHeight)
+      .property("width", &ImageLoader::getWidth)
       .function("resize", &ImageLoader::resize);
 }

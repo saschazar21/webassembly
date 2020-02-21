@@ -8,6 +8,9 @@ export enum COLOR_CHANNELS {
 }
 
 export class ImageLoader {
+  width: number;
+  height: number;
+  buffer: BufferSource;
   constructor(
     buffer: BufferSource,
     width: number,
@@ -19,15 +22,11 @@ export class ImageLoader {
     length: number,
     desiredChannels: COLOR_CHANNELS
   );
-  getWidth(): number;
-  getHeight(): number;
-  getBuffer(): BufferSource;
   resize(outputWidth: number, outputHeight: number): BufferSource;
   delete(): void;
 }
 
 export interface ImageLoaderModule extends EmscriptenModule {
-  COLOR_CHANNELS: COLOR_CHANNELS;
   ImageLoader: {
     new (
       buffer: BufferSource,

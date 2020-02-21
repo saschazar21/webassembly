@@ -1,7 +1,7 @@
 {
   "name": "@saschazar/wasm-image-loader",
   "version": "0.0.0",
-  "description": "Load and resize images using WebAssembly",
+  "description": "Loads and resizes images using WebAssembly",
   "main": "wasm_image_loader.js",
   "repository": "https://github.com/saschazar21/webassembly",
   "author": "Sascha Zarhuber <saschazar21@yahoo.de>",

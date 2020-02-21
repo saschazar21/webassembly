@@ -46,15 +46,11 @@ describe('Mean Color', () => {
 
     const loader = new ImageLoader(img, img.length, 0);
     loader.resize(width, height);
+    const { buffer, height: outHeight, width: outWidth } = loader;
 
-    expect(loader.getBuffer()).toHaveLength(width * height * 3);
+    expect(buffer).toHaveLength(width * height * 3);
 
-    const mean = new MeanColor(
-      loader.getBuffer() as Uint8Array,
-      loader.getWidth(),
-      loader.getHeight(),
-      3
-    );
+    const mean = new MeanColor(buffer as Uint8Array, outWidth, outHeight, 3);
     const color = mean.getColor();
 
     expect(color).toHaveLength(7);

@@ -1,7 +1,7 @@
 {
   "name": "@saschazar/wasm-mean-color",
   "version": "0.0.0",
-  "description": "Calculate the mean color of an image",
+  "description": "Calculates the mean color of an image",
   "keywords": [
     "color",
     "rgb",

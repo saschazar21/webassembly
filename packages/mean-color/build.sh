@@ -7,8 +7,6 @@ export LDFLAGS="${OPTIMIZE}"
 export CFLAGS="${OPTIMIZE}"
 export CPPFLAGS="${OPTIMIZE}"
 
-TIME=
-
 echo "================================================================================"
 echo "=====                                                                      ====="
 echo "=====                 Compiling @saschazar/wasm-mean-color                 ====="

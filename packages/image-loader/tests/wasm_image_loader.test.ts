@@ -30,7 +30,7 @@ describe('Image Loader', () => {
     const buffer = new Uint8Array(16 * 16 * 3);
 
     const loader = new ImageLoader(buffer, 16, 16, 3);
-    expect(loader.getWidth()).toEqual(16);
+    expect(loader.width).toEqual(16);
 
     loader.delete();
   });
@@ -44,18 +44,18 @@ describe('Image Loader', () => {
 
     const loader = new ImageLoader(buffer, buffer.length, 0);
 
-    expect(loader.getWidth()).toEqual(800);
-    expect(loader.getHeight()).toEqual(600);
-    expect(loader.getBuffer()).toHaveLength(800 * 600 * 3);
+    expect(loader.width).toEqual(800);
+    expect(loader.height).toEqual(600);
+    expect(loader.buffer).toHaveLength(800 * 600 * 3);
 
     loader.resize(
-      Math.floor(loader.getWidth() * 0.5),
-      Math.floor(loader.getHeight() * 0.5)
+      Math.floor(loader.width * 0.5),
+      Math.floor(loader.height * 0.5)
     ) as Uint8Array;
 
-    expect(loader.getWidth()).toEqual(400);
-    expect(loader.getHeight()).toEqual(300);
-    expect(loader.getBuffer()).toHaveLength(400 * 300 * 3);
+    expect(loader.width).toEqual(400);
+    expect(loader.height).toEqual(300);
+    expect(loader.buffer).toHaveLength(400 * 300 * 3);
 
     loader.delete();
   });
