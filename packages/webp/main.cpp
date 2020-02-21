@@ -13,8 +13,6 @@ class WebP
 {
 private:
   uint8_t *buffer;
-  WebPPicture webp;
-  WebPMemoryWriter writer;
 
   int length;
   int width;
@@ -73,19 +71,21 @@ public:
 
   val encode(WebPConfig config)
   {
+    WebPPicture webp;
+    WebPMemoryWriter writer;
     int ok;
     if (!WebPPictureInit(&webp))
     {
       throw std::runtime_error("WebP picture init failed!");
     }
 
+    WebPMemoryWriterInit(&writer);
+
     webp.use_argb = config.lossless || config.use_sharp_yuv || config.preprocessing > 0;
     webp.width = width;
     webp.height = height;
     webp.writer = WebPMemoryWrite;
     webp.custom_ptr = &writer;
-
-    WebPMemoryWriterInit(&writer);
 
     ok = WebPPictureImportRGB(&webp, buffer, width * channels) && WebPEncode(&config, &webp);
     WebPPictureFree(&webp);

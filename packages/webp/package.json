@@ -12,7 +12,7 @@
     "install": "napa"
   },
   "napa": {
-    "libwebp": "webmproject/libwebp"
+    "libwebp": "webmproject/libwebp#v1.1.0"
   },
   "devDependencies": {
     "napa": "^3.0.0"
