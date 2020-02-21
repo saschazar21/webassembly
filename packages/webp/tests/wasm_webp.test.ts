@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/camelcase */
-import { writeFileSync } from 'fs';
 import fetch from 'node-fetch';
 import wasm_image_loader, { ImageLoaderModule } from '../../image-loader';
 import wasm_webp, { EncodeOptions, WebPModule } from '../wasm_webp';
@@ -63,7 +62,10 @@ describe('WebP', () => {
   });
 
   it('encodes a .jpeg into .webp', async () => {
-    const options = { ...defaultOptions, lossless: 1, quality: 80 };
+    const options = {
+      ...defaultOptions,
+      quality: 100.0
+    };
     const [inWidth, inHeight] = [800, 600];
     const buf = new Uint8Array(
       await fetch(RANDOM_URL, {}).then(res => res.buffer())
@@ -78,6 +80,8 @@ describe('WebP', () => {
     const output = webP.encode(options) as Uint8Array;
 
     expect(output.length).toBeLessThan(inWidth * inHeight * 3);
+
+    console.log(output.length);
 
     loader.delete();
     webP.delete();
