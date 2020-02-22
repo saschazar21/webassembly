@@ -58,13 +58,15 @@ describe('MozJPEG', () => {
     const { ImageLoader } = imageLoaderModule;
     const { MozJPEG } = mozJPEGModule;
     
+    const options = {...defaultOptions, quality: 50 };
+    
     const loader = new ImageLoader(img, img.length, 0);
 
     const { buffer, width, height } = loader;
     const mozJPEG = new MozJPEG(buffer, width, height);
     expect(mozJPEG.buffer).toHaveLength(width * height * 3);
     
-    const result = mozJPEG.encode(defaultOptions) as Uint8Array;
+    const result = mozJPEG.encode(options) as Uint8Array;
     const { length } = mozJPEG;
     
     expect(length).toBeGreaterThan(0);

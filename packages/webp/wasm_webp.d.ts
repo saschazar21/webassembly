@@ -50,6 +50,7 @@ export class WebP {
 }
 
 export interface WebPModule extends EmscriptenModule {
+  WebPImageHint: WebPImageHint;
   WebP: {
     new (buffer: BufferSource, width: number, height: number): WebP;
     new (buffer: BufferSource, length: number): WebP;

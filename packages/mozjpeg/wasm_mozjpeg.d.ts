@@ -47,6 +47,7 @@ export class MozJPEG {
 }
 
 export interface MozJPEGModule extends EmscriptenModule {
+  J_COLOR_SPACE: J_COLOR_SPACE;
   MozJPEG: {
     new (buffer: BufferSource, width: number, height: number): MozJPEG;
   };

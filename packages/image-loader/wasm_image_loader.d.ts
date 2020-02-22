@@ -27,6 +27,7 @@ export class ImageLoader {
 }
 
 export interface ImageLoaderModule extends EmscriptenModule {
+  COLOR_CHANNELS: COLOR_CHANNELS;
   ImageLoader: {
     new (
       buffer: BufferSource,
