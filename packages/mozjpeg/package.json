@@ -1,0 +1,20 @@
+{
+  "name": "@saschazar/wasm_mozjpeg",
+  "version": "0.0.0",
+  "description": "A MozJPEG encoder in WebAssembly",
+  "main": "wasm_mozjpeg.js",
+  "repository": "https://github.com/saschazar21/webassembly",
+  "author": "Sascha Zarhuber <saschazar21@yahoo.de>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "build": "docker run --rm -v $(pwd):/src -e SKIP_MOZJPEG=$SKIP_MOZJPEG trzeci/emscripten ./build.sh",
+    "install": "napa"
+  },
+  "napa": {
+    "mozjpeg": "mozilla/mozjpeg#v3.3.1"
+  },
+  "devDependencies": {
+    "napa": "^3.0.0"
+  }
+}
