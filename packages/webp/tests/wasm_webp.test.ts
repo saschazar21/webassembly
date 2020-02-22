@@ -3,7 +3,7 @@ import fetch from 'node-fetch';
 import wasm_image_loader, { ImageLoaderModule } from '../../image-loader';
 import wasm_webp, { EncodeOptions, WebPModule } from '../wasm_webp';
 
-const RANDOM_URL = 'https://source.unsplash.com/random/800x600';
+const RANDOM_URL = 'https://source.unsplash.com/random/';
 
 const defaultOptions: EncodeOptions = {
   quality: 75,
@@ -62,13 +62,14 @@ describe('WebP', () => {
   });
 
   it('encodes a .jpeg into .webp', async () => {
+    jest.setTimeout(10000);
     const options = {
       ...defaultOptions,
       quality: 100.0
     };
-    const [inWidth, inHeight] = [800, 600];
+    const [inWidth, inHeight] = [3000, 2000];
     const buf = new Uint8Array(
-      await fetch(RANDOM_URL, {}).then(res => res.buffer())
+      await fetch(`${RANDOM_URL}${inWidth}x${inHeight}`, {}).then(res => res.buffer())
     );
     const { ImageLoader } = imageLoaderModule;
     const { WebP } = webpModule;
@@ -84,4 +85,25 @@ describe('WebP', () => {
     loader.delete();
     webP.delete();
   });
+  
+  it('decodes a .webp image', async () => {
+    const options = {
+    ...defaultOptions,
+    quality: 100.0
+  };
+  const [inWidth, inHeight] = [800, 600];
+  const buf = new Uint8Array(
+    await fetch(`${RANDOM_URL}${inWidth}x${inHeight}`, {}).then(res => res.buffer())
+  );
+  const { ImageLoader } = imageLoaderModule;
+  const { WebP } = webpModule;
+  
+  const loader = new ImageLoader(buf, buf.length, 0);
+  const webP = new WebP(loader.buffer, inWidth, inHeight);
+  webP.encode(options) as Uint8Array;
+  
+  const output = webP.decode() as Uint8Array;
+  
+  expect(output).toHaveLength(inWidth * inHeight * 3);
+});
 });
