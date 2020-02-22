@@ -35,9 +35,9 @@ class MozJPEG
 {
 private:
   uint8_t *buffer;
-  struct jpeg_compress_struct cinfo;
+  struct jpeg_compress_struct compress;
 
-  int channels;
+  int channels = 3;
   int height;
   int width;
   int row_stride;
@@ -49,15 +49,20 @@ public:
     buffer = (uint8_t *)img_in.c_str();
     height = height_;
     width = width_;
-    channels = 3;
     length = width * height * channels;
     row_stride = width * channels;
+  }
+
+  MozJPEG(std::string img_in, int length_)
+  {
+    buffer = (uint8_t *)img_in.c_str();
+    length = length_;
   }
 
   ~MozJPEG()
   {
     delete[] buffer;
-    jpeg_destroy_compress(&cinfo);
+    jpeg_destroy_compress(&compress);
   }
 
   val getBuffer() const
@@ -70,6 +75,42 @@ public:
     return length;
   }
 
+  val decode(std::string img)
+  {
+    uint8_t *result;
+    struct jpeg_error_mgr jerr;
+    struct jpeg_decompress_struct decompress;
+
+    decompress.err = jpeg_std_error(&jerr);
+
+    jpeg_create_decompress(&decompress);
+    jpeg_mem_src(&decompress, (uint8_t *)img.c_str(), length);
+
+    (void)jpeg_read_header(&decompress, TRUE);
+    (void)jpeg_start_decompress(&decompress);
+
+    width = decompress.output_width;
+    height = decompress.output_height;
+    channels = decompress.output_components;
+    row_stride = width * channels;
+    length = height * row_stride;
+    result = new uint8_t[length];
+
+    while (decompress.output_scanline < height)
+    {
+      uint8_t *row_pointer[1];
+      row_pointer[0] = result + decompress.output_scanline * row_stride;
+      jpeg_read_scanlines(&decompress, row_pointer, 1);
+    }
+    (void)jpeg_finish_decompress(&decompress);
+    jpeg_destroy_decompress(&decompress);
+
+    delete[] buffer;
+    buffer = result;
+
+    return val(typed_memory_view(length, buffer));
+  }
+
   val encode(MozJPEGOptions options)
   {
     length = 0;
@@ -78,37 +119,37 @@ public:
     JSAMPROW row_pointer[1];
     struct jpeg_error_mgr jerr;
 
-    cinfo.err = jpeg_std_error(&jerr);
-    jpeg_create_compress(&cinfo);
-    jpeg_mem_dest(&cinfo, &result, &length);
+    compress.err = jpeg_std_error(&jerr);
+    jpeg_create_compress(&compress);
+    jpeg_mem_dest(&compress, &result, &length);
 
-    cinfo.image_width = width;
-    cinfo.image_height = height;
-    cinfo.input_components = channels;
-    cinfo.in_color_space = JCS_RGB;
+    compress.image_width = width;
+    compress.image_height = height;
+    compress.input_components = channels;
+    compress.in_color_space = JCS_RGB;
 
-    jpeg_set_defaults(&cinfo);
-    jpeg_set_colorspace(&cinfo, (J_COLOR_SPACE)options.color_space);
+    jpeg_set_defaults(&compress);
+    jpeg_set_colorspace(&compress, (J_COLOR_SPACE)options.color_space);
 
     if (options.quant_table != -1)
     {
-      jpeg_c_set_int_param(&cinfo, JINT_BASE_QUANT_TBL_IDX, options.quant_table);
+      jpeg_c_set_int_param(&compress, JINT_BASE_QUANT_TBL_IDX, options.quant_table);
     }
 
-    cinfo.optimize_coding = options.optimize_coding;
+    compress.optimize_coding = options.optimize_coding;
 
     if (options.arithmetic)
     {
-      cinfo.arith_code = TRUE;
-      cinfo.optimize_coding = FALSE;
+      compress.arith_code = TRUE;
+      compress.optimize_coding = FALSE;
     }
 
-    cinfo.smoothing_factor = options.smoothing;
+    compress.smoothing_factor = options.smoothing;
 
-    jpeg_c_set_bool_param(&cinfo, JBOOLEAN_USE_SCANS_IN_TRELLIS, options.trellis_multipass);
-    jpeg_c_set_bool_param(&cinfo, JBOOLEAN_TRELLIS_EOB_OPT, options.trellis_opt_zero);
-    jpeg_c_set_bool_param(&cinfo, JBOOLEAN_TRELLIS_Q_OPT, options.trellis_opt_table);
-    jpeg_c_set_int_param(&cinfo, JINT_TRELLIS_NUM_LOOPS, options.trellis_loops);
+    jpeg_c_set_bool_param(&compress, JBOOLEAN_USE_SCANS_IN_TRELLIS, options.trellis_multipass);
+    jpeg_c_set_bool_param(&compress, JBOOLEAN_TRELLIS_EOB_OPT, options.trellis_opt_zero);
+    jpeg_c_set_bool_param(&compress, JBOOLEAN_TRELLIS_Q_OPT, options.trellis_opt_table);
+    jpeg_c_set_int_param(&compress, JINT_TRELLIS_NUM_LOOPS, options.trellis_loops);
 
     std::string quality_str = std::to_string(options.quality);
 
@@ -119,33 +160,33 @@ public:
 
     char const *pqual = quality_str.c_str();
 
-    set_quality_ratings(&cinfo, (char *)pqual, options.baseline);
+    set_quality_ratings(&compress, (char *)pqual, options.baseline);
 
     if (!options.auto_subsample && options.color_space == JCS_YCbCr)
     {
-      cinfo.comp_info[0].h_samp_factor = options.chroma_subsample;
-      cinfo.comp_info[0].v_samp_factor = options.chroma_subsample;
+      compress.comp_info[0].h_samp_factor = options.chroma_subsample;
+      compress.comp_info[0].v_samp_factor = options.chroma_subsample;
     }
 
     if (!options.baseline && options.progressive)
     {
-      jpeg_simple_progression(&cinfo);
+      jpeg_simple_progression(&compress);
     }
     else
     {
-      cinfo.num_scans = 0;
-      cinfo.scan_info = NULL;
+      compress.num_scans = 0;
+      compress.scan_info = NULL;
     }
 
-    jpeg_start_compress(&cinfo, TRUE);
+    jpeg_start_compress(&compress, TRUE);
 
-    while (cinfo.next_scanline < cinfo.image_height)
+    while (compress.next_scanline < compress.image_height)
     {
-      row_pointer[0] = &buffer[cinfo.next_scanline * row_stride];
-      jpeg_write_scanlines(&cinfo, row_pointer, 1);
+      row_pointer[0] = &buffer[compress.next_scanline * row_stride];
+      jpeg_write_scanlines(&compress, row_pointer, 1);
     }
 
-    jpeg_finish_compress(&cinfo);
+    jpeg_finish_compress(&compress);
 
     delete[] buffer;
     buffer = result;
@@ -195,7 +236,9 @@ EMSCRIPTEN_BINDINGS(MozJPEG)
 
   class_<MozJPEG>("MozJPEG")
       .constructor<std::string, int, int>()
+      .constructor<std::string, int>()
       .property("buffer", &MozJPEG::getBuffer)
       .property("length", &MozJPEG::getLength)
+      .function("decode", &MozJPEG::decode)
       .function("encode", &MozJPEG::encode);
 }

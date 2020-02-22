@@ -40,9 +40,11 @@ export interface MozJPEGOptions {
 
 export class MozJPEG {
   constructor(buffer: BufferSource, width: number, height: number);
+  constructor(buffer: BufferSource, length: number);
   buffer: BufferSource;
   length: number;
   delete(): void;
+  decode(buffer: BufferSource): BufferSource;
   encode(options: MozJPEGOptions): BufferSource;
 }
 
@@ -50,6 +52,7 @@ export interface MozJPEGModule extends EmscriptenModule {
   J_COLOR_SPACE: J_COLOR_SPACE;
   MozJPEG: {
     new (buffer: BufferSource, width: number, height: number): MozJPEG;
+    new (buffer: BufferSource, length: number): MozJPEG;
   };
 }
 

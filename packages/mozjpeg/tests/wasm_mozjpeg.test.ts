@@ -53,18 +53,19 @@ describe('MozJPEG', () => {
   it('encodes an image to .jpeg', async () => {
     jest.setTimeout(10000);
     const [inWidth, inHeight] = [1280, 720];
+    const options = {...defaultOptions, quality: 50 };
+
     const img = new Uint8Array(await fetch(`${RANDOM_URL}${inWidth}x${inHeight}`, {}).then(res => res.buffer()));
-    
-    const { ImageLoader } = imageLoaderModule;
     const { MozJPEG } = mozJPEGModule;
     
-    const options = {...defaultOptions, quality: 50 };
+    const loader = new MozJPEG(img, img.length);
     
-    const loader = new ImageLoader(img, img.length, 0);
-
-    const { buffer, width, height } = loader;
-    const mozJPEG = new MozJPEG(buffer, width, height);
-    expect(mozJPEG.buffer).toHaveLength(width * height * 3);
+    const buffer = loader.decode(img) as Uint8Array;
+    expect(buffer).toHaveLength(inWidth * inHeight * 3);
+    loader.delete();
+    
+    const mozJPEG = new MozJPEG(buffer, inWidth, inHeight);
+    expect(mozJPEG.buffer).toHaveLength(inWidth * inHeight * 3);
     
     const result = mozJPEG.encode(options) as Uint8Array;
     const { length } = mozJPEG;
@@ -73,7 +74,6 @@ describe('MozJPEG', () => {
     expect(result.length).toEqual(length);
     expect(length).toBeLessThan(img.length);
     
-    loader.delete();
     mozJPEG.delete();
   });
 });
