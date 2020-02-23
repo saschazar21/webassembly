@@ -98,10 +98,6 @@ describe('WebP', () => {
 
     expect(output.length).toBeLessThan(inWidth * inHeight * 3);
 
-    await import('fs').then((fs) =>
-      fs.writeFileSync('/home/sascha/Downloads/test.webp', output),
-    );
-
     webP.delete();
   });
 
