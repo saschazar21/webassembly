@@ -35,7 +35,6 @@ class MozJPEG
 {
 private:
   uint8_t *buffer;
-  struct jpeg_compress_struct compress;
 
   int channels = 3;
   int height;
@@ -44,13 +43,8 @@ private:
   size_t length;
 
 public:
-  MozJPEG(std::string img_in, int width_, int height_)
+  MozJPEG()
   {
-    buffer = (uint8_t *)img_in.c_str();
-    height = height_;
-    width = width_;
-    length = width * height * channels;
-    row_stride = width * channels;
   }
 
   MozJPEG(std::string img_in, int length_)
@@ -62,7 +56,6 @@ public:
   ~MozJPEG()
   {
     delete[] buffer;
-    jpeg_destroy_compress(&compress);
   }
 
   val getBuffer() const
@@ -70,21 +63,38 @@ public:
     return val(typed_memory_view(length, buffer));
   }
 
+  int getHeight() const
+  {
+    return height;
+  }
+
+  int getWidth() const
+  {
+    return width;
+  }
+
   size_t getLength() const
   {
     return length;
   }
 
-  val decode(std::string img)
+  val decode(std::string img_in, size_t length_)
   {
+    if (buffer != NULL)
+    {
+      delete[] buffer;
+    }
+
     uint8_t *result;
     struct jpeg_error_mgr jerr;
     struct jpeg_decompress_struct decompress;
 
     decompress.err = jpeg_std_error(&jerr);
 
+    buffer = (uint8_t *)img_in.c_str();
+
     jpeg_create_decompress(&decompress);
-    jpeg_mem_src(&decompress, (uint8_t *)img.c_str(), length);
+    jpeg_mem_src(&decompress, buffer, length_);
 
     (void)jpeg_read_header(&decompress, TRUE);
     (void)jpeg_start_decompress(&decompress);
@@ -111,15 +121,25 @@ public:
     return val(typed_memory_view(length, buffer));
   }
 
-  val encode(MozJPEGOptions options)
+  val encode(std::string img_in, size_t length_, int width_, int height_, MozJPEGOptions options)
   {
-    length = 0;
-    uint8_t *result;
+    if (buffer != NULL)
+    {
+      delete[] buffer;
+    }
 
+    uint8_t *result;
     JSAMPROW row_pointer[1];
     struct jpeg_error_mgr jerr;
+    struct jpeg_compress_struct compress;
 
     compress.err = jpeg_std_error(&jerr);
+
+    buffer = (uint8_t *)img_in.c_str();
+    length = length_;
+    width = width_;
+    height = height_;
+
     jpeg_create_compress(&compress);
     jpeg_mem_dest(&compress, &result, &length);
 
@@ -187,6 +207,7 @@ public:
     }
 
     jpeg_finish_compress(&compress);
+    jpeg_destroy_compress(&compress);
 
     delete[] buffer;
     buffer = result;
@@ -235,9 +256,10 @@ EMSCRIPTEN_BINDINGS(MozJPEG)
       .field("chroma_quality", &MozJPEGOptions::chroma_quality);
 
   class_<MozJPEG>("MozJPEG")
-      .constructor<std::string, int, int>()
-      .constructor<std::string, int>()
+      .constructor<>()
       .property("buffer", &MozJPEG::getBuffer)
+      .property("height", &MozJPEG::getHeight)
+      .property("width", &MozJPEG::getWidth)
       .property("length", &MozJPEG::getLength)
       .function("decode", &MozJPEG::decode)
       .function("encode", &MozJPEG::encode);

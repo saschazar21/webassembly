@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/camelcase */
 import fetch from 'node-fetch';
-import wasm_image_loader, { ImageLoaderModule} from '../../image-loader';
+import wasm_image_loader, { ImageLoaderModule } from '../../image-loader';
 import wasm_mozjpeg, { MozJPEGModule } from '../wasm_mozjpeg';
 
 const RANDOM_URL = 'https://source.unsplash.com/random/';
@@ -27,53 +27,62 @@ const defaultOptions = {
 describe('MozJPEG', () => {
   let mozJPEGModule: MozJPEGModule;
   let imageLoaderModule: ImageLoaderModule;
-  
+
   beforeAll(async () => {
-    mozJPEGModule = await new Promise(resolve => {
+    mozJPEGModule = (await new Promise((resolve) => {
       const wasm = wasm_mozjpeg({
         noInitialRun: true,
         onRuntimeInitialized() {
           const { then, ...other } = wasm;
           resolve(other);
-        }
+        },
       });
-    }) as MozJPEGModule;
-    
-    imageLoaderModule = await new Promise(resolve => {
+    })) as MozJPEGModule;
+
+    imageLoaderModule = (await new Promise((resolve) => {
       const wasm = wasm_image_loader({
         noInitialRun: true,
         onRuntimeInitialized() {
           const { then, ...other } = wasm;
           resolve(other);
-        }
-      })
-    }) as ImageLoaderModule;
+        },
+      });
+    })) as ImageLoaderModule;
   });
-  
+
   it('encodes an image to .jpeg', async () => {
     jest.setTimeout(10000);
     const [inWidth, inHeight] = [1280, 720];
-    const options = {...defaultOptions, quality: 50 };
+    const options = { ...defaultOptions, quality: 50 };
 
-    const img = new Uint8Array(await fetch(`${RANDOM_URL}${inWidth}x${inHeight}`, {}).then(res => res.buffer()));
+    const img = new Uint8Array(
+      await fetch(`${RANDOM_URL}${inWidth}x${inHeight}`, {}).then((res) =>
+        res.buffer(),
+      ),
+    );
     const { MozJPEG } = mozJPEGModule;
-    
-    const loader = new MozJPEG(img, img.length);
-    
-    const buffer = loader.decode(img) as Uint8Array;
+
+    const loader = new MozJPEG();
+    loader.decode(img, img.length) as Uint8Array;
+    const { buffer, width, height } = loader;
     expect(buffer).toHaveLength(inWidth * inHeight * 3);
     loader.delete();
-    
-    const mozJPEG = new MozJPEG(buffer, inWidth, inHeight);
-    expect(mozJPEG.buffer).toHaveLength(inWidth * inHeight * 3);
-    
-    const result = mozJPEG.encode(options) as Uint8Array;
+
+    const mozJPEG = new MozJPEG();
+
+    const result = mozJPEG.encode(
+      buffer,
+      (buffer as Uint8Array).length,
+      width,
+      height,
+      options,
+    ) as Uint8Array;
     const { length } = mozJPEG;
-    
+
     expect(length).toBeGreaterThan(0);
     expect(result.length).toEqual(length);
     expect(length).toBeLessThan(img.length);
-    
+
     mozJPEG.delete();
   });
 });
