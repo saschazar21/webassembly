@@ -38,21 +38,15 @@ export interface MozJPEGOptions {
   chroma_quality?: number;
 }
 
-export class MozJPEG {
-  constructor(buffer: BufferSource, width: number, height: number);
-  buffer: BufferSource;
-  height: number;
-  width: number;
-  length: number;
-  delete(): void;
-  encode(options: MozJPEGOptions): BufferSource;
-}
-
 export interface MozJPEGModule extends EmscriptenModule {
   J_COLOR_SPACE: J_COLOR_SPACE;
-  MozJPEG: {
-    new (buffer: BufferSource, width: number, height: number): MozJPEG;
-  };
+  free(): void;
+  encode(
+    buffer: BufferSource,
+    width: number,
+    height: number,
+    options: MozJPEGOptions
+  ): BufferSource;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

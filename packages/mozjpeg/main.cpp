@@ -31,135 +31,112 @@ struct MozJPEGOptions
   int chroma_quality;
 };
 
-class MozJPEG
+uint8_t *buffer;
+
+int channels = 3;
+int height;
+int width;
+int row_stride;
+size_t length;
+
+void free_buffer()
 {
-private:
-  uint8_t *buffer;
+  delete[] buffer;
+}
 
-  int channels = 3;
-  int height;
-  int width;
-  int row_stride;
-  size_t length;
-
-public:
-  MozJPEG(std::string img_in, int width_, int height_)
+val encode(std::string img_in, int width_, int height_, MozJPEGOptions options)
+{
+  if (buffer != NULL)
   {
-    buffer = (uint8_t *)img_in.c_str();
-    width = width_;
-    height = height_;
-    row_stride = width * channels;
-    length = height * row_stride;
+    free_buffer();
   }
 
-  ~MozJPEG()
+  uint8_t *result;
+
+  buffer = (uint8_t *)img_in.c_str();
+  width = width_;
+  height = height_;
+  row_stride = width * channels;
+
+  JSAMPROW row_pointer[1];
+  struct jpeg_error_mgr jerr;
+  struct jpeg_compress_struct compress;
+
+  compress.err = jpeg_std_error(&jerr);
+
+  jpeg_create_compress(&compress);
+  jpeg_mem_dest(&compress, &result, &length);
+
+  compress.image_width = width;
+  compress.image_height = height;
+  compress.input_components = channels;
+  compress.in_color_space = JCS_RGB;
+
+  jpeg_set_defaults(&compress);
+  jpeg_set_colorspace(&compress, (J_COLOR_SPACE)options.color_space);
+
+  if (options.quant_table != -1)
   {
-    delete[] buffer;
+    jpeg_c_set_int_param(&compress, JINT_BASE_QUANT_TBL_IDX, options.quant_table);
   }
 
-  val getBuffer() const
+  compress.optimize_coding = options.optimize_coding;
+
+  if (options.arithmetic)
   {
-    return val(typed_memory_view(length, buffer));
+    compress.arith_code = TRUE;
+    compress.optimize_coding = FALSE;
   }
 
-  int getHeight() const
+  compress.smoothing_factor = options.smoothing;
+
+  jpeg_c_set_bool_param(&compress, JBOOLEAN_USE_SCANS_IN_TRELLIS, options.trellis_multipass);
+  jpeg_c_set_bool_param(&compress, JBOOLEAN_TRELLIS_EOB_OPT, options.trellis_opt_zero);
+  jpeg_c_set_bool_param(&compress, JBOOLEAN_TRELLIS_Q_OPT, options.trellis_opt_table);
+  jpeg_c_set_int_param(&compress, JINT_TRELLIS_NUM_LOOPS, options.trellis_loops);
+
+  std::string quality_str = std::to_string(options.quality);
+
+  if (options.separate_chroma_quality && options.color_space == JCS_YCbCr)
   {
-    return height;
+    quality_str += "," + std::to_string(options.chroma_quality);
   }
 
-  int getWidth() const
+  char const *pqual = quality_str.c_str();
+
+  set_quality_ratings(&compress, (char *)pqual, options.baseline);
+
+  if (!options.auto_subsample && options.color_space == JCS_YCbCr)
   {
-    return width;
+    compress.comp_info[0].h_samp_factor = options.chroma_subsample;
+    compress.comp_info[0].v_samp_factor = options.chroma_subsample;
   }
 
-  size_t getLength() const
+  if (!options.baseline && options.progressive)
   {
-    return length;
+    jpeg_simple_progression(&compress);
+  }
+  else
+  {
+    compress.num_scans = 0;
+    compress.scan_info = NULL;
   }
 
-  val encode(MozJPEGOptions options)
+  jpeg_start_compress(&compress, TRUE);
+
+  while (compress.next_scanline < compress.image_height)
   {
-    uint8_t *result;
-    JSAMPROW row_pointer[1];
-    struct jpeg_error_mgr jerr;
-    struct jpeg_compress_struct compress;
-
-    compress.err = jpeg_std_error(&jerr);
-
-    jpeg_create_compress(&compress);
-    jpeg_mem_dest(&compress, &result, &length);
-
-    compress.image_width = width;
-    compress.image_height = height;
-    compress.input_components = channels;
-    compress.in_color_space = JCS_RGB;
-
-    jpeg_set_defaults(&compress);
-    jpeg_set_colorspace(&compress, (J_COLOR_SPACE)options.color_space);
-
-    if (options.quant_table != -1)
-    {
-      jpeg_c_set_int_param(&compress, JINT_BASE_QUANT_TBL_IDX, options.quant_table);
-    }
-
-    compress.optimize_coding = options.optimize_coding;
-
-    if (options.arithmetic)
-    {
-      compress.arith_code = TRUE;
-      compress.optimize_coding = FALSE;
-    }
-
-    compress.smoothing_factor = options.smoothing;
-
-    jpeg_c_set_bool_param(&compress, JBOOLEAN_USE_SCANS_IN_TRELLIS, options.trellis_multipass);
-    jpeg_c_set_bool_param(&compress, JBOOLEAN_TRELLIS_EOB_OPT, options.trellis_opt_zero);
-    jpeg_c_set_bool_param(&compress, JBOOLEAN_TRELLIS_Q_OPT, options.trellis_opt_table);
-    jpeg_c_set_int_param(&compress, JINT_TRELLIS_NUM_LOOPS, options.trellis_loops);
-
-    std::string quality_str = std::to_string(options.quality);
-
-    if (options.separate_chroma_quality && options.color_space == JCS_YCbCr)
-    {
-      quality_str += "," + std::to_string(options.chroma_quality);
-    }
-
-    char const *pqual = quality_str.c_str();
-
-    set_quality_ratings(&compress, (char *)pqual, options.baseline);
-
-    if (!options.auto_subsample && options.color_space == JCS_YCbCr)
-    {
-      compress.comp_info[0].h_samp_factor = options.chroma_subsample;
-      compress.comp_info[0].v_samp_factor = options.chroma_subsample;
-    }
-
-    if (!options.baseline && options.progressive)
-    {
-      jpeg_simple_progression(&compress);
-    }
-    else
-    {
-      compress.num_scans = 0;
-      compress.scan_info = NULL;
-    }
-
-    jpeg_start_compress(&compress, TRUE);
-
-    while (compress.next_scanline < compress.image_height)
-    {
-      row_pointer[0] = &buffer[compress.next_scanline * row_stride];
-      jpeg_write_scanlines(&compress, row_pointer, 1);
-    }
-
-    jpeg_finish_compress(&compress);
-    jpeg_destroy_compress(&compress);
-
-    delete[] buffer;
-    buffer = result;
-
-    return val(typed_memory_view(length, buffer));
+    row_pointer[0] = &buffer[compress.next_scanline * row_stride];
+    jpeg_write_scanlines(&compress, row_pointer, 1);
   }
+
+  jpeg_finish_compress(&compress);
+  jpeg_destroy_compress(&compress);
+
+  free_buffer();
+  buffer = result;
+
+  return val(typed_memory_view(length, buffer));
 };
 
 EMSCRIPTEN_BINDINGS(MozJPEG)
@@ -201,11 +178,7 @@ EMSCRIPTEN_BINDINGS(MozJPEG)
       .field("separate_chroma_quality", &MozJPEGOptions::separate_chroma_quality)
       .field("chroma_quality", &MozJPEGOptions::chroma_quality);
 
-  class_<MozJPEG>("MozJPEG")
-      .constructor<std::string, int, int>()
-      .property("buffer", &MozJPEG::getBuffer)
-      .property("height", &MozJPEG::getHeight)
-      .property("width", &MozJPEG::getWidth)
-      .property("length", &MozJPEG::getLength)
-      .function("encode", &MozJPEG::encode);
+  function("free", &free_buffer);
+  // function("decode", &decode);
+  function("encode", &encode);
 }
