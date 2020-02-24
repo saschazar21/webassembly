@@ -1,0 +1,19 @@
+{
+  "name": "@saschazar/wasm-exif",
+  "version": "0.0.0",
+  "description": "An EXIF reader using WebAssembly",
+  "main": "wasm_exif.js",
+  "repository": "https://github.com/saschazar21/webassembly",
+  "author": "Sascha Zarhuber <saschazar21@yahoo.de>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "install": "napa"
+  },
+  "napa": {
+    "easyexif": "mayanklahiri/easyexif"
+  },
+  "devDependencies": {
+    "napa": "^3.0.0"
+  }
+}
