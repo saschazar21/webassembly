@@ -48,7 +48,8 @@ public:
     buffer = (uint8_t *)img_in.c_str();
     width = width_;
     height = height_;
-    length = width * height * channels;
+    row_stride = width * channels;
+    length = height * row_stride;
   }
 
   ~MozJPEG()
