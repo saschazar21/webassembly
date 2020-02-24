@@ -9,97 +9,80 @@
 
 using namespace emscripten;
 
-class WebP
+uint8_t *buffer;
+
+int width;
+int height;
+int channels = 3;
+int row_stride;
+size_t length;
+
+void free_buffer()
 {
-private:
-  uint8_t *buffer;
+  WebPFree(buffer);
+}
 
-  int length;
-  int width;
-  int height;
-  int channels;
-
-public:
-  WebP(std::string img_in, int width_, int height_)
+val decode(std::string img_in, size_t length_)
+{
+  if (buffer != NULL)
   {
-    buffer = (uint8_t *)img_in.c_str();
-    width = width_;
-    height = height_;
-    length = width * height;
-    channels = 3;
+    free_buffer();
+  }
+  buffer = (uint8_t *)img_in.c_str();
+  length = length_;
+  uint8_t *decoded = WebPDecodeRGB(buffer, length, &width, &height);
+  free_buffer();
+
+  buffer = decoded;
+  row_stride = width * channels;
+  length = height * row_stride;
+  return val(typed_memory_view(length, buffer));
+}
+
+val encode(std::string img_in, int width_, int height_, WebPConfig config)
+{
+  if (buffer != NULL)
+  {
+    free_buffer();
   }
 
-  WebP(std::string img_in, int length_)
+  WebPPicture webp;
+  WebPMemoryWriter writer;
+  int ok;
+
+  buffer = (uint8_t *)img_in.c_str();
+  width = width_;
+  height = height_;
+  row_stride = width * channels;
+  length = height * row_stride;
+
+  if (!WebPPictureInit(&webp))
   {
-    buffer = (uint8_t *)img_in.c_str();
-    length = length_;
+    throw std::runtime_error("WebP picture init failed!");
   }
 
-  ~WebP()
+  WebPMemoryWriterInit(&writer);
+
+  webp.use_argb = config.lossless || config.use_sharp_yuv || config.preprocessing > 0;
+  webp.width = width;
+  webp.height = height;
+  webp.writer = WebPMemoryWrite;
+  webp.custom_ptr = &writer;
+
+  ok = WebPPictureImportRGB(&webp, buffer, row_stride) && WebPEncode(&config, &webp);
+  WebPPictureFree(&webp);
+
+  if (!ok)
   {
-    WebPFree(buffer);
+    WebPMemoryWriterClear(&writer);
+    throw std::runtime_error("Encoding failed!");
   }
+  free_buffer();
 
-  val getBuffer() const
-  {
-    return val(typed_memory_view(length || width * height * channels, buffer));
-  }
+  buffer = writer.mem;
+  length = writer.size;
 
-  int getChannels() const
-  {
-    return channels;
-  }
-
-  int getHeight() const
-  {
-    return height;
-  }
-
-  int getWidth() const
-  {
-    return width;
-  }
-
-  val decode()
-  {
-    uint8_t *decoded = WebPDecodeRGB(buffer, length, &width, &height);
-    channels = 3;
-    WebPFree(buffer);
-    buffer = decoded;
-    return val(typed_memory_view(width * height * channels, buffer));
-  }
-
-  val encode(WebPConfig config)
-  {
-    WebPPicture webp;
-    WebPMemoryWriter writer;
-    int ok;
-    if (!WebPPictureInit(&webp))
-    {
-      throw std::runtime_error("WebP picture init failed!");
-    }
-
-    WebPMemoryWriterInit(&writer);
-
-    webp.use_argb = config.lossless || config.use_sharp_yuv || config.preprocessing > 0;
-    webp.width = width;
-    webp.height = height;
-    webp.writer = WebPMemoryWrite;
-    webp.custom_ptr = &writer;
-
-    ok = WebPPictureImportRGB(&webp, buffer, width * channels) && WebPEncode(&config, &webp);
-    WebPPictureFree(&webp);
-
-    if (!ok)
-    {
-      WebPMemoryWriterClear(&writer);
-      throw std::runtime_error("Encoding failed!");
-    }
-
-    buffer = writer.mem;
-
-    return val(typed_memory_view(writer.size, writer.mem));
-  }
+  return val(typed_memory_view(length, buffer));
 };
 
 EMSCRIPTEN_BINDINGS(WebP)
@@ -139,13 +122,7 @@ EMSCRIPTEN_BINDINGS(WebP)
       .field("use_delta_palette", &WebPConfig::use_delta_palette)
       .field("use_sharp_yuv", &WebPConfig::use_sharp_yuv);
 
-  class_<WebP>("WebP")
-      .constructor<std::string, int, int>()
-      .constructor<std::string, int>()
-      .property("buffer", &WebP::getBuffer)
-      .property("channels", &WebP::getChannels)
-      .property("height", &WebP::getHeight)
-      .property("width", &WebP::getWidth)
-      .function("decode", &WebP::decode)
-      .function("encode", &WebP::encode);
+  function("free", &free_buffer);
+  function("decode", &decode);
+  function("encode", &encode);
 }

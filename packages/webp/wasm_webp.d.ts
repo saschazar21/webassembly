@@ -35,26 +35,16 @@ export interface EncodeOptions {
   use_sharp_yuv?: number;
 }
 
-export class WebP {
-  buffer: BufferSource;
-  width: number;
-  height: number;
-  channels: number;
-  constructor(buffer: BufferSource, width: number, height: number);
-  constructor(buffer: BufferSource, length: number);
-  delete(): void;
-  decode(): BufferSource;
-  // eslint-disable-next-line @typescript-eslint/camelcase
-  encode_without_options(quality: number): BufferSource;
-  encode(config: EncodeOptions): BufferSource;
-}
-
 export interface WebPModule extends EmscriptenModule {
   WebPImageHint: WebPImageHint;
-  WebP: {
-    new (buffer: BufferSource, width: number, height: number): WebP;
-    new (buffer: BufferSource, length: number): WebP;
-  };
+  free(): void;
+  decode(buffer: BufferSource, length: number): BufferSource;
+  encode(
+    buffer: BufferSource,
+    width: number,
+    height: number,
+    config: EncodeOptions
+  ): BufferSource;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

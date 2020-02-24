@@ -39,6 +39,10 @@ describe('WebP', () => {
   let imageLoaderModule: ImageLoaderModule;
   let webpModule: WebPModule;
 
+  afterAll(() => {
+    webpModule.free();
+  });
+
   beforeAll(async () => {
     imageLoaderModule = (await new Promise(resolve => {
       const wasm = wasm_image_loader({
@@ -74,18 +78,15 @@ describe('WebP', () => {
       )
     );
     const { ImageLoader } = imageLoaderModule;
-    const { WebP } = webpModule;
+    const { encode } = webpModule;
 
     const loader = new ImageLoader(buf, buf.length, 0);
+    loader.resize(inWidth * 0.75, inHeight * 0.75);
     const { buffer, width, height } = loader;
     loader.delete();
 
-    const webP = new WebP(buffer, width, height);
-    const output = webP.encode(options) as Uint8Array;
-
-    expect(output.length).toBeLessThan(inWidth * inHeight * 3);
-
-    webP.delete();
+    const output = encode(buffer, width, height, options) as Uint8Array;
+    expect(output.length).toBeLessThan(width * height * 3);
   });
 
   it('decodes a .webp image', async () => {
@@ -100,14 +101,16 @@ describe('WebP', () => {
       )
     );
     const { ImageLoader } = imageLoaderModule;
-    const { WebP } = webpModule;
+    const { decode, encode } = webpModule;
 
     const loader = new ImageLoader(buf, buf.length, 0);
-    const webP = new WebP(loader.buffer, inWidth, inHeight);
-    webP.encode(options) as Uint8Array;
+    const { buffer, width, height } = loader;
+    loader.delete();
 
-    const output = webP.decode() as Uint8Array;
+    const encoded = encode(buffer, width, height, options) as Uint8Array;
+    expect(encoded.length).toBeLessThan((buffer as Uint8Array).length);
 
-    expect(output).toHaveLength(inWidth * inHeight * 3);
+    const output = decode(encoded, encoded.length) as Uint8Array;
+    expect(output).toHaveLength(width * height * 3);
   });
 });
