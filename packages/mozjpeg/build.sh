@@ -2,7 +2,7 @@
 
 set -e
 
-export OPTIMIZE="-Os"
+export OPTIMIZE="-Oz"
 export LDFLAGS="${OPTIMIZE}"
 export CFLAGS="${OPTIMIZE}"
 export CPPFLAGS="${OPTIMIZE}"
@@ -23,7 +23,8 @@ test -n "$SKIP_MOZJPEG" || (
   apt-get install -qqy autoconf libtool libpng-dev pkg-config
   cd node_modules/mozjpeg
   autoreconf -fiv
-  emconfigure ./configure --without-simd
+  emconfigure ./configure \
+    --without-simd
   emmake make libjpeg.la
 )
 

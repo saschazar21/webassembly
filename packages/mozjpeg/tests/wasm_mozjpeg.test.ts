@@ -21,7 +21,7 @@ const defaultOptions = {
   auto_subsample: true,
   chroma_subsample: 2,
   separate_chroma_quality: false,
-  chroma_quality: 75,
+  chroma_quality: 75
 };
 
 describe('MozJPEG', () => {
@@ -29,23 +29,23 @@ describe('MozJPEG', () => {
   let imageLoaderModule: ImageLoaderModule;
 
   beforeAll(async () => {
-    mozJPEGModule = (await new Promise((resolve) => {
+    mozJPEGModule = (await new Promise(resolve => {
       const wasm = wasm_mozjpeg({
         noInitialRun: true,
         onRuntimeInitialized() {
           const { then, ...other } = wasm;
           resolve(other);
-        },
+        }
       });
     })) as MozJPEGModule;
 
-    imageLoaderModule = (await new Promise((resolve) => {
+    imageLoaderModule = (await new Promise(resolve => {
       const wasm = wasm_image_loader({
         noInitialRun: true,
         onRuntimeInitialized() {
           const { then, ...other } = wasm;
           resolve(other);
-        },
+        }
       });
     })) as ImageLoaderModule;
   });
@@ -56,27 +56,21 @@ describe('MozJPEG', () => {
     const options = { ...defaultOptions, quality: 50 };
 
     const img = new Uint8Array(
-      await fetch(`${RANDOM_URL}${inWidth}x${inHeight}`, {}).then((res) =>
-        res.buffer(),
-      ),
+      await fetch(`${RANDOM_URL}${inWidth}x${inHeight}`, {}).then(res =>
+        res.buffer()
+      )
     );
+    const { ImageLoader } = imageLoaderModule;
     const { MozJPEG } = mozJPEGModule;
 
-    const loader = new MozJPEG();
-    loader.decode(img, img.length) as Uint8Array;
+    const loader = new ImageLoader(img, img.length, 0);
     const { buffer, width, height } = loader;
     expect(buffer).toHaveLength(inWidth * inHeight * 3);
     loader.delete();
 
-    const mozJPEG = new MozJPEG();
+    const mozJPEG = new MozJPEG(buffer, width, height);
 
-    const result = mozJPEG.encode(
-      buffer,
-      (buffer as Uint8Array).length,
-      width,
-      height,
-      options,
-    ) as Uint8Array;
+    const result = mozJPEG.encode(options) as Uint8Array;
     const { length } = mozJPEG;
 
     expect(length).toBeGreaterThan(0);

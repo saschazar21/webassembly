@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/camelcase */
 import fetch from 'node-fetch';
 import wasm_image_loader, { ImageLoaderModule } from '../../image-loader';
-import wasm_mozjpeg, { MozJPEGModule } from '../../mozjpeg';
 import wasm_webp, { EncodeOptions, WebPModule } from '../wasm_webp';
 
 const RANDOM_URL = 'https://source.unsplash.com/random/';
@@ -33,42 +32,31 @@ const defaultOptions: EncodeOptions = {
   low_memory: 0,
   near_lossless: 100,
   use_delta_palette: 0,
-  use_sharp_yuv: 0,
+  use_sharp_yuv: 0
 };
 
 describe('WebP', () => {
   let imageLoaderModule: ImageLoaderModule;
-  let mozJpegModule: MozJPEGModule;
   let webpModule: WebPModule;
 
   beforeAll(async () => {
-    imageLoaderModule = (await new Promise((resolve) => {
+    imageLoaderModule = (await new Promise(resolve => {
       const wasm = wasm_image_loader({
         noInitialRun: true,
         onRuntimeInitialized() {
           const { then, ...other } = wasm;
           resolve(other);
-        },
+        }
       });
     })) as ImageLoaderModule;
 
-    mozJpegModule = (await new Promise((resolve) => {
-      const wasm = wasm_mozjpeg({
-        noInitialRun: true,
-        onRuntimeInitialized() {
-          const { then, ...other } = wasm;
-          resolve(other);
-        },
-      });
-    })) as MozJPEGModule;
-
-    webpModule = (await new Promise((resolve) => {
+    webpModule = (await new Promise(resolve => {
       const wasm = wasm_webp({
         noInitialRun: true,
         onRuntimeInitialized() {
           const { then, ...other } = wasm;
           resolve(other);
-        },
+        }
       });
     })) as WebPModule;
   });
@@ -77,21 +65,20 @@ describe('WebP', () => {
     jest.setTimeout(10000);
     const options = {
       ...defaultOptions,
-      quality: 80.0,
+      quality: 80.0
     };
     const [inWidth, inHeight] = [3000, 2000];
     const buf = new Uint8Array(
-      await fetch(`${RANDOM_URL}${inWidth}x${inHeight}`, {}).then((res) =>
-        res.buffer(),
-      ),
+      await fetch(`${RANDOM_URL}${inWidth}x${inHeight}`, {}).then(res =>
+        res.buffer()
+      )
     );
-    const { MozJPEG } = mozJpegModule;
+    const { ImageLoader } = imageLoaderModule;
     const { WebP } = webpModule;
 
-    const mozJpeg = new MozJPEG();
-    mozJpeg.decode(buf, buf.length);
-    const { buffer, width, height } = mozJpeg;
-    mozJpeg.delete();
+    const loader = new ImageLoader(buf, buf.length, 0);
+    const { buffer, width, height } = loader;
+    loader.delete();
 
     const webP = new WebP(buffer, width, height);
     const output = webP.encode(options) as Uint8Array;
@@ -104,13 +91,13 @@ describe('WebP', () => {
   it('decodes a .webp image', async () => {
     const options = {
       ...defaultOptions,
-      quality: 100.0,
+      quality: 100.0
     };
     const [inWidth, inHeight] = [800, 600];
     const buf = new Uint8Array(
-      await fetch(`${RANDOM_URL}${inWidth}x${inHeight}`, {}).then((res) =>
-        res.buffer(),
-      ),
+      await fetch(`${RANDOM_URL}${inWidth}x${inHeight}`, {}).then(res =>
+        res.buffer()
+      )
     );
     const { ImageLoader } = imageLoaderModule;
     const { WebP } = webpModule;

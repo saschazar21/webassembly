@@ -2,7 +2,7 @@
 
 set -e
 
-export OPTIMIZE="-Os"
+export OPTIMIZE="-Oz"
 export LDFLAGS="${OPTIMIZE}"
 export CFLAGS="${OPTIMIZE}"
 export CPPFLAGS="${OPTIMIZE}"

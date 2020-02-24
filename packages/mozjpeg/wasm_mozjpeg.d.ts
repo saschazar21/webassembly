@@ -16,7 +16,7 @@ export enum J_COLOR_SPACE {
   JCS_EXT_BGRA /* blue/green/red/alpha */,
   JCS_EXT_ABGR /* alpha/blue/green/red */,
   JCS_EXT_ARGB /* alpha/red/green/blue */,
-  JCS_RGB565 /* 5-bit red/6-bit green/5-bit blue */,
+  JCS_RGB565 /* 5-bit red/6-bit green/5-bit blue */
 }
 
 export interface MozJPEGOptions {
@@ -39,26 +39,19 @@ export interface MozJPEGOptions {
 }
 
 export class MozJPEG {
-  constructor();
+  constructor(buffer: BufferSource, width: number, height: number);
   buffer: BufferSource;
   height: number;
   width: number;
   length: number;
   delete(): void;
-  decode(buffer: BufferSource, size: number): BufferSource;
-  encode(
-    buffer: BufferSource,
-    size: number,
-    width: number,
-    height: number,
-    options: MozJPEGOptions,
-  ): BufferSource;
+  encode(options: MozJPEGOptions): BufferSource;
 }
 
 export interface MozJPEGModule extends EmscriptenModule {
   J_COLOR_SPACE: J_COLOR_SPACE;
   MozJPEG: {
-    new (): MozJPEG;
+    new (buffer: BufferSource, width: number, height: number): MozJPEG;
   };
 }
 
