@@ -57,7 +57,7 @@ async function loadImage() {
   loader.resize(800, 600);
   console.log(loader.buffer); // logs the uncompressed 800x600 RGB Uint8Array
 
-  // cleans up memory, when loader is not needed anymore
+  // clean up memory, when loader is not needed anymore
   loader.delete();
 }
 ```
