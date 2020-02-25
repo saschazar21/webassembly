@@ -28,22 +28,7 @@ describe('Exif', () => {
     );
     const { exif } = exifModule;
 
-    const e = exif(buffer, buffer.length);
-
-    expect(e).toBeTruthy();
-  });
-
-  it('reads exif from local file', async () => {
-    const buffer = new Uint8Array(
-      await import('fs').then(fs =>
-        fs.readFileSync('/Users/zasa/Downloads/_DSC1312.jpg')
-      )
-    );
-    const { exif } = exifModule;
-
-    const e = exif(buffer, buffer.length);
-    console.log(e);
-
-    expect(e).toBeTruthy();
+    // Unsplash images don't have EXIF information included, so function should throw
+    expect(() => exif(buffer, buffer.length)).toThrow();
   });
 });

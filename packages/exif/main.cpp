@@ -1,5 +1,6 @@
 #include <emscripten/bind.h>
 #include <emscripten/val.h>
+#include <stdexcept>
 #include "node_modules/easyexif/exif.h"
 
 using namespace emscripten;
@@ -11,8 +12,19 @@ val exif(std::string img_in, size_t length)
   easyexif::EXIFInfo result;
   val info = val::object();
 
-  if (!result.parseFrom(buffer, length))
+  int status = result.parseFrom(buffer, length);
+
+  switch (status)
   {
+  case 1982:
+    throw std::runtime_error("Not a valid JPEG!");
+  case 1983:
+    throw std::runtime_error("No EXIF found in JPEG!");
+  case 1984:
+    throw std::runtime_error("Invalid EXIF format!");
+  case 1985:
+    throw std::runtime_error("EXIF format corrupted!");
+  default:
     info.set("make", result.Make.c_str());
     info.set("model", result.Model.c_str());
     info.set("software", result.Software.c_str());
