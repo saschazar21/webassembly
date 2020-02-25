@@ -33,7 +33,7 @@ importScripts('wasm_webp.js');
 const array = new Uint8Array(['some', 'raw', 'RGB', 'image', 'data']);
 const width = 800;  // the image's width
 const height = 600; // the image's height
-const options = {}; // MozJPEG's options
+const options = {}; // WebP's options
 let result;
 
 // Initialize the WebAssembly Module
