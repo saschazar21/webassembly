@@ -12,7 +12,7 @@
     "build": "docker run --rm -v $(pwd):/src trzeci/emscripten ./build.sh"
   },
   "napa": {
-    "stb": "nothings/stb"
+    "stb": "nothings/stb#master"
   },
   "devDependencies": {
     "napa": "^3.0.0"

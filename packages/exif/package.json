@@ -8,10 +8,11 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "install": "napa"
+    "install": "napa",
+    "build": "docker run --rm -v $(pwd):/src trzeci/emscripten ./build.sh"
   },
   "napa": {
-    "easyexif": "mayanklahiri/easyexif"
+    "easyexif": "mayanklahiri/easyexif#master"
   },
   "devDependencies": {
     "napa": "^3.0.0"
