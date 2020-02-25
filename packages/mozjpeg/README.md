@@ -2,7 +2,7 @@
 
 > A dependency-free MozJPEG encoder written in WebAssembly
 
-It encodes raw RGBA image data in a `Uint8Array` into the JPEG format.
+It encodes raw RGB image data in a `Uint8Array` into the JPEG format.
 
 ## Installation
 

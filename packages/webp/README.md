@@ -2,7 +2,7 @@
 
 > A dependency-free WebP decoder/encoder written in WebAssembly
 
-It encodes raw RGBA image data in a `Uint8Array` into the WebP format and vice versa.
+It encodes raw RGB image data in a `Uint8Array` into the WebP format and vice versa.
 
 ## Installation
 
