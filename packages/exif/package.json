@@ -7,6 +7,9 @@
   "author": "Sascha Zarhuber <saschazar21@yahoo.de>",
   "license": "MIT",
   "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "install": "napa",
     "build": "docker run --rm -v $(pwd):/src trzeci/emscripten ./build.sh"

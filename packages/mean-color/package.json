@@ -15,6 +15,10 @@
   "homepage": "https://github.com/saschazar21/webassembly",
   "license": "MIT",
   "main": "wasm_mean_color.js",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/saschazar21/webassembly.git"

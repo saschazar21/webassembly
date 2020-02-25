@@ -7,6 +7,9 @@
   "author": "Sascha Zarhuber <saschazar21@yahoo.de>",
   "license": "MIT",
   "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "docker run --rm -v $(pwd):/src -e SKIP_MOZJPEG=$SKIP_MOZJPEG trzeci/emscripten ./build.sh",
     "install": "napa"
