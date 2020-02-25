@@ -10,10 +10,6 @@ describe('Mean Color', () => {
   let imageLoader: ImageLoaderModule;
   let meanColor: MeanColorModule;
 
-  afterAll(() => {
-    meanColor.free();
-  });
-
   beforeAll(async () => {
     imageLoader = (await new Promise(resolve => {
       const wasm = wasm_image_loader({

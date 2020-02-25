@@ -19,11 +19,6 @@ uint8_t *buffer;
 size_t length;
 uint8_t channels;
 
-void free_buffer()
-{
-  delete[] buffer;
-}
-
 void to_hsl(uint8_t red, uint8_t green, uint8_t blue)
 {
   float r = red / 255.0;
@@ -134,11 +129,6 @@ string to_rgb(uint16_t h, uint8_t s, uint8_t l)
 
 string getColor(string img_buffer, size_t length_, int channels_)
 {
-  if (buffer != NULL)
-  {
-    free_buffer();
-  }
-
   buffer = (uint8_t *)img_buffer.c_str();
   length = length_;
   channels = channels_;
@@ -173,6 +163,5 @@ string getColor(string img_buffer, size_t length_, int channels_)
 
 EMSCRIPTEN_BINDINGS(MeanColor)
 {
-  emscripten::function("free", &free_buffer);
   emscripten::function("getColor", &getColor);
 }
