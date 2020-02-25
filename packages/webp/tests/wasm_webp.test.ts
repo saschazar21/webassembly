@@ -1,39 +1,10 @@
 /* eslint-disable @typescript-eslint/camelcase */
 import fetch from 'node-fetch';
 import wasm_image_loader, { ImageLoaderModule } from '../../image-loader';
-import wasm_webp, { EncodeOptions, WebPModule } from '../wasm_webp';
+import wasm_webp, { WebPModule } from '../wasm_webp';
+import defaultOptions, { EncodeOptions } from '../options';
 
 const RANDOM_URL = 'https://source.unsplash.com/random/';
-
-const defaultOptions: EncodeOptions = {
-  quality: 75,
-  target_size: 0,
-  target_PSNR: 0,
-  method: 4,
-  sns_strength: 50,
-  filter_strength: 60,
-  filter_sharpness: 0,
-  filter_type: 1,
-  partitions: 0,
-  segments: 4,
-  pass: 1,
-  show_compressed: 0,
-  preprocessing: 0,
-  autofilter: 0,
-  partition_limit: 0,
-  alpha_compression: 1,
-  alpha_filtering: 1,
-  alpha_quality: 100,
-  lossless: 0,
-  exact: 0,
-  image_hint: 0,
-  emulate_jpeg_size: 0,
-  thread_level: 0,
-  low_memory: 0,
-  near_lossless: 100,
-  use_delta_palette: 0,
-  use_sharp_yuv: 0
-};
 
 describe('WebP', () => {
   let imageLoaderModule: ImageLoaderModule;
@@ -67,7 +38,7 @@ describe('WebP', () => {
 
   it('encodes a .jpeg into .webp', async () => {
     jest.setTimeout(10000);
-    const options = {
+    const options: EncodeOptions = {
       ...defaultOptions,
       quality: 80.0
     };
@@ -90,7 +61,7 @@ describe('WebP', () => {
   });
 
   it('decodes a .webp image', async () => {
-    const options = {
+    const options: EncodeOptions = {
       ...defaultOptions,
       quality: 100.0
     };

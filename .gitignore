@@ -1,4 +1,4 @@
-packages/**/*.js
+packages/**/wasm_**.js
 packages/**/*.wasm
 
 
