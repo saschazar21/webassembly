@@ -9,20 +9,19 @@
     "image",
     "mean",
     "average",
-    "median"
+    "median",
+    "webassembly",
+    "browser",
+    "web worker"
   ],
   "author": "Sascha Zarhuber <sascha.zarhuber@gmail.com>",
-  "homepage": "https://github.com/saschazar21/webassembly",
   "license": "MIT",
   "main": "wasm_mean_color.js",
   "private": false,
   "publishConfig": {
     "access": "public"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/saschazar21/webassembly.git"
-  },
+  "repository": "https://github.com/saschazar21/webassembly",
   "scripts": {
     "build": "docker run --rm -v $(pwd):/src trzeci/emscripten ./build.sh"
   },

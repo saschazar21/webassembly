@@ -2,6 +2,17 @@
   "name": "@saschazar/wasm_mozjpeg",
   "version": "0.0.0",
   "description": "A MozJPEG encoder in WebAssembly",
+  "keywords": [
+    "color",
+    "rgb",
+    "image",
+    "jpeg",
+    "encoder",
+    "codec",
+    "webassembly",
+    "browser",
+    "web worker"
+  ],
   "main": "wasm_mozjpeg.js",
   "repository": "https://github.com/saschazar21/webassembly",
   "author": "Sascha Zarhuber <saschazar21@yahoo.de>",
