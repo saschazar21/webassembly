@@ -1,3 +1,5 @@
+[![npm](https://img.shields.io/npm/v/@saschazar/wasm-mean-color)](https://npmjs.org/package/@saschazar/wasm-mean-color)
+
 # 📦 WebAssembly mean-color calculator
 
 > A dependency-free mean-color calculator written in WebAssembly

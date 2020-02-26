@@ -1,3 +1,5 @@
+[![npm](https://img.shields.io/npm/v/@saschazar/wasm-image-loader)](https://npmjs.org/package/@saschazar/wasm-image-loader)
+
 # 📦 WebAssembly image loader/resizer
 
 > A dependency-free image loader/resizer written in WebAssembly

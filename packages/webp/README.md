@@ -1,3 +1,5 @@
+[![npm](https://img.shields.io/npm/v/@saschazar/wasm-webp)](https://npmjs.org/package/@saschazar/wasm-webp)
+
 # 📦 WebAssembly WebP decoder/encoder
 
 > A dependency-free WebP decoder/encoder written in WebAssembly
@@ -31,7 +33,7 @@ importScripts('wasm_webp.js');
 
 // Load raw RGB image data in Uint8Array (e.g. consistently chained [R][G][B] data)
 const array = new Uint8Array(['some', 'raw', 'RGB', 'image', 'data']);
-const width = 800;  // the image's width
+const width = 800; // the image's width
 const height = 600; // the image's height
 const options = {}; // WebP's options
 let result;

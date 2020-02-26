@@ -1,3 +1,5 @@
+[![npm](https://img.shields.io/npm/v/@saschazar/wasm-exif)](https://npmjs.org/package/@saschazar/wasm-exif)
+
 # 📦 WebAssembly EXIF reader
 
 > A dependency-free EXIF reader written in WebAssembly
