@@ -1,0 +1,25 @@
+language: node_js
+version:
+  - lts/erbium
+  
+services:
+  - docker
+  
+before_install:
+  - docker pull trzeci/emscripten-slim
+
+script:
+  - yarn build
+  - yarn test
+
+before_deploy:
+  - if [ "$TRAVIS_BRANCH" == "master" ];then
+      git checkout master;
+    fi;
+
+deploy:
+  - provider: script
+    edge: true
+    script: npx auto shipit
+    on:
+      branch: master

@@ -13,6 +13,13 @@
     "lint": "eslint packages/ --ext .ts",
     "test": "yarn lint && jest"
   },
+  "_moduleAliases": {
+    "@saschazar/wasm-exif": "packages/exif",
+    "@saschazar/wasm-image-loader": "packages/image-loader",
+    "@saschazar/wasm-mean-color": "packages/mean-color",
+    "@saschazar/wasm-mozjpeg": "packages/mozjpeg",
+    "@saschazar/wasm-webp": "packages/webp"
+  },
   "devDependencies": {
     "@babel/core": "^7.8.4",
     "@babel/preset-env": "^7.8.4",
@@ -31,5 +38,8 @@
     "node-fetch": "^2.6.0",
     "ts-jest": "^24.3.0",
     "typescript": "^3.7.5"
+  },
+  "dependencies": {
+    "module-alias": "^2.2.2"
   }
 }
