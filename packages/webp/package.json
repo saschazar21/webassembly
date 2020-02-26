@@ -1,6 +1,6 @@
 {
   "name": "@saschazar/wasm-webp",
-  "version": "0.0.0",
+  "version": "0.1.5",
   "description": "Encodes and decodes WebP images using WebAssembly",
   "keywords": [
     "color",
