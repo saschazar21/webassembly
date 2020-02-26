@@ -7,9 +7,6 @@
         "setRcToken": false
       }
     ],
-    "all-contributors",
-    "conventional-commits",
-    "first-time-contributor",
     "released"
   ]
 }
