@@ -1,4 +1,4 @@
-![Github lerna version](https://img.shields.io/github/lerna-json/v/saschazar21/webassembly)
+[![Build Status](https://travis-ci.com/saschazar21/webassembly.svg?branch=master)](https://travis-ci.com/saschazar21/webassembly) ![Github lerna version](https://img.shields.io/github/lerna-json/v/saschazar21/webassembly)
 
 # 📦 WebAssembly Monorepo
 

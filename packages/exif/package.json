@@ -1,6 +1,6 @@
 {
   "name": "@saschazar/wasm-exif",
-  "version": "0.1.5",
+  "version": "1.0.0-beta",
   "description": "An EXIF reader using WebAssembly",
   "keywords": [
     "color",

@@ -3,10 +3,10 @@
     [
       "npm",
       {
-        "forcePublish": false,
-        "setRcToken": false
+        "forcePublish": false
       }
     ],
+    "conventional-commits",
     "released"
   ]
 }
