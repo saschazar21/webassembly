@@ -17,9 +17,26 @@ int channels = 3;
 int row_stride;
 size_t length;
 
+struct Dimensions
+{
+  int width;
+  int height;
+  int channels;
+};
+
 void free_buffer()
 {
   WebPFree(buffer);
+}
+
+val dimensions()
+{
+  val dim = val::object();
+  dim.set("width", width);
+  dim.set("height", height);
+  dim.set("channels", channels);
+
+  return dim;
 }
 
 val decode(std::string img_in, size_t length_)
@@ -93,6 +110,11 @@ EMSCRIPTEN_BINDINGS(WebP)
       .value("WEBP_HINT_PHOTO", WebPImageHint::WEBP_HINT_PHOTO)
       .value("WEBP_HINT_GRAPH", WebPImageHint::WEBP_HINT_GRAPH);
 
+  value_object<Dimensions>("Dimensions")
+      .field("width", &Dimensions::width)
+      .field("height", &Dimensions::height)
+      .field("channels", &Dimensions::channels);
+
   value_object<WebPConfig>("WebPConfig")
       .field("lossless", &WebPConfig::lossless)
       .field("quality", &WebPConfig::quality)
@@ -123,6 +145,7 @@ EMSCRIPTEN_BINDINGS(WebP)
       .field("use_sharp_yuv", &WebPConfig::use_sharp_yuv);
 
   function("free", &free_buffer);
+  function("dimensions", &dimensions);
   function("decode", &decode);
   function("encode", &encode);
 }

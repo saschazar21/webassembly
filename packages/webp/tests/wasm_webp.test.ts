@@ -72,7 +72,7 @@ describe('WebP', () => {
       )
     );
     const { ImageLoader } = imageLoaderModule;
-    const { decode, encode } = webpModule;
+    const { dimensions, decode, encode } = webpModule;
 
     const loader = new ImageLoader(buf, buf.length, 0);
     const { buffer, width, height } = loader;
@@ -83,5 +83,9 @@ describe('WebP', () => {
 
     const output = decode(encoded, encoded.length) as Uint8Array;
     expect(output).toHaveLength(width * height * 3);
+
+    const dim = dimensions();
+    expect(dim.width).toEqual(inWidth);
+    expect(dim.height).toEqual(inHeight);
   });
 });
