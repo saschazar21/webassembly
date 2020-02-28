@@ -7,9 +7,16 @@ export enum WebPImageHint {
   WEBP_HINT_GRAPH // Discrete tone image (graph, map-tile etc).
 }
 
+export interface Dimensions {
+  width: number;
+  height: number;
+  channels: number;
+}
+
 export interface WebPModule extends EmscriptenModule {
   WebPImageHint: WebPImageHint;
   free(): void;
+  dimensions(): Dimensions;
   decode(buffer: BufferSource, length: number): BufferSource;
   encode(
     buffer: BufferSource,
