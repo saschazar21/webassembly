@@ -1,3 +1,15 @@
+# v1.0.1 (Sat Feb 29 2020)
+
+#### 🐛  Bug Fix
+
+- fix: fixed package.json script preventing correct install  ([@saschazar21](https://github.com/saschazar21))
+
+#### Authors: 1
+
+- Sascha Zarhuber ([@saschazar21](https://github.com/saschazar21))
+
+---
+
 # v1.0.0 (Wed Feb 26 2020)
 
 #### 🐛  Bug Fix
