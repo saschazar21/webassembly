@@ -7,40 +7,18 @@ export enum COLOR_CHANNELS {
   RGB_ALPHA = 4
 }
 
-export class ImageLoader {
+export interface ImageDimensions {
   width: number;
   height: number;
-  buffer: BufferSource;
-  constructor(
-    buffer: BufferSource,
-    width: number,
-    height: number,
-    channels: number
-  );
-  constructor(
-    buffer: BufferSource,
-    length: number,
-    desiredChannels: COLOR_CHANNELS
-  );
-  resize(outputWidth: number, outputHeight: number): BufferSource;
-  delete(): void;
+  channels: number;
 }
 
 export interface ImageLoaderModule extends EmscriptenModule {
   COLOR_CHANNELS: COLOR_CHANNELS;
-  ImageLoader: {
-    new (
-      buffer: BufferSource,
-      width: number,
-      height: number,
-      channels: number
-    ): ImageLoader;
-    new (
-      buffer: BufferSource,
-      length: number,
-      desiredChannels: COLOR_CHANNELS
-    ): ImageLoader;
-  };
+  free(): void;
+  dimensions(): ImageDimensions;
+  decode(buffer: BufferSource, length: number, desiredChannels: COLOR_CHANNELS): BufferSource;
+  resize(buffer: BufferSource, width: number, height: number, channels: number, outputWidth: number, outputHeight: number): BufferSource;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

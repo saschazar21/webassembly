@@ -22,17 +22,10 @@ describe('Image Loader', () => {
 
   it('exports COLOR_CHANNELS and ImageLoader', () => {
     expect(module).toHaveProperty('COLOR_CHANNELS');
-    expect(module).toHaveProperty('ImageLoader');
-  });
-
-  it('lets instantiate an ImageLoader class', () => {
-    const { ImageLoader } = module;
-    const buffer = new Uint8Array(16 * 16 * 3);
-
-    const loader = new ImageLoader(buffer, 16, 16, 3);
-    expect(loader.width).toEqual(16);
-
-    loader.delete();
+    expect(module).toHaveProperty('free');
+    expect(module).toHaveProperty('dimensions');
+    expect(module).toHaveProperty('decode');
+    expect(module).toHaveProperty('resize');
   });
 
   it('loads a random JPEG image', async () => {
@@ -40,23 +33,29 @@ describe('Image Loader', () => {
       await fetch(RANDOM_URL, {}).then(res => res.buffer())
     );
 
-    const { ImageLoader } = module;
+    const { decode, dimensions, free, resize } = module;
 
-    const loader = new ImageLoader(buffer, buffer.length, 0);
+    const result = new Uint8Array(decode(buffer, buffer.length, 0) as Uint8Array);
+    const { width, height } = dimensions();
+    free();
 
-    expect(loader.width).toEqual(800);
-    expect(loader.height).toEqual(600);
-    expect(loader.buffer).toHaveLength(800 * 600 * 3);
+    expect(width).toEqual(800);
+    expect(height).toEqual(600);
+    expect(result).toHaveLength(800 * 600 * 3);
 
-    loader.resize(
-      Math.floor(loader.width * 0.5),
-      Math.floor(loader.height * 0.5)
-    ) as Uint8Array;
+    const resized = new Uint8Array(resize(
+      result,
+      width,
+      height,
+      3,
+      Math.floor(width * 0.5),
+      Math.floor(height * 0.5)
+    ) as Uint8Array);
+    const { width: outWidth, height: outHeight } = dimensions();
+    free();
 
-    expect(loader.width).toEqual(400);
-    expect(loader.height).toEqual(300);
-    expect(loader.buffer).toHaveLength(400 * 300 * 3);
-
-    loader.delete();
+    expect(outWidth).toEqual(400);
+    expect(outHeight).toEqual(300);
+    expect(resized).toHaveLength(400 * 300 * 3);
   });
 });
