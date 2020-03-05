@@ -1,6 +1,6 @@
 {
   "name": "@saschazar/wasm-image-loader",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "description": "Loads and resizes images using WebAssembly",
   "keywords": [
     "color",
