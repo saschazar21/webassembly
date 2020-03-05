@@ -1,3 +1,20 @@
+# (Thu Mar 05 2020)
+
+#### ⚠️  Pushed to master
+
+- test: updated tests to fit new image-loader structure  ([@saschazar21](https://github.com/saschazar21))
+- feat!: removed class structure  ([@saschazar21](https://github.com/saschazar21))
+- `@saschazar/wasm-image-loader@1.0.2`, `@saschazar/wasm-mean-color@1.0.1`, `@saschazar/wasm-mozjpeg@1.0.2`, `@saschazar/wasm-webp@1.1.2`
+  - chore: merge branch 'develop'  ([@saschazar21](https://github.com/saschazar21))
+- `@saschazar/wasm-image-loader@1.0.2`, `@saschazar/wasm-mean-color@1.0.1`, `@saschazar/wasm-mozjpeg@1.0.2`, `@saschazar/wasm-webp@1.1.2`
+  - test: fixed freeing heap memory  ([@saschazar21](https://github.com/saschazar21))
+
+#### Authors: 1
+
+- Sascha Zarhuber ([@saschazar21](https://github.com/saschazar21))
+
+---
+
 # (Sat Feb 29 2020)
 
 #### 🐛  Bug Fix

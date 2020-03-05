@@ -1,3 +1,16 @@
+# v1.1.2 (Thu Mar 05 2020)
+
+#### 🐛  Bug Fix
+
+- test: fixed freeing heap memory  ([@saschazar21](https://github.com/saschazar21))
+- test: updated tests to fit new image-loader structure  ([@saschazar21](https://github.com/saschazar21))
+
+#### Authors: 1
+
+- Sascha Zarhuber ([@saschazar21](https://github.com/saschazar21))
+
+---
+
 # v1.1.1 (Sat Feb 29 2020)
 
 #### 🐛  Bug Fix
