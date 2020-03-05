@@ -48,16 +48,16 @@ describe('WebP', () => {
         res.buffer()
       )
     );
-    const { ImageLoader } = imageLoaderModule;
+    const { decode: jpegDecode, free, resize } = imageLoaderModule;
     const { encode } = webpModule;
 
-    const loader = new ImageLoader(buf, buf.length, 0);
-    loader.resize(inWidth * 0.75, inHeight * 0.75);
-    const { buffer, width, height } = loader;
-    loader.delete();
+    const decoded = new Uint8Array(jpegDecode(buf, buf.length, 0) as Uint8Array);
+    free();
+    const resized = new Uint8Array(resize(decoded, inWidth, inHeight, 3, inWidth * 0.75, inHeight * 0.75) as Uint8Array);
+    free();
 
-    const output = encode(buffer, width, height, options) as Uint8Array;
-    expect(output.length).toBeLessThan(width * height * 3);
+    const output = encode(resized, inWidth * 0.75, inHeight * 0.75, options) as Uint8Array;
+    expect(output.length).toBeLessThan((inWidth * 0.75) * (inHeight * 0.75) * 3);
   });
 
   it('decodes a .webp image', async () => {
@@ -71,18 +71,17 @@ describe('WebP', () => {
         res.buffer()
       )
     );
-    const { ImageLoader } = imageLoaderModule;
+    const { decode: jpegDecode, free } = imageLoaderModule;
     const { dimensions, decode, encode } = webpModule;
 
-    const loader = new ImageLoader(buf, buf.length, 0);
-    const { buffer, width, height } = loader;
-    loader.delete();
+    const decoded = new Uint8Array(jpegDecode(buf, buf.length, 0) as Uint8Array);
+    free();
 
-    const encoded = encode(buffer, width, height, options) as Uint8Array;
-    expect(encoded.length).toBeLessThan((buffer as Uint8Array).length);
+    const encoded = encode(decoded, inWidth, inHeight, options) as Uint8Array;
+    expect(encoded.length).toBeLessThan((decoded as Uint8Array).length);
 
     const output = decode(encoded, encoded.length) as Uint8Array;
-    expect(output).toHaveLength(width * height * 3);
+    expect(output).toHaveLength(inWidth * inHeight * 3);
 
     const dim = dimensions();
     expect(dim.width).toEqual(inWidth);

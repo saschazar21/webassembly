@@ -34,7 +34,7 @@ describe('Mean Color', () => {
 
   it('calculates the mean color of an image', async () => {
     const [width, height] = [80, 60];
-    const { ImageLoader } = imageLoader;
+    const { decode, free, resize } = imageLoader;
 
     const img = new Uint8Array(
       await fetch(RANDOM_URL, {}).then(res => {
@@ -43,15 +43,14 @@ describe('Mean Color', () => {
       })
     );
 
-    const loader = new ImageLoader(img, img.length, 0);
-    loader.resize(width, height);
-    const { buffer, height: outHeight, width: outWidth } = loader;
-    expect(buffer).toHaveLength(outWidth * outHeight * 3);
+    const decoded = new Uint8Array(decode(img, img.length, 0) as Uint8Array);
+    free();
+    const buffer = new Uint8Array(resize(decoded, 800, 600, 3, width, height) as Uint8Array);
+    free();
+    expect(buffer).toHaveLength(width * height * 3);
 
     const mean = meanColor.getColor(buffer, (buffer as Uint8Array).length, 3);
 
     expect(mean).toHaveLength(7);
-
-    loader.delete();
   });
 });

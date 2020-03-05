@@ -46,16 +46,16 @@ describe('MozJPEG', () => {
         res.buffer()
       )
     );
-    const { ImageLoader } = imageLoaderModule;
+    const { decode, free, resize } = imageLoaderModule;
     const { encode } = mozJPEGModule;
 
-    const loader = new ImageLoader(img, img.length, 0);
-    loader.resize(inWidth * 0.25, inHeight * 0.25);
-    const { buffer, width, height } = loader;
-    expect(buffer).toHaveLength(width * height * 3);
-    loader.delete();
+    const decoded = new Uint8Array(decode(img, img.length, 0) as Uint8Array);
+    free();
+    const resized = new Uint8Array(resize(decoded, inWidth, inHeight, 3, inWidth * 0.25, inHeight * 0.25) as Uint8Array);
+    free();
+    expect(resized).toHaveLength((inWidth * 0.25) * (inHeight * 0.25) * 3);
 
-    const result = encode(buffer, width, height, options) as Uint8Array;
+    const result = encode(resized, inWidth * 0.25, inHeight * 0.25, options) as Uint8Array;
 
     expect(result.length).toBeGreaterThan(0);
     expect(result.length).toBeLessThan(img.length);
