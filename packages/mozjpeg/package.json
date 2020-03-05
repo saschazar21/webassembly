@@ -1,6 +1,6 @@
 {
   "name": "@saschazar/wasm-mozjpeg",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A MozJPEG encoder in WebAssembly",
   "keywords": [
     "color",
