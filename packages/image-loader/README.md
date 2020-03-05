@@ -32,10 +32,10 @@ importScripts('wasm_image_loader.js');
 // -------- Browser/Web Worker/Node.js code below --------
 
 // Load an image into a buffer using the Fetch API
-const buffer = fetch('some JPEG or PNG').then(res => res.buffer());
+const buffer = fetch('some JPEG or PNG').then((res) => res.buffer());
 
 // Initialize the WebAssembly Module
-const imageLoaderModule = new Promise(resolve => {
+const imageLoaderModule = new Promise((resolve) => {
   const wasm = wasm_image_loader({
     onRuntimeInitialized() {
       // remove the 'then' property from wasm_image_loader,
@@ -43,7 +43,7 @@ const imageLoaderModule = new Promise(resolve => {
       const { then, ...other } = wasm;
       // let Promise resolve with 'other' properties.
       resolve(other);
-    }
+    },
   });
 });
 
@@ -53,14 +53,15 @@ async function loadImage() {
   const channels = 3; // 3 if RGB, 4 if Alpha channel is present (e.g. PNG)
 
   // let imageLoaderModule Promise resolve
-  const { ImageLoader } = await imageLoaderModule;
+  const { decode, dimensions, free, resize } = await imageLoaderModule;
 
-  const loader = new ImageLoader(array, array.length, channels);
-  loader.resize(800, 600);
-  console.log(loader.buffer); // logs the uncompressed 800x600 RGB Uint8Array
+  const decoded = decode(array, array.length, channels);
+  const { channels, height, width } = dimensions();
+  const resized = resize(decoded, width, height, channels, 800, 600);
+  console.log(resized); // logs the uncompressed 800x600 RGB Uint8Array
 
   // clean up memory, when loader is not needed anymore
-  loader.delete();
+  free();
 }
 ```
 
