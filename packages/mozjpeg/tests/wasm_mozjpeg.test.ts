@@ -11,27 +11,28 @@ describe('MozJPEG', () => {
   let imageLoaderModule: ImageLoaderModule;
 
   afterAll(() => {
+    imageLoaderModule.free();
     mozJPEGModule.free();
   });
 
   beforeAll(async () => {
-    mozJPEGModule = (await new Promise(resolve => {
+    mozJPEGModule = (await new Promise((resolve) => {
       const wasm = wasm_mozjpeg({
         noInitialRun: true,
         onRuntimeInitialized() {
           const { then, ...other } = wasm;
           resolve(other);
-        }
+        },
       });
     })) as MozJPEGModule;
 
-    imageLoaderModule = (await new Promise(resolve => {
+    imageLoaderModule = (await new Promise((resolve) => {
       const wasm = wasm_image_loader({
         noInitialRun: true,
         onRuntimeInitialized() {
           const { then, ...other } = wasm;
           resolve(other);
-        }
+        },
       });
     })) as ImageLoaderModule;
   });
@@ -42,20 +43,32 @@ describe('MozJPEG', () => {
     const options: MozJPEGOptions = { ...defaultOptions, quality: 75 };
 
     const img = new Uint8Array(
-      await fetch(`${RANDOM_URL}${inWidth}x${inHeight}`, {}).then(res =>
-        res.buffer()
-      )
+      await fetch(`${RANDOM_URL}${inWidth}x${inHeight}`, {}).then((res) =>
+        res.buffer(),
+      ),
     );
-    const { ImageLoader } = imageLoaderModule;
+    const { decode, resize } = imageLoaderModule;
     const { encode } = mozJPEGModule;
 
-    const loader = new ImageLoader(img, img.length, 0);
-    loader.resize(inWidth * 0.25, inHeight * 0.25);
-    const { buffer, width, height } = loader;
-    expect(buffer).toHaveLength(width * height * 3);
-    loader.delete();
+    const decoded = new Uint8Array(decode(img, img.length, 0) as Uint8Array);
+    const resized = new Uint8Array(
+      resize(
+        decoded,
+        inWidth,
+        inHeight,
+        3,
+        inWidth * 0.25,
+        inHeight * 0.25,
+      ) as Uint8Array,
+    );
+    expect(resized).toHaveLength(inWidth * 0.25 * (inHeight * 0.25) * 3);
 
-    const result = encode(buffer, width, height, options) as Uint8Array;
+    const result = encode(
+      resized,
+      inWidth * 0.25,
+      inHeight * 0.25,
+      options,
+    ) as Uint8Array;
 
     expect(result.length).toBeGreaterThan(0);
     expect(result.length).toBeLessThan(img.length);

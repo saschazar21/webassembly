@@ -21,82 +21,72 @@ enum class COLOR_CHANNELS
   RGB = 3,
   RGB_ALPHA = 4
 };
+uint8_t *buffer;
 
-class ImageLoader
+int width;
+int height;
+int channels;
+
+void free_buffer()
 {
-private:
-  uint8_t *buffer;
+  delete[] buffer;
+}
 
-  int width;
-  int height;
-  int channels;
-
-public:
-  ImageLoader(std::string raw, int _width, int _height, int _channels)
+val decode(std::string img_in, int length, COLOR_CHANNELS desired_channels = COLOR_CHANNELS::DEFAULT)
+{
+  if (buffer != NULL)
   {
-    buffer = (uint8_t *)raw.c_str();
-    width = _width;
-    height = _height;
-    channels = _channels;
+    free_buffer();
+  }
+  uint8_t *img_buffer = (uint8_t *)img_in.c_str();
+  buffer = stbi_load_from_memory(img_buffer, length, &width, &height, &channels, (int)desired_channels);
 
-    printf("Raw image with %d x %d pixels and %d channels successfully loaded.\n", width, height, channels);
+  if (buffer == NULL)
+  {
+    printf("Image loading failed!\n");
+    exit(1);
   }
 
-  ImageLoader(std::string img, int length, COLOR_CHANNELS desired_channels = COLOR_CHANNELS::DEFAULT)
+  printf("JPEG/PNG with %d x %d pixels and %d channels successfully loaded.\n", width, height, channels);
+
+  return val(typed_memory_view(width * height * channels, buffer));
+}
+
+val dimensions()
+{
+  val dim = val::object();
+
+  dim.set("width", width);
+  dim.set("height", height);
+  dim.set("channels", channels);
+
+  return dim;
+}
+
+val resize(std::string img_in, int _width, int _height, int _channels, int output_width, int output_height)
+{
+  if (buffer != NULL)
   {
-    uint8_t *img_buffer = (uint8_t *)img.c_str();
-    buffer = stbi_load_from_memory(img_buffer, length, &width, &height, &channels, (int)desired_channels);
-
-    if (buffer == NULL)
-    {
-      printf("Image loading failed!\n");
-      exit(1);
-    }
-
-    printf("JPEG/PNG with %d x %d pixels and %d channels successfully loaded.\n", width, height, channels);
+    free_buffer();
   }
+  buffer = (uint8_t *)img_in.c_str();
+  width = _width;
+  height = _height;
+  channels = _channels;
 
-  ~ImageLoader()
+  uint8_t stride = 0;
+  uint8_t output_stride = 0;
+  uint8_t *resized = new uint8_t[output_width * output_height * channels];
+  if (!stbir_resize_uint8(buffer, width, height, stride, resized, output_width, output_height, output_stride, channels))
   {
-    delete buffer;
+    printf("Image resizing failed!\n");
+    exit(1);
   }
-
-  val getBuffer() const
-  {
-    return val(typed_memory_view(width * height * channels, buffer));
-  }
-
-  int getChannels() const
-  {
-    return channels;
-  }
-
-  int getHeight() const
-  {
-    return height;
-  }
-
-  int getWidth() const
-  {
-    return width;
-  }
-
-  val resize(int output_width, int output_height)
-  {
-    uint8_t stride = 0;
-    uint8_t output_stride = 0;
-    uint8_t *resized = new uint8_t[width * height * channels];
-    if (!stbir_resize_uint8(buffer, width, height, stride, resized, output_width, output_height, output_stride, channels))
-    {
-      printf("Image resizing failed!\n");
-      exit(1);
-    }
-    delete buffer;
-    buffer = resized;
-    width = output_width;
-    height = output_height;
-    return val(typed_memory_view(width * height * channels, buffer));
-  }
+  free_buffer();
+  buffer = resized;
+  width = output_width;
+  height = output_height;
+  return val(typed_memory_view(width * height * channels, buffer));
 };
 
 EMSCRIPTEN_BINDINGS(ImageLoader)
@@ -108,12 +98,8 @@ EMSCRIPTEN_BINDINGS(ImageLoader)
       .value("RGB", COLOR_CHANNELS::RGB)
       .value("RGB_ALPHA", COLOR_CHANNELS::RGB_ALPHA);
 
-  class_<ImageLoader>("ImageLoader")
-      .constructor<std::string, int, int, int>()
-      .constructor<std::string, int, COLOR_CHANNELS>()
-      .property("buffer", &ImageLoader::getBuffer)
-      .property("channels", &ImageLoader::getChannels)
-      .property("height", &ImageLoader::getHeight)
-      .property("width", &ImageLoader::getWidth)
-      .function("resize", &ImageLoader::resize);
+  function("free", &free_buffer);
+  function("dimensions", &dimensions);
+  function("decode", &decode);
+  function("resize", &resize);
 }

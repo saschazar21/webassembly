@@ -10,48 +10,51 @@ describe('Mean Color', () => {
   let imageLoader: ImageLoaderModule;
   let meanColor: MeanColorModule;
 
+  afterAll(() => {
+    imageLoader.free();
+  });
+
   beforeAll(async () => {
-    imageLoader = (await new Promise(resolve => {
+    imageLoader = (await new Promise((resolve) => {
       const wasm = wasm_image_loader({
         noInitialRun: true,
         onRuntimeInitialized() {
           const { then, ...other } = wasm;
           resolve(other);
-        }
+        },
       });
     })) as ImageLoaderModule;
 
-    meanColor = (await new Promise(resolve => {
+    meanColor = (await new Promise((resolve) => {
       const wasm = wasm_mean_color({
         noInitialRun: true,
         onRuntimeInitialized() {
           const { then, ...other } = wasm;
           resolve(other);
-        }
+        },
       });
     })) as MeanColorModule;
   });
 
   it('calculates the mean color of an image', async () => {
     const [width, height] = [80, 60];
-    const { ImageLoader } = imageLoader;
+    const { decode, resize } = imageLoader;
 
     const img = new Uint8Array(
-      await fetch(RANDOM_URL, {}).then(res => {
+      await fetch(RANDOM_URL, {}).then((res) => {
         console.log(res.url);
         return res.buffer();
-      })
+      }),
     );
 
-    const loader = new ImageLoader(img, img.length, 0);
-    loader.resize(width, height);
-    const { buffer, height: outHeight, width: outWidth } = loader;
-    expect(buffer).toHaveLength(outWidth * outHeight * 3);
+    const decoded = new Uint8Array(decode(img, img.length, 0) as Uint8Array);
+    const buffer = new Uint8Array(
+      resize(decoded, 800, 600, 3, width, height) as Uint8Array,
+    );
+    expect(buffer).toHaveLength(width * height * 3);
 
     const mean = meanColor.getColor(buffer, (buffer as Uint8Array).length, 3);
 
     expect(mean).toHaveLength(7);
-
-    loader.delete();
   });
 });
