@@ -1,3 +1,17 @@
+# v2.0.0 (Thu Mar 05 2020)
+
+#### 💥  Breaking Change
+
+- feat(image-loader): updated README
+
+BREAKING CHANGE: removed class structure in favor of the single-responsibility-principle, updated tests  ([@saschazar21](https://github.com/saschazar21))
+
+#### Authors: 1
+
+- Sascha Zarhuber ([@saschazar21](https://github.com/saschazar21))
+
+---
+
 # v1.0.2 (Thu Mar 05 2020)
 
 #### 🐛  Bug Fix

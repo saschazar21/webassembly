@@ -1,5 +1,23 @@
 # (Thu Mar 05 2020)
 
+#### 💥  Breaking Change
+
+- `@saschazar/wasm-image-loader@2.0.0`
+  - feat(image-loader): updated README  ([@saschazar21](https://github.com/saschazar21))
+
+#### ⚠️  Pushed to master
+
+- `@saschazar/wasm-image-loader@2.0.0`
+  - chore: merge branch 'develop'  ([@saschazar21](https://github.com/saschazar21))
+
+#### Authors: 1
+
+- Sascha Zarhuber ([@saschazar21](https://github.com/saschazar21))
+
+---
+
+# (Thu Mar 05 2020)
+
 #### ⚠️  Pushed to master
 
 - test: updated tests to fit new image-loader structure  ([@saschazar21](https://github.com/saschazar21))
