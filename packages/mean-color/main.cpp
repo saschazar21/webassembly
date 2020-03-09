@@ -133,7 +133,7 @@ string getColor(string img_buffer, size_t length_, int channels_)
   length = length_;
   channels = channels_;
 
-  for (uint32_t i = 0; i < (length * channels); i += channels)
+  for (uint32_t i = 0; i < length; i += channels)
   {
     uint8_t red = buffer[i];
     uint8_t green = buffer[i + 1];
