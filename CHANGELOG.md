@@ -1,3 +1,21 @@
+# (Mon Mar 09 2020)
+
+#### 🐛  Bug Fix
+
+- `@saschazar/wasm-mean-color@1.0.2`
+  - fix(mean-color): fixed condition in for-loop  ([@saschazar21](https://github.com/saschazar21))
+
+#### ⚠️  Pushed to master
+
+- `@saschazar/wasm-mean-color@1.0.2`
+  - chore: merge branch 'develop'  ([@saschazar21](https://github.com/saschazar21))
+
+#### Authors: 1
+
+- Sascha Zarhuber ([@saschazar21](https://github.com/saschazar21))
+
+---
+
 # (Thu Mar 05 2020)
 
 #### 💥  Breaking Change
