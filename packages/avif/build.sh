@@ -4,7 +4,6 @@ set -e
 
 export AOM_DOWNLOAD="https://aomedia.googlesource.com/aom/+archive/4eb1e7795b9700d532af38a2d9489458a8038233.tar.gz"
 
-export OPTIMIZE="-0z"
 export CMAKE_TOOLCHAIN_FILE=/emsdk_portable/emscripten/sdk/cmake/Modules/Platform/Emscripten.cmake
 
 export PWD=`pwd`
@@ -64,6 +63,7 @@ test -n "$SKIP_LIBAVIF" || (
   emmake make -j$(nproc)
 )
 
+export OPTIMIZE="-Oz"
 export LDFLAGS="${OPTIMIZE}"
 export CFLAGS="${OPTIMIZE}"
 export CPPFLAGS="${OPTIMIZE}"
