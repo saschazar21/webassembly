@@ -1,0 +1,41 @@
+{
+  "name": "@saschazar/wasm-avif",
+  "version": "0.0.0",
+  "description": "Encodes and decodes AVIF images using WebAssembly",
+  "keywords": [
+    "avif",
+    "encoder",
+    "decoder",
+    "image",
+    "picture",
+    "webassembly",
+    "codec",
+    "browser",
+    "web",
+    "worker"
+  ],
+  "author": "Sascha Zarhuber <saschazar21@yahoo.de>",
+  "homepage": "https://github.com/saschazar21/webassembly",
+  "license": "MIT",
+  "main": "wasm_avif.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saschazar21/webassembly.git"
+  },
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "napa && docker run --rm -v $(pwd):/src -e SKIP_LIBAVIF=$SKIP_LIBAVIF trzeci/emscripten ./build.sh"
+  },
+  "napa": {
+    "libavif": "AOMediaCodec/libavif#v0.6.2"
+  },
+  "devDependencies": {
+    "napa": "^3.0.0"
+  },
+  "bugs": {
+    "url": "https://github.com/saschazar21/webassembly/issues"
+  }
+}
