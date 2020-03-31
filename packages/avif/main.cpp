@@ -8,7 +8,7 @@ uint8_t *pixels;
 uint32_t len;
 uint32_t width;
 uint32_t height;
-uint32_t depth = 24;
+uint32_t depth = 8;
 uint8_t channels;
 
 struct Dimensions
@@ -73,7 +73,7 @@ val decode(std::string img, uint32_t _len)
   avifRGBImage rgb;
   avifRGBImageSetDefaults(&rgb, decoder->image);
   rgb.format = AVIF_RGB_FORMAT_RGB;
-  rgb.depth = 24;
+  rgb.depth = 8;
 
   avifRGBImageAllocatePixels(&rgb);
   avifImageYUVToRGB(decoder->image, &rgb);
@@ -86,7 +86,6 @@ val decode(std::string img, uint32_t _len)
   return val(typed_memory_view(len, pixels));
 }
 
-val encode(std::string img, uint32_t _width, uint32_t _height, avifEncoder config, avifPixelFormat format = AVIF_PIXEL_FORMAT_YUV420);
 val encode(std::string img, uint32_t _width, uint32_t _height, avifEncoder config, avifPixelFormat format)
 {
   free_buffer();
@@ -149,7 +148,7 @@ EMSCRIPTEN_BINDINGS(AVIF)
       .value("AVIF_PIXEL_FORMAT_YUV420", avifPixelFormat::AVIF_PIXEL_FORMAT_YUV420)
       .value("AVIF_PIXEL_FORMAT_YV12", avifPixelFormat::AVIF_PIXEL_FORMAT_YV12);
 
-  value_object<avifEncoder>("AVIFConfig")
+  value_object<avifEncoder>("EncodeOptions")
       .field("minQuantizer", &avifEncoder::minQuantizer)
       .field("maxQuantizer", &avifEncoder::maxQuantizer)
       .field("minQuantizerAlpha", &avifEncoder::minQuantizerAlpha)
