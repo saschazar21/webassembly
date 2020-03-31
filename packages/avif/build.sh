@@ -80,12 +80,13 @@ echo "======="
     -s ALLOW_MEMORY_GROWTH=1 \
     -s MODULARIZE=1 \
     -s 'EXPORT_NAME="wasm_avif"' \
-    -I node_modules/libavif \
+    -I node_modules/libavif/include \
     --std=c++11 \
     -o ./wasm_avif.js \
     -x c++ \
     main.cpp \
-    node_modules/libavif/embuild/libavif.a
+    $LIBAVIF_BUILD/libavif.a \
+    $LIBAVIF_AOM_BUILD/libaom.a
 )
 
 
