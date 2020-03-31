@@ -38,7 +38,7 @@ describe('AVIF', () => {
   });
 
   it('encodes an AVIF image', async () => {
-    jest.setTimeout(10000);
+    jest.setTimeout(20000);
     const options: EncodeOptions = defaultOptions;
     const [inWidth, inHeight] = [3000, 2000];
     const buf = new Uint8Array(
@@ -53,7 +53,8 @@ describe('AVIF', () => {
       jpegDecode(buf, buf.length, 0) as Uint8Array
     );
 
-    const encoded = encode(decoded, inWidth, inHeight, options, 3);
+    expect(decoded.length).toEqual(inWidth * inHeight * 3);
+    const encoded = encode(decoded, inWidth, inHeight, options, 1);
     if (Object.hasOwnProperty.call(encoded, 'error')) {
       throw new Error((encoded as { error: string }).error);
     }

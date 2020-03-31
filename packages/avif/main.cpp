@@ -86,27 +86,29 @@ val decode(std::string img, uint32_t _len)
   return val(typed_memory_view(len, pixels));
 }
 
-val encode(std::string img, uint32_t _width, uint32_t _height, avifEncoder config, avifPixelFormat format)
+val encode(std::string img, uint32_t _width, uint32_t _height, avifEncoder config, uint8_t format)
 {
   free_buffer();
   width = _width;
   height = _height;
   pixels = (uint8_t *)img.c_str();
 
+  avifImage *image = avifImageCreate(width, height, depth, (avifPixelFormat)format);
   avifRGBImage rgb;
-  rgb.height = height;
-  rgb.width = width;
-  rgb.depth = depth;
+  avifRGBImageSetDefaults(&rgb, image);
+
   rgb.format = AVIF_RGB_FORMAT_RGB;
   rgb.pixels = pixels;
-  rgb.rowBytes = width * channels;
+  rgb.rowBytes = width * avifRGBImagePixelSize(&rgb);
 
-  avifImage *container = avifImageCreate(width, height, depth, format);
-  avifImageRGBToYUV(container, &rgb);
+  avifResult convertedToYUV = avifImageRGBToYUV(image, &rgb);
 
-  if (channels <= 3)
+  if (convertedToYUV != AVIF_RESULT_OK)
   {
-    avifImageAllocatePlanes(container, AVIF_PLANES_A);
+    val obj = val::object();
+    obj.set("error", avifResultToString(convertedToYUV));
+    printf("ERROR: Failed to convert to YUV: %s\n", avifResultToString(convertedToYUV));
+    return obj;
   }
 
   avifRWData output = AVIF_DATA_EMPTY;
@@ -122,7 +124,7 @@ val encode(std::string img, uint32_t _width, uint32_t _height, avifEncoder confi
   encoder->tileColsLog2 = config.tileColsLog2 ? config.tileColsLog2 : 0;
   encoder->speed = config.speed ? config.speed : AVIF_SPEED_DEFAULT;
 
-  avifResult encodeResult = avifEncoderWrite(encoder, container, &output);
+  avifResult encodeResult = avifEncoderWrite(encoder, image, &output);
 
   if (encodeResult != AVIF_RESULT_OK)
   {
