@@ -30,7 +30,9 @@ test -n "$SKIP_LIBAVIF" || (
     ccache \
     meson \
     ninja-build \
-    rustc
+    pkg-config \
+    openssl \
+    libssl-dev
 
   echo "======="
   echo ""
@@ -59,10 +61,15 @@ test -n "$SKIP_LIBAVIF" || (
   echo "rav1e"
   echo ""
   echo "======="
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain nightly
+  export RUSTFLAGS="-C target-cpu=generic"
+  export RUST_WASM32_TARGET=wasm32-unknown-emscripten
+
   rm -rf $LIBAVIF_RAV1E_SRC || true
   mkdir -p $LIBAVIF_RAV1E_BUILD && cd $LIBAVIF_RAV1E_BUILD
   curl -fsSL $RAV1E_DOWNLOAD | tar xz --strip-components 1 -C $LIBAVIF_RAV1E_BUILD
 
+  rustup target add $RUST_WASM32_TARGET
   cargo install cbindgen
   cbindgen \
     -c cbindgen.toml \
@@ -72,6 +79,7 @@ test -n "$SKIP_LIBAVIF" || (
     $LIBAVIF_RAV1E_BUILD
 
   cargo build \
+    --target $RUST_WASM32_TARGET \
     --lib \
     --release \
     --features capi
