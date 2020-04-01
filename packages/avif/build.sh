@@ -19,7 +19,7 @@ export MESON_CROSS="${PWD}/meson/cross.txt"
 
 echo "================================================================================"
 echo "=====                                                                      ====="
-echo "=====                    Compiling @saschazar/wasm-avif                    ====="      
+echo "=====                    Compiling @saschazar/wasm-avif                    ====="
 echo "=====                                                                      ====="
 echo "================================================================================"
 
@@ -27,12 +27,8 @@ test -n "$SKIP_LIBAVIF" || (
   apt-get update
   apt-get install -qqy \
     nasm \
-    ccache \
     meson \
-    ninja-build \
-    pkg-config \
-    openssl \
-    libssl-dev
+    ninja-build
 
   echo "======="
   echo ""
@@ -42,7 +38,7 @@ test -n "$SKIP_LIBAVIF" || (
   rm -rf $LIBAVIF_DAV1D_SRC || true
   mkdir -p $LIBAVIF_DAV1D_BUILD && cd $LIBAVIF_DAV1D_BUILD
   curl -fsSL $DAV1D_DOWNLOAD | tar xz --strip-components 1 -C $LIBAVIF_DAV1D_SRC
-  
+
   meson $LIBAVIF_DAV1D_SRC \
     --default-library=static \
     --buildtype release \
@@ -62,8 +58,7 @@ test -n "$SKIP_LIBAVIF" || (
   echo ""
   echo "======="
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain nightly
-  export RUSTFLAGS="-C target-cpu=generic"
-  export RUST_WASM32_TARGET=wasm32-unknown-emscripten
+  export RUST_WASM32_TARGET=wasm32-unknown-unknown
 
   rm -rf $LIBAVIF_RAV1E_SRC || true
   mkdir -p $LIBAVIF_RAV1E_BUILD && cd $LIBAVIF_RAV1E_BUILD
@@ -79,11 +74,12 @@ test -n "$SKIP_LIBAVIF" || (
     $LIBAVIF_RAV1E_BUILD
 
   cargo build \
+    --verbose \
     --target $RUST_WASM32_TARGET \
     --lib \
     --release \
     --features capi
-  
+
   echo "======="
   echo ""
   echo "libavif"
