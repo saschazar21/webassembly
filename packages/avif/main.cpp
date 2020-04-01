@@ -114,7 +114,7 @@ val encode(std::string img, uint32_t _width, uint32_t _height, avifEncoder confi
   avifRWData output = AVIF_DATA_EMPTY;
 
   avifEncoder *encoder = avifEncoderCreate();
-  encoder->codecChoice = AVIF_CODEC_CHOICE_AOM;
+  encoder->codecChoice = AVIF_CODEC_CHOICE_AUTO;
   encoder->maxThreads = 1;
   encoder->minQuantizer = config.minQuantizer ? config.minQuantizer : AVIF_QUANTIZER_BEST_QUALITY;
   encoder->maxQuantizer = config.maxQuantizer ? config.maxQuantizer : AVIF_QUANTIZER_WORST_QUALITY;

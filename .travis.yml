@@ -6,7 +6,7 @@ services:
   - docker
 
 before_install:
-  - docker pull trzeci/emscripten
+  - docker pull trzeci/emscripten:1.39.10-upstream
 
 script:
   - yarn build
