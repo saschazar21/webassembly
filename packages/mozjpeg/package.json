@@ -22,7 +22,7 @@
     "access": "public"
   },
   "scripts": {
-    "build": "napa && docker run --rm -v $(pwd):/src -e SKIP_MOZJPEG=$SKIP_MOZJPEG trzeci/emscripten ./build.sh"
+    "build": "napa && docker run --rm -v $(pwd):/src -e SKIP_MOZJPEG=$SKIP_MOZJPEG trzeci/emscripten:1.39.10-upstream ./build.sh"
   },
   "napa": {
     "mozjpeg": "mozilla/mozjpeg#v3.3.1"

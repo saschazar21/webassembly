@@ -23,7 +23,7 @@
     "access": "public"
   },
   "scripts": {
-    "build": "napa && docker run --rm -v $(pwd):/src trzeci/emscripten ./build.sh"
+    "build": "napa && docker run --rm -v $(pwd):/src trzeci/emscripten:1.39.10-upstream ./build.sh"
   },
   "napa": {
     "stb": "nothings/stb#master"
