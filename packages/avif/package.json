@@ -4,7 +4,7 @@
   "description": "Encodes and decodes AVIF images using WebAssembly",
   "keywords": [
     "avif",
-    "encoder",
+    "dav1d",
     "decoder",
     "image",
     "picture",
