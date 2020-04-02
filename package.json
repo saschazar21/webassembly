@@ -37,7 +37,7 @@
     "jest": "^25.2.6",
     "lerna": "^3.20.2",
     "node-fetch": "^2.6.0",
-    "ts-jest": "^25.3.0",
+    "ts-jest": "^24.3.0",
     "typescript": "^3.7.5"
   },
   "dependencies": {
