@@ -97,9 +97,9 @@ test -n "$SKIP_LIBAVIF" || (
   mkdir -p $LIBAVIF_BUILD && cd $LIBAVIF_BUILD
   emcmake cmake $LIBAVIF_SRC \
     -G "Unix Makefiles" \
+    -DCMAKE_TOOLCHAIN_FILE=$CMAKE_TOOLCHAIN_FILE \
     -DAVIF_CODEC_DAV1D=1 \
-    -DAVIF_LOCAL_DAV1D=1 \
-    -DCMAKE_TOOLCHAIN_FILE=$CMAKE_TOOLCHAIN_FILE
+    -DAVIF_LOCAL_DAV1D=1
     # -DAVIF_CODEC_RAV1E=1 \
     # -DRAV1E_INCLUDE_DIR=$LIBAVIF_RAV1E_RELEASE/include \
     # -DRAV1E_LIBRARY=$LIBAVIF_RAV1E_RELEASE/librav1e.a \
@@ -114,6 +114,7 @@ echo "======="
 (
   time emcc \
     --llvm-lto 3 \
+    --llvm-opts 3 \
     --bind \
     ${OPTIMIZE} \
     -s ALLOW_MEMORY_GROWTH=1 \
