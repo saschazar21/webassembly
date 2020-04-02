@@ -86,60 +86,60 @@ val decode(std::string img, uint32_t _len)
   return val(typed_memory_view(len, pixels));
 }
 
-val encode(std::string img, uint32_t _width, uint32_t _height, avifEncoder config, uint8_t format)
-{
-  free_buffer();
-  width = _width;
-  height = _height;
-  pixels = (uint8_t *)img.c_str();
+// val encode(std::string img, uint32_t _width, uint32_t _height, avifEncoder config, uint8_t format)
+// {
+//   free_buffer();
+//   width = _width;
+//   height = _height;
+//   pixels = (uint8_t *)img.c_str();
 
-  avifImage *image = avifImageCreate(width, height, depth, (avifPixelFormat)format);
-  avifRGBImage rgb;
-  avifRGBImageSetDefaults(&rgb, image);
+//   avifImage *image = avifImageCreate(width, height, depth, (avifPixelFormat)format);
+//   avifRGBImage rgb;
+//   avifRGBImageSetDefaults(&rgb, image);
 
-  rgb.format = AVIF_RGB_FORMAT_RGB;
-  rgb.pixels = pixels;
-  rgb.rowBytes = width * avifRGBImagePixelSize(&rgb);
+//   rgb.format = AVIF_RGB_FORMAT_RGB;
+//   rgb.pixels = pixels;
+//   rgb.rowBytes = width * avifRGBImagePixelSize(&rgb);
 
-  avifResult convertedToYUV = avifImageRGBToYUV(image, &rgb);
+//   avifResult convertedToYUV = avifImageRGBToYUV(image, &rgb);
 
-  if (convertedToYUV != AVIF_RESULT_OK)
-  {
-    val obj = val::object();
-    obj.set("error", avifResultToString(convertedToYUV));
-    printf("ERROR: Failed to convert to YUV: %s\n", avifResultToString(convertedToYUV));
-    return obj;
-  }
+//   if (convertedToYUV != AVIF_RESULT_OK)
+//   {
+//     val obj = val::object();
+//     obj.set("error", avifResultToString(convertedToYUV));
+//     printf("ERROR: Failed to convert to YUV: %s\n", avifResultToString(convertedToYUV));
+//     return obj;
+//   }
 
-  avifRWData output = AVIF_DATA_EMPTY;
+//   avifRWData output = AVIF_DATA_EMPTY;
 
-  avifEncoder *encoder = avifEncoderCreate();
-  encoder->codecChoice = AVIF_CODEC_CHOICE_AUTO;
-  encoder->maxThreads = 1;
-  encoder->minQuantizer = config.minQuantizer ? config.minQuantizer : AVIF_QUANTIZER_BEST_QUALITY;
-  encoder->maxQuantizer = config.maxQuantizer ? config.maxQuantizer : AVIF_QUANTIZER_WORST_QUALITY;
-  encoder->minQuantizerAlpha = config.minQuantizerAlpha ? config.minQuantizerAlpha : AVIF_QUANTIZER_BEST_QUALITY;
-  encoder->maxQuantizerAlpha = config.maxQuantizerAlpha ? config.maxQuantizerAlpha : AVIF_QUANTIZER_WORST_QUALITY;
-  encoder->tileRowsLog2 = config.tileRowsLog2 ? config.tileRowsLog2 : 0;
-  encoder->tileColsLog2 = config.tileColsLog2 ? config.tileColsLog2 : 0;
-  encoder->speed = config.speed ? config.speed : AVIF_SPEED_DEFAULT;
+//   avifEncoder *encoder = avifEncoderCreate();
+//   encoder->codecChoice = AVIF_CODEC_CHOICE_AUTO;
+//   encoder->maxThreads = 1;
+//   encoder->minQuantizer = config.minQuantizer ? config.minQuantizer : AVIF_QUANTIZER_BEST_QUALITY;
+//   encoder->maxQuantizer = config.maxQuantizer ? config.maxQuantizer : AVIF_QUANTIZER_WORST_QUALITY;
+//   encoder->minQuantizerAlpha = config.minQuantizerAlpha ? config.minQuantizerAlpha : AVIF_QUANTIZER_BEST_QUALITY;
+//   encoder->maxQuantizerAlpha = config.maxQuantizerAlpha ? config.maxQuantizerAlpha : AVIF_QUANTIZER_WORST_QUALITY;
+//   encoder->tileRowsLog2 = config.tileRowsLog2 ? config.tileRowsLog2 : 0;
+//   encoder->tileColsLog2 = config.tileColsLog2 ? config.tileColsLog2 : 0;
+//   encoder->speed = config.speed ? config.speed : AVIF_SPEED_DEFAULT;
 
-  avifResult encodeResult = avifEncoderWrite(encoder, image, &output);
+//   avifResult encodeResult = avifEncoderWrite(encoder, image, &output);
 
-  if (encodeResult != AVIF_RESULT_OK)
-  {
-    val obj = val::object();
-    obj.set("error", avifResultToString(encodeResult));
-    printf("ERROR: Failed to encode: %s\n", avifResultToString(encodeResult));
-    return obj;
-  }
+//   if (encodeResult != AVIF_RESULT_OK)
+//   {
+//     val obj = val::object();
+//     obj.set("error", avifResultToString(encodeResult));
+//     printf("ERROR: Failed to encode: %s\n", avifResultToString(encodeResult));
+//     return obj;
+//   }
 
-  free_buffer();
-  avifEncoderDestroy(encoder);
-  pixels = output.data;
-  len = output.size;
-  return val(typed_memory_view(len, pixels));
-}
+//   free_buffer();
+//   avifEncoderDestroy(encoder);
+//   pixels = output.data;
+//   len = output.size;
+//   return val(typed_memory_view(len, pixels));
+// }
 
 EMSCRIPTEN_BINDINGS(AVIF)
 {
@@ -168,5 +168,5 @@ EMSCRIPTEN_BINDINGS(AVIF)
   function("free", &free_buffer);
   function("dimensions", &dimensions);
   function("decode", &decode);
-  function("encode", &encode);
+  // function("encode", &encode);
 }

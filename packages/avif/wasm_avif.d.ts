@@ -1,4 +1,4 @@
-import { EncodeOptions } from './options';
+// import { EncodeOptions } from './options';
 
 export enum AVIF_PIXEL_FORMAT {
   AVIF_PIXEL_FORMAT_NONE,
@@ -20,13 +20,13 @@ export interface AVIFModule extends EmscriptenModule {
   free(): void;
   dimensions(): Dimensions;
   decode(img: BufferSource, length: number): BufferSource | { error: string };
-  encode(
-    buffer: BufferSource,
-    width: number,
-    height: number,
-    config: EncodeOptions,
-    format: AVIF_PIXEL_FORMAT
-  ): BufferSource | { error: string };
+  // encode(
+  //   buffer: BufferSource,
+  //   width: number,
+  //   height: number,
+  //   config: EncodeOptions,
+  //   format: AVIF_PIXEL_FORMAT
+  // ): BufferSource | { error: string };
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
