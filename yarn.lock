@@ -8,13 +8,13 @@
   integrity sha512-Sp9IZdghplYlIF4yXmFugFv9/Q4Qws7SnRMPSdNmgM89gHm/P1vzw/gabAoY7cFyCL9zH5rImf/wH3aasDZF6g==
 
 "@auto-it/conventional-commits@^9.14.0":
-  version "9.14.0"
-  resolved "https://registry.yarnpkg.com/@auto-it/conventional-commits/-/conventional-commits-9.14.0.tgz#ef060b4b19551d0671a1c5e5ac726cba729e7f11"
-  integrity sha512-KInd8nCjX7N+s7jpJsIC3X6zNQt4gLWqlhQXmkgX2u5drmr7CRKLvQe3KdShF99CEEUl++Z34Q4GEEFQpf383Q==
+  version "9.23.0"
+  resolved "https://registry.yarnpkg.com/@auto-it/conventional-commits/-/conventional-commits-9.23.0.tgz#1a798078bbcce1b680eee8f5dc3b07580902346d"
+  integrity sha512-mHe6toGDw+VLmJA+d9OUdJA6MtIuID6kB7Z5mkgxSYA3qqzSW2J3VgfLPkpkv039Xm5iVWHj7PGmr7jU/spjBA==
   dependencies:
-    "@auto-it/core" "^9.14.0"
+    "@auto-it/core" "^9.23.0"
     parse-commit-message "4.0.0"
-    tslib "1.11.0"
+    tslib "1.11.1"
 
 "@auto-it/core@^9.14.0", "@auto-it/core@^9.23.0":
   version "9.23.0"
