@@ -2035,9 +2035,9 @@
   integrity sha512-/xUgezxxYePeXhg5S04hUjxG9JZi+rJTs1+4NwpYPfSaS7BeDa6tVJkH6lN9Cb6rl8d24Fi2uX0s0Ngg2JT6gg==
 
 "@types/emscripten@^1.39.2":
-  version "1.39.2"
-  resolved "https://registry.yarnpkg.com/@types/emscripten/-/emscripten-1.39.2.tgz#0d537fe2f2ab50e77760c4e068eaa91ca85e8e2f"
-  integrity sha512-VxA5je1YYIkIvoCWT2t0bI7+2ID+yxv09YL5BKE6dT0xZMfY+U7EUF8vcasJSBTxjhSf2KV4P5rdDmCdEO9K0A==
+  version "1.39.3"
+  resolved "https://registry.yarnpkg.com/@types/emscripten/-/emscripten-1.39.3.tgz#cac2f24b4739c344c42f928a4c1af1aab245364e"
+  integrity sha512-F+LPHVwVWp6bkhRq7sMdW0JsQMXd5ZuPbjwU/X6HaAtvIjRmYL2z4BCIopnBRcrzZLorVFf8gxY/GR7szLuPEw==
 
 "@types/eslint-visitor-keys@^1.0.0":
   version "1.0.0"
