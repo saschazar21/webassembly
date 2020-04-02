@@ -4,7 +4,7 @@
 
 > A dependency-free AVIF decoder written in WebAssembly
 
-It encodes raw RGB image data in a `Uint8Array` into the AVIF format and vice versa.
+It decodes AVIF-encoded image data in a `Uint8Array` containing raw RGB pixels.
 
 ## Installation
 
