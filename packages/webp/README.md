@@ -24,7 +24,7 @@ It supports usage in the browser, in a [Web Worker](https://developer.mozilla.or
 
 ```javascript
 // Node.js
-import wasm_mean_color from '@saschazar/wasm-webp'
+import wasm_webp from '@saschazar/wasm-webp'
 
 // Web Worker - see: https://developer.mozilla.org/en-US/docs/Web/API/WorkerGlobalScope/importScripts
 importScripts('wasm_webp.js')

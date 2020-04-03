@@ -1,4 +1,3 @@
-packages/**/build
 packages/**/wasm_*.js
 packages/**/*.wasm
 
