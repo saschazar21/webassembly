@@ -44,6 +44,10 @@ const avifModule = wasm_avif({
 })
 ```
 
+### Example
+
+A working example is available on [RunKit](https://runkit.com/saschazar21/5e8749d3492dfa001362b42c).
+
 ## Status
 
 The main backbone of the project is the [libavif](https://github.com/AOMediaCodec/libavif) library.
