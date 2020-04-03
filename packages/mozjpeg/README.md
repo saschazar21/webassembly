@@ -24,28 +24,32 @@ It supports usage in the browser, in a [Web Worker](https://developer.mozilla.or
 
 ```javascript
 // Node.js
-import wasm_mean_color from '@saschazar/wasm-mozjpeg';
+import wasm_mean_color from '@saschazar/wasm-mozjpeg'
 
 // Web Worker - see: https://developer.mozilla.org/en-US/docs/Web/API/WorkerGlobalScope/importScripts
-importScripts('wasm_mozjpeg.js');
+importScripts('wasm_mozjpeg.js')
 
 // -------- Browser/Web Worker/Node.js code below --------
 
 // Load raw RGB image data in Uint8Array (e.g. consistently chained [R][G][B] data)
-const array = new Uint8Array(['some', 'raw', 'RGB', 'image', 'data']);
-const width = 800; // the image's width
-const height = 600; // the image's height
-const options = {}; // MozJPEG's options
-let result;
+const array = new Uint8Array(['some', 'raw', 'RGB', 'image', 'data'])
+const width = 800 // the image's width
+const height = 600 // the image's height
+const options = {} // MozJPEG's options
+let result
 
 // Initialize the WebAssembly Module
 const mozjpegModule = wasm_mozjpeg({
   onRuntimeInitialized() {
-    result = mozjpegModule.encode(array, width, height, options); // encode image data and return a new Uint8Array
-    mozjpegModule.free(); // clean up memory after encoding is done
+    result = mozjpegModule.encode(array, width, height, options) // encode image data and return a new Uint8Array
+    mozjpegModule.free() // clean up memory after encoding is done
   }
-});
+})
 ```
+
+### Example
+
+A working example is available on [RunKit](https://runkit.com/saschazar21/5e8746e3c924510013db78f4).
 
 ### Options
 

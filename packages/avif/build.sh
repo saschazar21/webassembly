@@ -24,7 +24,7 @@ export LIBAVIF_DAV1D_BUILD="${LIBAVIF_DAV1D_SRC}/build"
 export LIBAVIF_RAV1E_SRC="${LIBAVIF_SRC}/ext/rav1e"
 export LIBAVIF_RAV1E_BUILD="${LIBAVIF_RAV1E_SRC}"
 export LIBAVIF_RAV1E_RELEASE="${LIBAVIF_RAV1E_BUILD}/target/${RUST_WASM32_TARGET}/release"
-export MESON_CROSS="${PWD}/meson/cross.txt"
+export MESON_CROSS="${PWD}/build/cross.txt"
 
 echo "================================================================================"
 echo "=====                                                                      ====="
