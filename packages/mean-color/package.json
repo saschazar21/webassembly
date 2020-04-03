@@ -23,7 +23,7 @@
   },
   "repository": "https://github.com/saschazar21/webassembly",
   "scripts": {
-    "build": "docker run --rm -v $(pwd):/src trzeci/emscripten ./build.sh"
+    "build": "docker run --rm -v $(pwd):/src trzeci/emscripten:1.39.10-fastcomp ./build.sh"
   },
   "bugs": {
     "url": "https://github.com/saschazar21/webassembly/issues"

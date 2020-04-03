@@ -23,7 +23,7 @@
     "access": "public"
   },
   "scripts": {
-    "build": "napa && docker run --rm -v $(pwd):/src -e SKIP_LIBWEBP=$SKIP_LIBWEBP trzeci/emscripten ./build.sh"
+    "build": "napa && docker run --rm -v $(pwd):/src -e SKIP_LIBWEBP=$SKIP_LIBWEBP trzeci/emscripten:1.39.10-fastcomp ./build.sh"
   },
   "napa": {
     "libwebp": "webmproject/libwebp#v1.1.0"
