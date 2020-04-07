@@ -1,6 +1,6 @@
 {
   "name": "@saschazar/wasm-heif",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "A WebAssembly powered HEIF/HEIC decoder",
   "keywords": [
     "heif",
