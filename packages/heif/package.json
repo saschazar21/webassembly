@@ -1,7 +1,7 @@
 {
   "name": "@saschazar/wasm-heif",
   "version": "0.0.0",
-  "description": "A WebAssembly powered HEIF/HEIC decoder/encoder",
+  "description": "A WebAssembly powered HEIF/HEIC decoder",
   "keywords": [
     "heif",
     "heic",
@@ -38,7 +38,8 @@
   },
   "napa": {
     "libde265": "strukturag/libde265#v1.0.5",
-    "libheif": "strukturag/libheif#v1.6.2"
+    "libheif": "strukturag/libheif#v1.6.2",
+    "libx265": "videolan/x265#3.3"
   },
   "devDependencies": {
     "napa": "^3.0.0"
