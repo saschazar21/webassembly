@@ -27,7 +27,7 @@ It supports usage in the browser, in a [Web Worker](https://developer.mozilla.or
 import wasm_heif from '@saschazar/wasm-heif'
 
 // Web Worker - see: https://developer.mozilla.org/en-US/docs/Web/API/WorkerGlobalScope/importScripts
-importScripts('wasm_webp.js')
+importScripts('wasm_heif.js')
 
 // -------- Browser/Web Worker/Node.js code below --------
 
