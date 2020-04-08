@@ -1,3 +1,15 @@
+# v2.2.0 (Tue Apr 07 2020)
+
+#### 🐛 Bug Fix
+
+- chore: merge branch 'develop' ([@saschazar21](https://github.com/saschazar21))
+
+#### Authors: 1
+
+- Sascha Zarhuber ([@saschazar21](https://github.com/saschazar21))
+
+---
+
 # v2.1.0 (Fri Apr 03 2020)
 
 #### 🚀 Enhancement
