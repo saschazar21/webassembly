@@ -24,27 +24,28 @@ It supports usage in the browser, in a [Web Worker](https://developer.mozilla.or
 
 ```javascript
 // Node.js
-import wasm_webp from '@saschazar/wasm-webp'
+import wasm_webp from '@saschazar/wasm-webp';
+import defaultOptions from '@saschazar/wasm-webp/options';
 
 // Web Worker - see: https://developer.mozilla.org/en-US/docs/Web/API/WorkerGlobalScope/importScripts
-importScripts('wasm_webp.js')
+importScripts('wasm_webp.js');
 
 // -------- Browser/Web Worker/Node.js code below --------
 
 // Load raw RGB image data in Uint8Array (e.g. consistently chained [R][G][B] data)
-const array = new Uint8Array(['some', 'raw', 'RGB', 'image', 'data'])
-const width = 800 // the image's width
-const height = 600 // the image's height
-const options = {} // WebP's options
-let result
+const array = new Uint8Array(['some', 'raw', 'RGB', 'image', 'data']);
+const width = 800; // the image's width
+const height = 600; // the image's height
+const options = defaultOptions; // WebP's options, a complete object is crucially needed!
+let result;
 
 // Initialize the WebAssembly Module
 const webpModule = wasm_webp({
   onRuntimeInitialized() {
-    result = webpModule.encode(array, width, height, options) // encode image data and return a new Uint8Array
-    webpModule.free() // clean up memory after encoding is done
-  }
-})
+    result = webpModule.encode(array, width, height, options); // encode image data and return a new Uint8Array
+    webpModule.free(); // clean up memory after encoding is done
+  },
+});
 ```
 
 ### Example
@@ -53,7 +54,7 @@ A working example is available on [RunKit](https://runkit.com/saschazar21/5e8713
 
 ### Options
 
-It's crucial to provide a full options object, to gain the best possible outcome. The default options object may be imported from the `options.js` file.
+⚠️ It's crucial to provide a complete options object. The default options object may be imported from the `options.js` file.
 
 ## Credits
 

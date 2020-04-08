@@ -24,24 +24,24 @@ It supports usage in the browser, in a [Web Worker](https://developer.mozilla.or
 
 ```javascript
 // Node.js
-import wasm_avif from '@saschazar/wasm-avif'
+import wasm_avif from '@saschazar/wasm-avif';
 
 // Web Worker - see: https://developer.mozilla.org/en-US/docs/Web/API/WorkerGlobalScope/importScripts
-importScripts('wasm_webp.js')
+importScripts('wasm_avif.js');
 
 // -------- Browser/Web Worker/Node.js code below --------
 
 // Load encoded AVIF image data in Uint8Array
-const array = new Uint8Array(['some', 'encoded', 'AVIF', 'image', 'data'])
-let result
+const array = new Uint8Array(['some', 'encoded', 'AVIF', 'image', 'data']);
+let result;
 
 // Initialize the WebAssembly Module
 const avifModule = wasm_avif({
   onRuntimeInitialized() {
-    result = avifModule.decode(array, array.length) // decode image data and return a new Uint8Array
-    avifModule.free() // clean up memory after encoding is done
-  }
-})
+    result = avifModule.decode(array, array.length); // decode image data and return a new Uint8Array
+    avifModule.free(); // clean up memory after encoding is done
+  },
+});
 ```
 
 ### Example

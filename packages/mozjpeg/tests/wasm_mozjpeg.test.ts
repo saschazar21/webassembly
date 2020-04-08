@@ -16,7 +16,7 @@ describe('MozJPEG', () => {
   });
 
   beforeAll(async () => {
-    mozJPEGModule = (await new Promise((resolve) => {
+    mozJPEGModule = (await new Promise(resolve => {
       const wasm = wasm_mozjpeg({
         noInitialRun: true,
         onRuntimeInitialized() {
@@ -26,7 +26,7 @@ describe('MozJPEG', () => {
       });
     })) as MozJPEGModule;
 
-    imageLoaderModule = (await new Promise((resolve) => {
+    imageLoaderModule = (await new Promise(resolve => {
       const wasm = wasm_image_loader({
         noInitialRun: true,
         onRuntimeInitialized() {
@@ -38,14 +38,13 @@ describe('MozJPEG', () => {
   });
 
   it('encodes an image to .jpeg', async () => {
-    jest.setTimeout(10000);
     const [inWidth, inHeight] = [6000, 4000];
     const options: MozJPEGOptions = { ...defaultOptions, quality: 75 };
 
     const img = new Uint8Array(
-      await fetch(`${RANDOM_URL}${inWidth}x${inHeight}`, {}).then((res) =>
-        res.buffer(),
-      ),
+      await fetch(`${RANDOM_URL}${inWidth}x${inHeight}`, {}).then(res =>
+        res.buffer()
+      )
     );
     const { decode, resize } = imageLoaderModule;
     const { encode } = mozJPEGModule;
@@ -58,8 +57,8 @@ describe('MozJPEG', () => {
         inHeight,
         3,
         inWidth * 0.25,
-        inHeight * 0.25,
-      ) as Uint8Array,
+        inHeight * 0.25
+      ) as Uint8Array
     );
     expect(resized).toHaveLength(inWidth * 0.25 * (inHeight * 0.25) * 3);
 
@@ -67,7 +66,7 @@ describe('MozJPEG', () => {
       resized,
       inWidth * 0.25,
       inHeight * 0.25,
-      options,
+      options
     ) as Uint8Array;
 
     expect(result.length).toBeGreaterThan(0);
