@@ -53,8 +53,6 @@ describe('AVIF', () => {
   });
 
   it('decodes an AVIF image', async () => {
-    jest.setTimeout(10000);
-
     const buf = new Uint8Array(
       await fetch(AVIF_TEST_IMAGE).then(res => res.buffer())
     );
@@ -68,7 +66,6 @@ describe('AVIF', () => {
   });
 
   // it('encodes an AVIF image', async () => {
-  //   jest.setTimeout(20000);
   //   const options: EncodeOptions = defaultOptions;
   //   const [inWidth, inHeight] = [3000, 2000];
   //   const buf = new Uint8Array(

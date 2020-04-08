@@ -16,7 +16,7 @@ describe('WebP', () => {
   });
 
   beforeAll(async () => {
-    imageLoaderModule = (await new Promise((resolve) => {
+    imageLoaderModule = (await new Promise(resolve => {
       const wasm = wasm_image_loader({
         noInitialRun: true,
         onRuntimeInitialized() {
@@ -26,7 +26,7 @@ describe('WebP', () => {
       });
     })) as ImageLoaderModule;
 
-    webpModule = (await new Promise((resolve) => {
+    webpModule = (await new Promise(resolve => {
       const wasm = wasm_webp({
         noInitialRun: true,
         onRuntimeInitialized() {
@@ -38,22 +38,21 @@ describe('WebP', () => {
   });
 
   it('encodes a .jpeg into .webp', async () => {
-    jest.setTimeout(10000);
     const options: EncodeOptions = {
       ...defaultOptions,
       quality: 80.0,
     };
     const [inWidth, inHeight] = [3000, 2000];
     const buf = new Uint8Array(
-      await fetch(`${RANDOM_URL}${inWidth}x${inHeight}`, {}).then((res) =>
-        res.buffer(),
-      ),
+      await fetch(`${RANDOM_URL}${inWidth}x${inHeight}`, {}).then(res =>
+        res.buffer()
+      )
     );
     const { decode: jpegDecode, resize } = imageLoaderModule;
     const { encode } = webpModule;
 
     const decoded = new Uint8Array(
-      jpegDecode(buf, buf.length, 0) as Uint8Array,
+      jpegDecode(buf, buf.length, 0) as Uint8Array
     );
     const resized = new Uint8Array(
       resize(
@@ -62,15 +61,15 @@ describe('WebP', () => {
         inHeight,
         3,
         inWidth * 0.75,
-        inHeight * 0.75,
-      ) as Uint8Array,
+        inHeight * 0.75
+      ) as Uint8Array
     );
 
     const output = encode(
       resized,
       inWidth * 0.75,
       inHeight * 0.75,
-      options,
+      options
     ) as Uint8Array;
     expect(output.length).toBeLessThan(inWidth * 0.75 * (inHeight * 0.75) * 3);
   });
@@ -82,15 +81,15 @@ describe('WebP', () => {
     };
     const [inWidth, inHeight] = [800, 600];
     const buf = new Uint8Array(
-      await fetch(`${RANDOM_URL}${inWidth}x${inHeight}`, {}).then((res) =>
-        res.buffer(),
-      ),
+      await fetch(`${RANDOM_URL}${inWidth}x${inHeight}`, {}).then(res =>
+        res.buffer()
+      )
     );
     const { decode: jpegDecode } = imageLoaderModule;
     const { dimensions, decode, encode } = webpModule;
 
     const decoded = new Uint8Array(
-      jpegDecode(buf, buf.length, 0) as Uint8Array,
+      jpegDecode(buf, buf.length, 0) as Uint8Array
     );
 
     const encoded = encode(decoded, inWidth, inHeight, options) as Uint8Array;
