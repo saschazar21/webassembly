@@ -1,0 +1,8 @@
+!wasm_*
+
+build
+tests
+*.sh
+*.c
+*.cpp
+*.h

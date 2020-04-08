@@ -1,0 +1,40 @@
+{
+  "name": "@saschazar/wasm-heif",
+  "version": "0.1.1",
+  "description": "A WebAssembly powered HEIF/HEIC decoder",
+  "keywords": [
+    "heif",
+    "heic",
+    "webassembly",
+    "image",
+    "picture",
+    "browser",
+    "worker"
+  ],
+  "author": "Sascha Zarhuber <sascha.zarhuber@gmail.com>",
+  "homepage": "https://github.com/saschazar21/webassembly",
+  "license": "MIT",
+  "main": "wasm_heif.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saschazar21/webassembly.git"
+  },
+  "scripts": {
+    "build": "napa && docker run --rm -v $(pwd):/src -e SKIP_LIBHEIF=$SKIP_LIBHEIF trzeci/emscripten:1.39.10-fastcomp ./build.sh"
+  },
+  "bugs": {
+    "url": "https://github.com/saschazar21/webassembly/issues"
+  },
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "napa": {
+    "libde265": "strukturag/libde265#v1.0.5",
+    "libheif": "strukturag/libheif#v1.6.2",
+    "libx265": "videolan/x265#3.3"
+  },
+  "devDependencies": {
+    "napa": "^3.0.0"
+  }
+}

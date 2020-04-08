@@ -1,3 +1,27 @@
+# (Wed Apr 08 2020)
+
+
+
+---
+
+# (Tue Apr 07 2020)
+
+#### 🚀 Enhancement
+
+- `@saschazar/wasm-heif@0.1.0`
+  - feat(heif): added HEIF decoder [#37](https://github.com/saschazar21/webassembly/pull/37) ([@saschazar21](https://github.com/saschazar21))
+
+#### ⚠️  Pushed to `master`
+
+- `@saschazar/wasm-avif@0.2.0`, `@saschazar/wasm-image-loader@2.2.0`, `@saschazar/wasm-mean-color@1.2.0`, `@saschazar/wasm-mozjpeg@1.2.0`, `@saschazar/wasm-webp@1.3.0`
+  - chore: merge branch 'develop' ([@saschazar21](https://github.com/saschazar21))
+
+#### Authors: 1
+
+- Sascha Zarhuber ([@saschazar21](https://github.com/saschazar21))
+
+---
+
 # (Fri Apr 03 2020)
 
 #### 🚀 Enhancement
