@@ -15,13 +15,6 @@
   "homepage": "https://github.com/saschazar21/webassembly",
   "license": "MIT",
   "main": "wasm_heif.js",
-  "directories": {
-    "lib": "lib",
-    "test": "__tests__"
-  },
-  "files": [
-    "lib"
-  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/saschazar21/webassembly.git"
