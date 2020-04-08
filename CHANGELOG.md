@@ -1,5 +1,28 @@
 # (Wed Apr 08 2020)
 
+#### 🐛 Bug Fix
+
+- chore: merge pull request #30 from saschazar21/dependabot/npm_and_yarn/ts-jest-25.3.1 [#30](https://github.com/saschazar21/webassembly/pull/30) ([@saschazar21](https://github.com/saschazar21))
+- chore: merge pull request #31 from saschazar21/dependabot/jest-25.2.7 [#31](https://github.com/saschazar21/webassembly/pull/31) ([@saschazar21](https://github.com/saschazar21))
+- chore: merge pull request #41 from saschazar21/dependabot/npm_and_yarn/babel/preset-env-7.9.5 [#41](https://github.com/saschazar21/webassembly/pull/41) ([@saschazar21](https://github.com/saschazar21))
+- chore: merge pull request #28 from saschazar21/dependabot/npm_and_yarn/types/jest-25.2.1 [#28](https://github.com/saschazar21/webassembly/pull/28) ([@saschazar21](https://github.com/saschazar21))
+- chore: merge pull request #33 from saschazar21/dependabot/npm_and_yarn/typescript-eslint/parser-2.27.0 [#33](https://github.com/saschazar21/webassembly/pull/33) ([@saschazar21](https://github.com/saschazar21))
+- chore: merge pull request #34 from saschazar21/dependabot/npm_and_yarn/typescript-eslint/eslint-plugin-2.27.0 [#34](https://github.com/saschazar21/webassembly/pull/34) ([@saschazar21](https://github.com/saschazar21))
+- chore: merge pull request #39 from saschazar21/dependabot/npm_and_yarn/auto-it/conventional-commits-9.26.7 [#39](https://github.com/saschazar21/webassembly/pull/39) ([@saschazar21](https://github.com/saschazar21))
+- chore: merge pull request #40 from saschazar21/dependabot/npm_and_yarn/auto-9.26.7 [#40](https://github.com/saschazar21/webassembly/pull/40) ([@saschazar21](https://github.com/saschazar21))
+- `@saschazar/wasm-avif@0.2.1`, `@saschazar/wasm-mozjpeg@1.2.1`, `@saschazar/wasm-webp@1.3.1`
+  - chore: merge pull request #43 from saschazar21/develop [#43](https://github.com/saschazar21/webassembly/pull/43) ([@saschazar21](https://github.com/saschazar21))
+- `@saschazar/wasm-heif@0.1.2`
+  - fix(heif)!: Fixed package.json to publish all necessary files [#42](https://github.com/saschazar21/webassembly/pull/42) ([@saschazar21](https://github.com/saschazar21))
+
+#### Authors: 1
+
+- Sascha Zarhuber ([@saschazar21](https://github.com/saschazar21))
+
+---
+
+# (Wed Apr 08 2020)
+
 
 
 ---
