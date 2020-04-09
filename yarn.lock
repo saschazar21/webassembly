@@ -2,26 +2,26 @@
 # yarn lockfile v1
 
 
-"@auto-it/bot-list@^9.26.7":
-  version "9.26.7"
-  resolved "https://registry.yarnpkg.com/@auto-it/bot-list/-/bot-list-9.26.7.tgz#5ad1a25d2e8d25470b0f9953aa9b1b8b5f79b874"
-  integrity sha512-Vu3uOWDDkizsykLGBM/QwXFJYhDWpRe4nqzSzApPTDFyDLoOOIFEDRFUXrp3XgSy2+CgCCGO3Vag7c8/yK1vlQ==
+"@auto-it/bot-list@^9.26.8":
+  version "9.26.8"
+  resolved "https://registry.yarnpkg.com/@auto-it/bot-list/-/bot-list-9.26.8.tgz#ac05bf0bd61976b7e1ff361691c573420a6658c7"
+  integrity sha512-jwUsrlkyq2GALP+FFgR1Qx4/sXK84FQn7aaq6e0iMVDY8erej+9Fb2QxSf6fDQj2us74pwWM6MZQb97hYcKcwg==
 
 "@auto-it/conventional-commits@^9.14.0":
-  version "9.26.7"
-  resolved "https://registry.yarnpkg.com/@auto-it/conventional-commits/-/conventional-commits-9.26.7.tgz#b00d677ce7625973d0b4e303d3098b6b5ee175ea"
-  integrity sha512-vRAdZGkUrCdYI/xfa3bLh73Bb1fyO7D+wOl3pVFFMRgYVmFbzkcZQ2ULwzvNOoSxhe7KrqDH2yXRxhRvMU7X9w==
+  version "9.26.8"
+  resolved "https://registry.yarnpkg.com/@auto-it/conventional-commits/-/conventional-commits-9.26.8.tgz#7d26571279cdf3e082d59fe70777878332f1047f"
+  integrity sha512-pmyO0gFt294S1DrEatzwVKKDqNXFaBUth3Cjd/JaU+EQKfS1cC4XiOcWeSPO6BSc8dfdiTaMINdBhvMtPbPH9g==
   dependencies:
-    "@auto-it/core" "^9.26.7"
+    "@auto-it/core" "^9.26.8"
     parse-commit-message "4.0.0"
     tslib "1.11.1"
 
-"@auto-it/core@^9.26.7":
-  version "9.26.7"
-  resolved "https://registry.yarnpkg.com/@auto-it/core/-/core-9.26.7.tgz#69bef507ca1356660d2fc4df64cab4cf151c0a81"
-  integrity sha512-WbmvO++zwxEcPoS9RMDW27TSUnhfAiSeKFGwGoYPj8gsZh4gKxvDCu5QmbNW6cPy6+XqKHW2Gj7UdlLl+P6phw==
+"@auto-it/core@^9.26.7", "@auto-it/core@^9.26.8":
+  version "9.26.8"
+  resolved "https://registry.yarnpkg.com/@auto-it/core/-/core-9.26.8.tgz#9bfdd237316898df3dbd18d7001209497099792d"
+  integrity sha512-xWzRftB8Ccw7A2CwQzkZN4/ASYz3JoXZ/o1oEzNeufiIw9UauAFpc4k6WYfitWAsykR3yN+KBbel3KN0la3Eyg==
   dependencies:
-    "@auto-it/bot-list" "^9.26.7"
+    "@auto-it/bot-list" "^9.26.8"
     "@octokit/core" "2.4.2"
     "@octokit/graphql" "4.3.1"
     "@octokit/plugin-enterprise-compatibility" "1.2.2"
