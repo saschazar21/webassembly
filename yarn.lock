@@ -8,15 +8,15 @@
   integrity sha512-8K6hnBZvgIy74h8D8FOVMxoEHxPVXEf+0c8KMLb8tMCAR+e4Mg55Qs2L9So02IlM2Bu+FtFPwWEXrWs1GfOyYg==
 
 "@auto-it/conventional-commits@^9.14.0":
-  version "9.26.7"
-  resolved "https://registry.yarnpkg.com/@auto-it/conventional-commits/-/conventional-commits-9.26.7.tgz#b00d677ce7625973d0b4e303d3098b6b5ee175ea"
-  integrity sha512-vRAdZGkUrCdYI/xfa3bLh73Bb1fyO7D+wOl3pVFFMRgYVmFbzkcZQ2ULwzvNOoSxhe7KrqDH2yXRxhRvMU7X9w==
+  version "9.30.1"
+  resolved "https://registry.yarnpkg.com/@auto-it/conventional-commits/-/conventional-commits-9.30.1.tgz#2685e19d37a16156498de5f432e5f147bfc950f8"
+  integrity sha512-Y/RpAuMYZ9Dn3P1xX+84/dcW59/KE/CW1ah7Lu4aP1YAgS9z21LNHIme5t4yjRH2lSRwrySuKi7CfRoflycErA==
   dependencies:
-    "@auto-it/core" "^9.26.7"
+    "@auto-it/core" "^9.30.1"
     parse-commit-message "4.0.0"
     tslib "1.11.1"
 
-"@auto-it/core@^9.26.7", "@auto-it/core@^9.30.1":
+"@auto-it/core@^9.30.1":
   version "9.30.1"
   resolved "https://registry.yarnpkg.com/@auto-it/core/-/core-9.30.1.tgz#297c67d402eb531ca14853d66bb011e6a7ae0563"
   integrity sha512-ZQAGlJVBxTfeKk/waFfZ4zUVN5CB/zkDGTOMH5ygFBmt1L0Gx+gXFmbonx8rJxb9H68fvjsrfybxo/wBeceQpw==
@@ -2230,16 +2230,6 @@
     regexpp "^3.0.0"
     tsutils "^3.17.1"
 
-"@typescript-eslint/experimental-utils@2.27.0":
-  version "2.27.0"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/experimental-utils/-/experimental-utils-2.27.0.tgz#801a952c10b58e486c9a0b36cf21e2aab1e9e01a"
-  integrity sha512-vOsYzjwJlY6E0NJRXPTeCGqjv5OHgRU1kzxHKWJVPjDYGbPgLudBXjIlc+OD1hDBZ4l1DLbOc5VjofKahsu9Jw==
-  dependencies:
-    "@types/json-schema" "^7.0.3"
-    "@typescript-eslint/typescript-estree" "2.27.0"
-    eslint-scope "^5.0.0"
-    eslint-utils "^2.0.0"
-
 "@typescript-eslint/experimental-utils@2.29.0", "@typescript-eslint/experimental-utils@^2.5.0":
   version "2.29.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/experimental-utils/-/experimental-utils-2.29.0.tgz#3cb8060de9265ba131625a96bbfec31ba6d4a0fe"
@@ -2259,19 +2249,6 @@
     "@typescript-eslint/experimental-utils" "2.29.0"
     "@typescript-eslint/typescript-estree" "2.29.0"
     eslint-visitor-keys "^1.1.0"
-
-"@typescript-eslint/typescript-estree@2.27.0":
-  version "2.27.0"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/typescript-estree/-/typescript-estree-2.27.0.tgz#a288e54605412da8b81f1660b56c8b2e42966ce8"
-  integrity sha512-t2miCCJIb/FU8yArjAvxllxbTiyNqaXJag7UOpB5DVoM3+xnjeOngtqlJkLRnMtzaRcJhe3CIR9RmL40omubhg==
-  dependencies:
-    debug "^4.1.1"
-    eslint-visitor-keys "^1.1.0"
-    glob "^7.1.6"
-    is-glob "^4.0.1"
-    lodash "^4.17.15"
-    semver "^6.3.0"
-    tsutils "^3.17.1"
 
 "@typescript-eslint/typescript-estree@2.29.0":
   version "2.29.0"
