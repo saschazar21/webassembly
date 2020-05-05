@@ -2,26 +2,26 @@
 # yarn lockfile v1
 
 
-"@auto-it/bot-list@^9.30.2":
-  version "9.30.2"
-  resolved "https://registry.yarnpkg.com/@auto-it/bot-list/-/bot-list-9.30.2.tgz#102e078fd631822ecfbec5a5fc3b806fb2490ebb"
-  integrity sha512-qBIDKEkNpYDOxHuMx2GHwgyL1FHOBQy8RGd3Zuy3O9eAYtmIZwYLeKAZlJRyVgnEiWZW+dLWTMnxTwfCe7me5Q==
+"@auto-it/bot-list@^9.31.1":
+  version "9.31.1"
+  resolved "https://registry.yarnpkg.com/@auto-it/bot-list/-/bot-list-9.31.1.tgz#d76e3c1cb7252bde9dc4f30f696cbdec3261cbd0"
+  integrity sha512-mHcF/Nth4ZAHwlojaJjr8Dka0y7u+zkwSB3Z63siL0NXw91TYWoraPOY6tydUC59cflEzjuYxGlHN9ZWQ2tRVw==
 
 "@auto-it/conventional-commits@^9.14.0":
-  version "9.30.2"
-  resolved "https://registry.yarnpkg.com/@auto-it/conventional-commits/-/conventional-commits-9.30.2.tgz#aa227a5d1413cfefda703701d2063c514c5c27a5"
-  integrity sha512-4YSoWDcOu/HaGBJh7UptBdXOkEL2SyZuBKtZ6npuk6DyMm32bjE+q35pBydvVWCftZknuDlhx8XgaasErC2vZA==
+  version "9.31.1"
+  resolved "https://registry.yarnpkg.com/@auto-it/conventional-commits/-/conventional-commits-9.31.1.tgz#d327e5bbf9b00dfe5b02e64559cf4c96567f7ac8"
+  integrity sha512-xS1YYZXSVbgCQLnMZm+Bw7lbOEDT/tnogBOJYp70rOzG+V6I5tDF8nWxq22xvlbpV3pnDj+zHS+SI5Add38xSA==
   dependencies:
-    "@auto-it/core" "^9.30.2"
+    "@auto-it/core" "^9.31.1"
     parse-commit-message "4.0.0"
     tslib "1.11.1"
 
-"@auto-it/core@^9.30.2":
-  version "9.30.2"
-  resolved "https://registry.yarnpkg.com/@auto-it/core/-/core-9.30.2.tgz#3bf7d24daff49cc403d1807e0970617ef85a050c"
-  integrity sha512-3t1ugDu4pYQg93zokxlu5sUaOOWcwaKFgSidvRIcqaEufNVYSqsxkbuSZmE8FefTjv9Jc6BGzqhYRgKOgZy8gA==
+"@auto-it/core@^9.30.2", "@auto-it/core@^9.31.1":
+  version "9.31.1"
+  resolved "https://registry.yarnpkg.com/@auto-it/core/-/core-9.31.1.tgz#932007341d67bc22c39bb8974cf5cbbefa18f849"
+  integrity sha512-nHMQHL0T2LMnRWn/RQiFTc049JndXfza981FPb84RSxDH1z8pylblwo+Af6LnnAbg7GMd0JfEJmbKt9lq/AHuQ==
   dependencies:
-    "@auto-it/bot-list" "^9.30.2"
+    "@auto-it/bot-list" "^9.31.1"
     "@octokit/core" "2.4.2"
     "@octokit/graphql" "4.3.1"
     "@octokit/plugin-enterprise-compatibility" "1.2.2"
@@ -45,7 +45,7 @@
     import-from "^3.0.0"
     io-ts "^2.1.2"
     lodash.chunk "^4.2.0"
-    log-symbols "^3.0.0"
+    log-symbols "^4.0.0"
     node-fetch "2.6.0"
     parse-github-url "1.0.2"
     semver "^7.0.0"
@@ -5796,12 +5796,12 @@ lodash@^4.17.12, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.2.
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
   integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
 
-log-symbols@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/log-symbols/-/log-symbols-3.0.0.tgz#f3a08516a5dea893336a7dee14d18a1cfdab77c4"
-  integrity sha512-dSkNGuI7iG3mfvDzUuYZyvk5dD9ocYCYzNU6CYDE6+Xqd+gwme6Z00NS3dUh8mq/73HaEtT7m6W+yUPtU6BZnQ==
+log-symbols@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/log-symbols/-/log-symbols-4.0.0.tgz#69b3cc46d20f448eccdb75ea1fa733d9e821c920"
+  integrity sha512-FN8JBzLx6CzeMrB0tg6pqlGU1wCrXW+ZXGH481kfsBqer0hToTIiHdjH4Mq8xJUbvATujKCvaREGWpGUionraA==
   dependencies:
-    chalk "^2.4.2"
+    chalk "^4.0.0"
 
 lolex@^5.0.0:
   version "5.1.2"
