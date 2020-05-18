@@ -2,26 +2,26 @@
 # yarn lockfile v1
 
 
-"@auto-it/bot-list@^9.32.0":
-  version "9.32.0"
-  resolved "https://registry.yarnpkg.com/@auto-it/bot-list/-/bot-list-9.32.0.tgz#bfd3f15fd39f94558af2c9b98f1696930dff1980"
-  integrity sha512-RfOeMy/iv9oIr2yi9wXgvjBnTmmTym+Sq0dQkNfvQHQcAT2EQ7CQ2/L+bLbudPY0JEXTW2UddP3QNdQ/3CvGsQ==
+"@auto-it/bot-list@^9.32.3":
+  version "9.32.3"
+  resolved "https://registry.yarnpkg.com/@auto-it/bot-list/-/bot-list-9.32.3.tgz#aa2423baf0568a6eede7b7fa35a3b3cca45c178d"
+  integrity sha512-Tv75dlKDWBfr9ZtY7uAwrWPcINnuo2efTOjCgHunTIOFPBGDftMR/CF6n7W3C3hOjKPQF7dHHv2RnybEjyqybw==
 
 "@auto-it/conventional-commits@^9.14.0":
-  version "9.32.0"
-  resolved "https://registry.yarnpkg.com/@auto-it/conventional-commits/-/conventional-commits-9.32.0.tgz#0e745d3c9c7e7e29a45114a35254908acb858ce5"
-  integrity sha512-4/UGWMUuhcp6vDBdsbAJm6LEKUzniH1HL5/8RydbVN++AXFJ/S6qUREdPGbQpjmrfUbHyFoWIwWCCSPqH7ydfQ==
+  version "9.32.3"
+  resolved "https://registry.yarnpkg.com/@auto-it/conventional-commits/-/conventional-commits-9.32.3.tgz#cb7ffcff412ef302b6384615c63878081bc4681c"
+  integrity sha512-MAbDxtwfJn7BBdpjop79ztc2HNh8dq12o+9/2Asgag6pjPhsGMTnbtYuY+FZ5CqXgjVQ2GG0lQv8WBJNHOXd5w==
   dependencies:
-    "@auto-it/core" "^9.32.0"
+    "@auto-it/core" "^9.32.3"
     parse-commit-message "4.0.0"
     tslib "1.11.1"
 
-"@auto-it/core@^9.32.0":
-  version "9.32.0"
-  resolved "https://registry.yarnpkg.com/@auto-it/core/-/core-9.32.0.tgz#0c9525f5897af9a2c9968177688d7435deacea89"
-  integrity sha512-6E5jogFI1+uuLi2Vs9S9UQcoBUOioArhwTAClwS63avUKhmOgT9WfZapK3uLhD6FYL6e1gzHw4VWeGtseVAhAg==
+"@auto-it/core@^9.32.0", "@auto-it/core@^9.32.3":
+  version "9.32.3"
+  resolved "https://registry.yarnpkg.com/@auto-it/core/-/core-9.32.3.tgz#abc1cad66261d0f810eb5e34a1647a54aec37f28"
+  integrity sha512-N5wodaPKQYSv5zY4ZIm1hM4X+PN7HDdlGONWaGZKdJyovdJz9sNVXvKHmftJiUXZKcujAW89i4y11iFfwk+sxg==
   dependencies:
-    "@auto-it/bot-list" "^9.32.0"
+    "@auto-it/bot-list" "^9.32.3"
     "@octokit/core" "2.4.2"
     "@octokit/graphql" "4.3.1"
     "@octokit/plugin-enterprise-compatibility" "1.2.2"
@@ -2280,16 +2280,6 @@
     regexpp "^3.0.0"
     tsutils "^3.17.1"
 
-"@typescript-eslint/experimental-utils@2.29.0":
-  version "2.29.0"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/experimental-utils/-/experimental-utils-2.29.0.tgz#3cb8060de9265ba131625a96bbfec31ba6d4a0fe"
-  integrity sha512-H/6VJr6eWYstyqjWXBP2Nn1hQJyvJoFdDtsHxGiD+lEP7piGnGpb/ZQd+z1ZSB1F7dN+WsxUDh8+S4LwI+f3jw==
-  dependencies:
-    "@types/json-schema" "^7.0.3"
-    "@typescript-eslint/typescript-estree" "2.29.0"
-    eslint-scope "^5.0.0"
-    eslint-utils "^2.0.0"
-
 "@typescript-eslint/experimental-utils@2.33.0", "@typescript-eslint/experimental-utils@^2.5.0":
   version "2.33.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/experimental-utils/-/experimental-utils-2.33.0.tgz#000f1e5f344fbea1323dc91cc174805d75f99a03"
@@ -2309,19 +2299,6 @@
     "@typescript-eslint/experimental-utils" "2.33.0"
     "@typescript-eslint/typescript-estree" "2.33.0"
     eslint-visitor-keys "^1.1.0"
-
-"@typescript-eslint/typescript-estree@2.29.0":
-  version "2.29.0"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/typescript-estree/-/typescript-estree-2.29.0.tgz#1be6612bb02fc37ac9f466521c1459a4744e8d3a"
-  integrity sha512-3YGbtnWy4az16Egy5Fj5CckkVlpIh0MADtAQza+jiMADRSKkjdpzZp/5WuvwK/Qib3Z0HtzrDFeWanS99dNhnA==
-  dependencies:
-    debug "^4.1.1"
-    eslint-visitor-keys "^1.1.0"
-    glob "^7.1.6"
-    is-glob "^4.0.1"
-    lodash "^4.17.15"
-    semver "^6.3.0"
-    tsutils "^3.17.1"
 
 "@typescript-eslint/typescript-estree@2.33.0":
   version "2.33.0"
