@@ -2,26 +2,26 @@
 # yarn lockfile v1
 
 
-"@auto-it/bot-list@^9.40.5":
-  version "9.40.5"
-  resolved "https://registry.yarnpkg.com/@auto-it/bot-list/-/bot-list-9.40.5.tgz#11b5b0eeb642139b6964a7f6b9c445546e73c582"
-  integrity sha512-bqNfmY2CWFfmwAoSqmh3a3P77+Bu8zBm1TqSjUEGmqHsbJ5GQjmR4MxGdq5rLB+wsXj8mKOzuMBopXnEOOPXRg==
+"@auto-it/bot-list@^9.40.6":
+  version "9.40.6"
+  resolved "https://registry.yarnpkg.com/@auto-it/bot-list/-/bot-list-9.40.6.tgz#add4beae6000529bdc967f272b0d2db339176ebd"
+  integrity sha512-zgEmzai6fMXKhGkQXjsdlcvZpKXqdcaevhcuALW1W0vjRPd2+xBRFXj6VDt0egXFLytpCkolSXh27XjKufPPGQ==
 
 "@auto-it/conventional-commits@^9.14.0":
-  version "9.39.0"
-  resolved "https://registry.yarnpkg.com/@auto-it/conventional-commits/-/conventional-commits-9.39.0.tgz#798e1f9deb06dd3f6ef30f5a632562000e69b642"
-  integrity sha512-7OjyRoV/SL/sWOZwTFVfDoOD5ozBoyX6ViyBdByUAstk7rFXSfmLOLguk4HhV5XWWr559pGsM65E0yyGgBHjFQ==
+  version "9.40.6"
+  resolved "https://registry.yarnpkg.com/@auto-it/conventional-commits/-/conventional-commits-9.40.6.tgz#240c2555c8fd6b3fa957b87e18ebb3a111088205"
+  integrity sha512-D9V96MZ1Xauhztm2sED/j1ESMJs+qwhRK2MCx6Xzy5Qu0oKV+8x6FK2F54Tdtt8RUaqJQSNM8Cy/w4IPkX9MPw==
   dependencies:
-    "@auto-it/core" "^9.39.0"
+    "@auto-it/core" "^9.40.6"
     parse-commit-message "4.0.0"
-    tslib "1.11.1"
+    tslib "2.0.0"
 
-"@auto-it/core@^9.39.0", "@auto-it/core@^9.40.5":
-  version "9.40.5"
-  resolved "https://registry.yarnpkg.com/@auto-it/core/-/core-9.40.5.tgz#39f1632ffddadfdd4f22069b3535d5829b0c05da"
-  integrity sha512-EmuxNU4gYWxdnlQzeB2Il7pWJe12SDKFG4TnaapEba3fjnfNlPSlVcgBjAowZNGOhhPkhfxkeKUE6aXcHLtplg==
+"@auto-it/core@^9.40.5", "@auto-it/core@^9.40.6":
+  version "9.40.6"
+  resolved "https://registry.yarnpkg.com/@auto-it/core/-/core-9.40.6.tgz#a00b300375251e55e05d4e5ab543ba8525c7eb18"
+  integrity sha512-T/hhVY23cYYOX3C+ISmirixTcZOpPoRbzMKFw2AsOFM15i6FNc6pgwd298zzwvaQbxvD9L3HxvZb8KmcY2O19A==
   dependencies:
-    "@auto-it/bot-list" "^9.40.5"
+    "@auto-it/bot-list" "^9.40.6"
     "@octokit/graphql" "^4.4.0"
     "@octokit/plugin-enterprise-compatibility" "^1.2.2"
     "@octokit/plugin-retry" "^3.0.1"
@@ -8464,15 +8464,15 @@ tslib@1.10.0:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.10.0.tgz#c3c19f95973fb0a62973fb09d90d961ee43e5c8a"
   integrity sha512-qOebF53frne81cf0S9B41ByenJ3/IuH8yJKngAX35CmiZySA0khhkovshKK+jGCaMnVomla7gVlIcc3EvKPbTQ==
 
-tslib@1.11.1, tslib@^1.11.1, tslib@^1.8.1, tslib@^1.9.0:
-  version "1.11.1"
-  resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.11.1.tgz#eb15d128827fbee2841549e171f45ed338ac7e35"
-  integrity sha512-aZW88SY8kQbU7gpV19lN24LtXh/yD4ZZg6qieAJDDg+YBsJcSmLGK9QpnUjAKVG/xefmvJGd1WUmfpT/g6AJGA==
-
 tslib@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.0.0.tgz#18d13fc2dce04051e20f074cc8387fd8089ce4f3"
   integrity sha512-lTqkx847PI7xEDYJntxZH89L2/aXInsyF2luSafe/+0fHOMjlBNXdH6th7f70qxLDhul7KZK0zC8V5ZIyHl0/g==
+
+tslib@^1.11.1, tslib@^1.8.1, tslib@^1.9.0:
+  version "1.11.1"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.11.1.tgz#eb15d128827fbee2841549e171f45ed338ac7e35"
+  integrity sha512-aZW88SY8kQbU7gpV19lN24LtXh/yD4ZZg6qieAJDDg+YBsJcSmLGK9QpnUjAKVG/xefmvJGd1WUmfpT/g6AJGA==
 
 tsutils@^3.17.1:
   version "3.17.1"
