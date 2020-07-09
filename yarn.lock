@@ -8,15 +8,15 @@
   integrity sha512-6G2qTS7oH7QD9grwiTPEv387t/MasKLmr8r896ZY9W8UTGVBV0pJf/WEeLopQkuvAn3W9NFhUeFrZ7I4tV5iDQ==
 
 "@auto-it/conventional-commits@^9.14.0":
-  version "9.40.6"
-  resolved "https://registry.yarnpkg.com/@auto-it/conventional-commits/-/conventional-commits-9.40.6.tgz#240c2555c8fd6b3fa957b87e18ebb3a111088205"
-  integrity sha512-D9V96MZ1Xauhztm2sED/j1ESMJs+qwhRK2MCx6Xzy5Qu0oKV+8x6FK2F54Tdtt8RUaqJQSNM8Cy/w4IPkX9MPw==
+  version "9.43.1"
+  resolved "https://registry.yarnpkg.com/@auto-it/conventional-commits/-/conventional-commits-9.43.1.tgz#16c53e60928ac572c4b97577c8f61f8d89a88f4d"
+  integrity sha512-8UKqs68Nk4wefzMW1dFAaVKTq1/pOt+UcNY8k/NFBpi+RwBuXZd1w/EkwwxO77AiFL1G7KTlDjq9/4aCp/4Pwg==
   dependencies:
-    "@auto-it/core" "^9.40.6"
+    "@auto-it/core" "^9.43.1"
     parse-commit-message "4.0.0"
     tslib "2.0.0"
 
-"@auto-it/core@^9.40.6", "@auto-it/core@^9.43.1":
+"@auto-it/core@^9.43.1":
   version "9.43.1"
   resolved "https://registry.yarnpkg.com/@auto-it/core/-/core-9.43.1.tgz#ba0f1a159bcc5f647061225b3916903a9ac12e31"
   integrity sha512-7EdtYafT7cRNMPpdhRpGJJ8I6bhAHLH9YqoKl5nYujlJriBSmE7ym3hyQgrtHjVPskzWYIqrZLhf47iAK5laXw==
