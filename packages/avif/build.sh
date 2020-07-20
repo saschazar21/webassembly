@@ -10,7 +10,7 @@ export CPPFLAGS="${OPTIMIZE}"
 export RUST_WASM32_TARGET=wasm32-unknown-emscripten
 export RUSTFLAGS="-C target-cpu=generic -C link-arg=-s"
 
-export DAV1D_DOWNLOAD="https://github.com/videolan/dav1d/archive/0.6.0.tar.gz"
+export DAV1D_DOWNLOAD="https://github.com/videolan/dav1d/archive/0.7.1.tar.gz"
 export RAV1E_DOWNLOAD="https://github.com/xiph/rav1e/archive/v0.3.1.tar.gz"
 
 export CMAKE_TOOLCHAIN_FILE=/emsdk_portable/emscripten/sdk/cmake/Modules/Platform/Emscripten.cmake
