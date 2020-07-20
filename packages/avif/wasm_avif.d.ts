@@ -5,7 +5,7 @@ export enum AVIF_PIXEL_FORMAT {
   AVIF_PIXEL_FORMAT_YUV444, // default
   AVIF_PIXEL_FORMAT_YUV422,
   AVIF_PIXEL_FORMAT_YUV420,
-  AVIF_PIXEL_FORMAT_YV12,
+  AVIF_PIXEL_FORMAT_YUV400,
 }
 
 export interface Dimensions {
@@ -30,4 +30,4 @@ export interface AVIFModule extends EmscriptenModule {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default function(options: { [key: string]: any }): AVIFModule;
+export default function (options: { [key: string]: any }): AVIFModule;

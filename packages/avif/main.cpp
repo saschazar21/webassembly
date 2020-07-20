@@ -148,7 +148,7 @@ EMSCRIPTEN_BINDINGS(AVIF)
       .value("AVIF_PIXEL_FORMAT_YUV444", avifPixelFormat::AVIF_PIXEL_FORMAT_YUV444)
       .value("AVIF_PIXEL_FORMAT_YUV422", avifPixelFormat::AVIF_PIXEL_FORMAT_YUV422)
       .value("AVIF_PIXEL_FORMAT_YUV420", avifPixelFormat::AVIF_PIXEL_FORMAT_YUV420)
-      .value("AVIF_PIXEL_FORMAT_YV12", avifPixelFormat::AVIF_PIXEL_FORMAT_YV12);
+      .value("AVIF_PIXEL_FORMAT_YUV400", avifPixelFormat::AVIF_PIXEL_FORMAT_YUV400);
 
   value_object<avifEncoder>("EncodeOptions")
       .field("minQuantizer", &avifEncoder::minQuantizer)
