@@ -1,3 +1,15 @@
+# v0.3.0 (Mon Jul 20 2020)
+
+#### 🚀 Enhancement
+
+- feat(avif): updated libavif, dav1d version [#181](https://github.com/saschazar21/webassembly/pull/181) ([@saschazar21](https://github.com/saschazar21))
+
+#### Authors: 1
+
+- Sascha Zarhuber ([@saschazar21](https://github.com/saschazar21))
+
+---
+
 # v0.2.1 (Wed Apr 08 2020)
 
 #### 🐛 Bug Fix

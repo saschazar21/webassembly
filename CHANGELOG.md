@@ -1,3 +1,73 @@
+# (Mon Jul 20 2020)
+
+#### 🚀 Enhancement
+
+- `@saschazar/wasm-avif@0.3.0`
+  - feat(avif): updated libavif, dav1d version [#181](https://github.com/saschazar21/webassembly/pull/181) ([@saschazar21](https://github.com/saschazar21))
+
+#### 🔩 Dependency Updates
+
+- chore(deps-dev): bump babel-jest from 26.0.1 to 26.1.0 [#149](https://github.com/saschazar21/webassembly/pull/149) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 9.43.1 to 9.47.0 [#179](https://github.com/saschazar21/webassembly/pull/179) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps): [security] bump lodash from 4.17.15 to 4.17.19 [#177](https://github.com/saschazar21/webassembly/pull/177) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 9.40.5 to 9.43.1 [#169](https://github.com/saschazar21/webassembly/pull/169) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump eslint-plugin-jest from 23.13.2 to 23.17.1 [#150](https://github.com/saschazar21/webassembly/pull/150) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @auto-it/conventional-commits from 9.39.0 to 9.40.6 [#160](https://github.com/saschazar21/webassembly/pull/160) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 9.39.0 to 9.40.5 [#155](https://github.com/saschazar21/webassembly/pull/155) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump lerna from 3.22.0 to 3.22.1 [#144](https://github.com/saschazar21/webassembly/pull/144) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @babel/core from 7.10.1 to 7.10.2 [#138](https://github.com/saschazar21/webassembly/pull/138) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @babel/preset-env from 7.10.1 to 7.10.2 [#137](https://github.com/saschazar21/webassembly/pull/137) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump typescript from 3.9.3 to 3.9.5 [#141](https://github.com/saschazar21/webassembly/pull/141) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @types/jest from 25.2.3 to 26.0.0 [#145](https://github.com/saschazar21/webassembly/pull/145) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @auto-it/conventional-commits from 9.38.0 to 9.39.0 [#142](https://github.com/saschazar21/webassembly/pull/142) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 9.38.0 to 9.39.0 [#143](https://github.com/saschazar21/webassembly/pull/143) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @auto-it/conventional-commits from 9.36.4 to 9.38.0 [#135](https://github.com/saschazar21/webassembly/pull/135) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 9.36.4 to 9.38.0 [#136](https://github.com/saschazar21/webassembly/pull/136) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @auto-it/conventional-commits from 9.36.2 to 9.36.4 [#133](https://github.com/saschazar21/webassembly/pull/133) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 9.36.2 to 9.36.4 [#132](https://github.com/saschazar21/webassembly/pull/132) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @babel/preset-typescript from 7.9.0 to 7.10.1 [#131](https://github.com/saschazar21/webassembly/pull/131) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @babel/preset-env from 7.9.6 to 7.10.1 [#130](https://github.com/saschazar21/webassembly/pull/130) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump eslint-plugin-jest from 23.13.0 to 23.13.2 [#126](https://github.com/saschazar21/webassembly/pull/126) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @babel/core from 7.9.6 to 7.10.1 [#129](https://github.com/saschazar21/webassembly/pull/129) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump lerna from 3.21.0 to 3.22.0 [#124](https://github.com/saschazar21/webassembly/pull/124) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @auto-it/conventional-commits from 9.35.1 to 9.36.2 [#122](https://github.com/saschazar21/webassembly/pull/122) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 9.35.1 to 9.36.2 [#123](https://github.com/saschazar21/webassembly/pull/123) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @typescript-eslint/parser from 2.33.0 to 2.34.0 [#113](https://github.com/saschazar21/webassembly/pull/113) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @typescript-eslint/eslint-plugin from 2.33.0 to 2.34.0 [#116](https://github.com/saschazar21/webassembly/pull/116) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump typescript from 3.9.2 to 3.9.3 [#119](https://github.com/saschazar21/webassembly/pull/119) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 9.32.0 to 9.35.1 [#121](https://github.com/saschazar21/webassembly/pull/121) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump lerna from 3.20.2 to 3.21.0 [#106](https://github.com/saschazar21/webassembly/pull/106) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @types/jest from 25.2.1 to 25.2.3 [#112](https://github.com/saschazar21/webassembly/pull/112) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @auto-it/conventional-commits from 9.32.0 to 9.35.1 [#120](https://github.com/saschazar21/webassembly/pull/120) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump eslint-plugin-jest from 23.8.2 to 23.13.0 [#105](https://github.com/saschazar21/webassembly/pull/105) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @typescript-eslint/eslint-plugin from 2.29.0 to 2.33.0 [#104](https://github.com/saschazar21/webassembly/pull/104) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @typescript-eslint/parser from 2.29.0 to 2.33.0 [#102](https://github.com/saschazar21/webassembly/pull/102) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump ts-jest from 25.4.0 to 25.5.1 [#95](https://github.com/saschazar21/webassembly/pull/95) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump babel-jest from 25.4.0 to 26.0.1 [#93](https://github.com/saschazar21/webassembly/pull/93) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @auto-it/conventional-commits from 9.30.2 to 9.32.0 [#97](https://github.com/saschazar21/webassembly/pull/97) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @babel/preset-env from 7.9.5 to 7.9.6 [#82](https://github.com/saschazar21/webassembly/pull/82) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump jest from 25.4.0 to 25.5.4 [#85](https://github.com/saschazar21/webassembly/pull/85) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 9.30.2 to 9.32.0 [#99](https://github.com/saschazar21/webassembly/pull/99) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump typescript from 3.8.3 to 3.9.2 [#103](https://github.com/saschazar21/webassembly/pull/103) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @babel/core from 7.9.0 to 7.9.6 [#81](https://github.com/saschazar21/webassembly/pull/81) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 9.30.1 to 9.30.2 [#72](https://github.com/saschazar21/webassembly/pull/72) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @auto-it/conventional-commits from 9.26.7 to 9.30.2 [#71](https://github.com/saschazar21/webassembly/pull/71) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump babel-jest from 25.2.6 to 25.4.0 [#61](https://github.com/saschazar21/webassembly/pull/61) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @types/node-fetch from 2.5.5 to 2.5.7 [#70](https://github.com/saschazar21/webassembly/pull/70) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 9.26.7 to 9.30.1 [#68](https://github.com/saschazar21/webassembly/pull/68) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @typescript-eslint/eslint-plugin from 2.27.0 to 2.29.0 [#65](https://github.com/saschazar21/webassembly/pull/65) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @typescript-eslint/parser from 2.27.0 to 2.29.0 [#62](https://github.com/saschazar21/webassembly/pull/62) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump jest from 25.3.0 to 25.4.0 [#58](https://github.com/saschazar21/webassembly/pull/58) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump ts-jest from 25.3.1 to 25.4.0 [#57](https://github.com/saschazar21/webassembly/pull/57) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump jest from 25.2.7 to 25.3.0 [#45](https://github.com/saschazar21/webassembly/pull/45) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
+#### Authors: 2
+
+- [@dependabot-preview[bot]](https://github.com/dependabot-preview[bot])
+- Sascha Zarhuber ([@saschazar21](https://github.com/saschazar21))
+
+---
+
 # (Wed Apr 08 2020)
 
 #### 🐛 Bug Fix
