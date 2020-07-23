@@ -2,26 +2,26 @@
 # yarn lockfile v1
 
 
-"@auto-it/bot-list@^9.47.0":
-  version "9.47.0"
-  resolved "https://registry.yarnpkg.com/@auto-it/bot-list/-/bot-list-9.47.0.tgz#c08cd67002f5acd7f686a4108c9cdc99770807c3"
-  integrity sha512-Zo6OFR5aSpU/7f7nv/e3EF1Or0v1BUaJaGYIVCGMD7yJrWc2X7SR5bZ+j0HojaZwvLej8qELNB4ZUV+SXJFhRA==
+"@auto-it/bot-list@^9.47.2":
+  version "9.47.2"
+  resolved "https://registry.yarnpkg.com/@auto-it/bot-list/-/bot-list-9.47.2.tgz#2ba70bcb6462b5a1ffd8ab06d8c3b6bdf0a46ff9"
+  integrity sha512-IDmdwNslrAQwq1PHkT8DD7Weva7vXStEjDRnDRmUH2T42VyxqEc1cfdvKYhj7Fumr1jqCCqV1zq/92VoVjJd6g==
 
 "@auto-it/conventional-commits@^9.14.0":
-  version "9.47.0"
-  resolved "https://registry.yarnpkg.com/@auto-it/conventional-commits/-/conventional-commits-9.47.0.tgz#2d17c4ac716ccdb38ff440fb5b1858379990a119"
-  integrity sha512-4zbAvT5fAyRRNXbqPYH0ykCcYYR6lIAJRxHgz0j+EmTb4IcnB1d7nEHUCp+uI0a6IDE5W9iUQ2VTB1q4gAmRPg==
+  version "9.47.2"
+  resolved "https://registry.yarnpkg.com/@auto-it/conventional-commits/-/conventional-commits-9.47.2.tgz#57bad035a8b44153308611def29e57099ee2efdc"
+  integrity sha512-wmIWiw1oGYoq3bigHASWYb5O8UdoqZV+boESXdvWCI3yfnLq2jk16MF/SE9fdaY6LCtmfMmeEZkCsnThelhdRA==
   dependencies:
-    "@auto-it/core" "^9.47.0"
+    "@auto-it/core" "^9.47.2"
     parse-commit-message "4.0.0"
     tslib "2.0.0"
 
-"@auto-it/core@^9.47.0":
-  version "9.47.0"
-  resolved "https://registry.yarnpkg.com/@auto-it/core/-/core-9.47.0.tgz#6609e5f77255300fff4f2609eff8caa3857bda60"
-  integrity sha512-C7kLRrnTwWB9lBiwTAJLXr3wvhg/+zchC7bCOC8FAtIwZxWV/s0peFKaN0RAKerxGzO940yciNzkYKVRvG9EFQ==
+"@auto-it/core@^9.47.0", "@auto-it/core@^9.47.2":
+  version "9.47.2"
+  resolved "https://registry.yarnpkg.com/@auto-it/core/-/core-9.47.2.tgz#0131ae73b139dcbe158490a112862b0324ccf08b"
+  integrity sha512-mNkNrS65VWgdQnE6eB3vcTnTVwyCK6Ir/lMXIRYnX2EcrUuQXaJqguS1bS5vyODtJhsUsBeyDWFU5l4m3rIE2g==
   dependencies:
-    "@auto-it/bot-list" "^9.47.0"
+    "@auto-it/bot-list" "^9.47.2"
     "@octokit/graphql" "^4.4.0"
     "@octokit/plugin-enterprise-compatibility" "^1.2.2"
     "@octokit/plugin-retry" "^3.0.1"
