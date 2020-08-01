@@ -23,7 +23,7 @@ export LIBAVIF_DAV1D_SRC="${LIBAVIF_SRC}/ext/dav1d"
 export LIBAVIF_DAV1D_BUILD="${LIBAVIF_DAV1D_SRC}/build"
 export LIBAVIF_RAV1E_SRC="${LIBAVIF_SRC}/ext/rav1e"
 export LIBAVIF_RAV1E_BUILD="${LIBAVIF_RAV1E_SRC}"
-export LIBAVIF_RAV1E_RELEASE="${LIBAVIF_RAV1E_BUILD}/target/debug"
+export LIBAVIF_RAV1E_RELEASE="${LIBAVIF_RAV1E_BUILD}/target/release"
 export MESON_CROSS="${PWD}/build/cross.txt"
 
 echo "================================================================================"
@@ -79,7 +79,8 @@ test -n "$SKIP_LIBAVIF" || (
   cargo install cargo-c
   cargo cbuild \
     --destdir $LIBAVIF_RAV1E_BUILD \
-    --libdir $LIBAVIF_RAV1E_RELEASE
+    --release
+  mkdir $LIBAVIF_RAV1E_RELEASE/rav1e && cp $LIBAVIF_RAV1E_RELEASE/rav1e.h $LIBAVIF_RAV1E_RELEASE/rav1e/rav1e.h
   # cargo install cbindgen
   # cbindgen \
   #   -c cbindgen.toml \
@@ -107,6 +108,7 @@ test -n "$SKIP_LIBAVIF" || (
     -DAVIF_CODEC_DAV1D=1 \
     -DAVIF_LOCAL_DAV1D=1 \
     -DAVIF_CODEC_RAV1E=1 \
+    -DAVIF_LOCAL_RAV1E=1 \
     -DRAV1E_INCLUDE_DIR=$LIBAVIF_RAV1E_RELEASE \
     -DRAV1E_LIBRARY=$LIBAVIF_RAV1E_RELEASE/librav1e.a
   emmake make -j$(nproc)
@@ -132,8 +134,8 @@ echo "======="
     -x c++ \
     main.cpp \
     $LIBAVIF_BUILD/libavif.a \
-    $LIBAVIF_DAV1D_BUILD/src/libdav1d.a
-    # $LIBAVIF_RAV1E_RELEASE/librav1e.a
+    $LIBAVIF_DAV1D_BUILD/src/libdav1d.a \
+    $LIBAVIF_RAV1E_RELEASE/librav1e.a
 )
 
 
