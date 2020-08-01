@@ -23,7 +23,7 @@ export LIBAVIF_DAV1D_SRC="${LIBAVIF_SRC}/ext/dav1d"
 export LIBAVIF_DAV1D_BUILD="${LIBAVIF_DAV1D_SRC}/build"
 export LIBAVIF_RAV1E_SRC="${LIBAVIF_SRC}/ext/rav1e"
 export LIBAVIF_RAV1E_BUILD="${LIBAVIF_RAV1E_SRC}"
-export LIBAVIF_RAV1E_RELEASE="${LIBAVIF_RAV1E_BUILD}/target/${RUST_WASM32_TARGET}/release"
+export LIBAVIF_RAV1E_RELEASE="${LIBAVIF_RAV1E_BUILD}/target/debug"
 export MESON_CROSS="${PWD}/build/cross.txt"
 
 echo "================================================================================"
@@ -105,10 +105,10 @@ test -n "$SKIP_LIBAVIF" || (
     -G "Unix Makefiles" \
     -DCMAKE_TOOLCHAIN_FILE=$CMAKE_TOOLCHAIN_FILE \
     -DAVIF_CODEC_DAV1D=1 \
-    -DAVIF_LOCAL_DAV1D=1
+    -DAVIF_LOCAL_DAV1D=1 \
     -DAVIF_CODEC_RAV1E=1 \
-    -DRAV1E_INCLUDE_DIR=$LIBAVIF_RAV1E_RELEASE/include \
-    -DRAV1E_LIBRARY=$LIBAVIF_RAV1E_RELEASE/librav1e.a \
+    -DRAV1E_INCLUDE_DIR=$LIBAVIF_RAV1E_RELEASE \
+    -DRAV1E_LIBRARY=$LIBAVIF_RAV1E_RELEASE/librav1e.a
   emmake make -j$(nproc)
 )
 
