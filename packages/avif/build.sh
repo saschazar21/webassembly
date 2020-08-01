@@ -13,7 +13,7 @@ export RUSTFLAGS="-C target-cpu=generic -C link-arg=-s"
 export DAV1D_DOWNLOAD="https://github.com/videolan/dav1d/archive/0.7.1.tar.gz"
 export RAV1E_DOWNLOAD="https://github.com/xiph/rav1e/archive/v0.3.3.tar.gz"
 
-export CMAKE_TOOLCHAIN_FILE=/emsdk_portable/emscripten/sdk/cmake/Modules/Platform/Emscripten.cmake
+export CMAKE_TOOLCHAIN_FILE=/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake
 
 export PATH="/root/.cargo/bin:${PATH}"
 export PWD=`pwd`
