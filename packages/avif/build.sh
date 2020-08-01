@@ -2,7 +2,7 @@
 
 set -e
 
-export OPTIMIZE="-Oz"
+export OPTIMIZE="-Os"
 export LDFLAGS="${OPTIMIZE}"
 export CFLAGS="${OPTIMIZE}"
 export CPPFLAGS="${OPTIMIZE}"
@@ -11,7 +11,7 @@ export RUST_WASM32_TARGET=wasm32-unknown-emscripten
 export RUSTFLAGS="-C target-cpu=generic -C link-arg=-s"
 
 export DAV1D_DOWNLOAD="https://github.com/videolan/dav1d/archive/0.7.1.tar.gz"
-export RAV1E_DOWNLOAD="https://github.com/xiph/rav1e/archive/v0.3.1.tar.gz"
+export RAV1E_DOWNLOAD="https://github.com/xiph/rav1e/archive/v0.3.3.tar.gz"
 
 export CMAKE_TOOLCHAIN_FILE=/emsdk_portable/emscripten/sdk/cmake/Modules/Platform/Emscripten.cmake
 
@@ -37,7 +37,9 @@ test -n "$SKIP_LIBAVIF" || (
   apt-get install -qqy \
     nasm \
     meson \
-    ninja-build
+    ninja-build \
+    pkg-config \
+    libssl-dev
 
   echo "======="
   echo ""
@@ -63,17 +65,21 @@ test -n "$SKIP_LIBAVIF" || (
 
   echo "======="
   echo ""
-  # echo "rav1e"
-  # echo ""
-  # echo "======="
-  # export RAV1E_CPU_TARGET=rust
-  # curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain nightly
+  echo "rav1e"
+  echo ""
+  echo "======="
+  export RAV1E_CPU_TARGET=rust
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain nightly
 
-  # rm -rf $LIBAVIF_RAV1E_SRC || true
-  # mkdir -p $LIBAVIF_RAV1E_BUILD && cd $LIBAVIF_RAV1E_BUILD
-  # curl -fsSL $RAV1E_DOWNLOAD | tar xz --strip-components 1 -C $LIBAVIF_RAV1E_BUILD
+  rm -rf $LIBAVIF_RAV1E_SRC || true
+  mkdir -p $LIBAVIF_RAV1E_BUILD && cd $LIBAVIF_RAV1E_BUILD
+  curl -fsSL $RAV1E_DOWNLOAD | tar xz --strip-components 1 -C $LIBAVIF_RAV1E_BUILD
 
-  # rustup target add $RUST_WASM32_TARGET
+  rustup target add $RUST_WASM32_TARGET
+  cargo install cargo-c
+  cargo cbuild \
+    --destdir $LIBAVIF_RAV1E_BUILD \
+    --libdir $LIBAVIF_RAV1E_RELEASE
   # cargo install cbindgen
   # cbindgen \
   #   -c cbindgen.toml \
@@ -100,9 +106,9 @@ test -n "$SKIP_LIBAVIF" || (
     -DCMAKE_TOOLCHAIN_FILE=$CMAKE_TOOLCHAIN_FILE \
     -DAVIF_CODEC_DAV1D=1 \
     -DAVIF_LOCAL_DAV1D=1
-    # -DAVIF_CODEC_RAV1E=1 \
-    # -DRAV1E_INCLUDE_DIR=$LIBAVIF_RAV1E_RELEASE/include \
-    # -DRAV1E_LIBRARY=$LIBAVIF_RAV1E_RELEASE/librav1e.a \
+    -DAVIF_CODEC_RAV1E=1 \
+    -DRAV1E_INCLUDE_DIR=$LIBAVIF_RAV1E_RELEASE/include \
+    -DRAV1E_LIBRARY=$LIBAVIF_RAV1E_RELEASE/librav1e.a \
   emmake make -j$(nproc)
 )
 
