@@ -15,7 +15,7 @@ export interface Dimensions {
   depth: number;
 }
 
-export interface AVIFModule extends EmscriptenModule {
+export interface AVIFModule {
   AVIF_PIXEL_FORMAT: AVIF_PIXEL_FORMAT;
   free(): void;
   dimensions(): Dimensions;

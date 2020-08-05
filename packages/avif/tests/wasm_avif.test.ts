@@ -31,14 +31,8 @@ describe('AVIF', () => {
       });
     })) as ImageLoaderModule;
 
-    avifModule = (await new Promise(resolve => {
-      const wasm = wasm_avif({
-        noInitialRun: true,
-        onRuntimeInitialized() {
-          const { then, ...other } = wasm;
-          return resolve(other);
-        },
-      });
+    avifModule = (await wasm_avif({
+      noInitialRun: true,
     })) as AVIFModule;
 
     mozjpegModule = (await new Promise(resolve => {
@@ -81,7 +75,13 @@ describe('AVIF', () => {
     );
 
     expect(decoded.length).toEqual(inWidth * inHeight * 3);
-    const encoded = encode(decoded, inWidth, inHeight, options, 1);
+    const encoded = encode(
+      decoded,
+      inWidth,
+      inHeight,
+      { ...options, minQuantizer: 0, maxQuantizer: 30, speed: 8 },
+      3
+    );
     if (Object.hasOwnProperty.call(encoded, 'error')) {
       throw new Error((encoded as { error: string }).error);
     }
