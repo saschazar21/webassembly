@@ -20,7 +20,7 @@
     "url": "git+https://github.com/saschazar21/webassembly.git"
   },
   "scripts": {
-    "build": "napa && docker run --rm -v $(pwd):/src -e SKIP_LIBHEIF=$SKIP_LIBHEIF trzeci/emscripten:1.39.10-fastcomp ./build.sh"
+    "build": "napa && docker run --rm -v $(pwd):/src -e SKIP_LIBHEIF=$SKIP_LIBHEIF emscripten/emsdk:1.40.0 ./build.sh"
   },
   "bugs": {
     "url": "https://github.com/saschazar21/webassembly/issues"

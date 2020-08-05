@@ -13,14 +13,8 @@ describe('Image Loader', () => {
   });
 
   beforeAll(async () => {
-    module = (await new Promise((resolve) => {
-      const wasm = wasm_image_loader({
-        noInitialRun: true,
-        onRuntimeInitialized: () => {
-          const { then, ...other } = wasm;
-          return resolve(other);
-        },
-      });
+    module = (await wasm_image_loader({
+      noInitialRun: true,
     })) as ImageLoaderModule;
   });
 
@@ -34,13 +28,13 @@ describe('Image Loader', () => {
 
   it('loads a random JPEG image', async () => {
     const buffer = new Uint8Array(
-      await fetch(RANDOM_URL, {}).then((res) => res.buffer()),
+      await fetch(RANDOM_URL, {}).then(res => res.buffer())
     );
 
     const { decode, dimensions, resize } = module;
 
     const result = new Uint8Array(
-      decode(buffer, buffer.length, 0) as Uint8Array,
+      decode(buffer, buffer.length, 0) as Uint8Array
     );
     const { width, height } = dimensions();
 
@@ -55,8 +49,8 @@ describe('Image Loader', () => {
         height,
         3,
         Math.floor(width * 0.5),
-        Math.floor(height * 0.5),
-      ) as Uint8Array,
+        Math.floor(height * 0.5)
+      ) as Uint8Array
     );
     const { width: outWidth, height: outHeight } = dimensions();
 

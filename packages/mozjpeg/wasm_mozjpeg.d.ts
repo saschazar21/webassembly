@@ -18,7 +18,7 @@ export enum J_COLOR_SPACE {
   JCS_EXT_BGRA /* blue/green/red/alpha */,
   JCS_EXT_ABGR /* alpha/blue/green/red */,
   JCS_EXT_ARGB /* alpha/red/green/blue */,
-  JCS_RGB565 /* 5-bit red/6-bit green/5-bit blue */
+  JCS_RGB565 /* 5-bit red/6-bit green/5-bit blue */,
 }
 
 export interface MozJPEGModule extends EmscriptenModule {
@@ -32,5 +32,6 @@ export interface MozJPEGModule extends EmscriptenModule {
   ): BufferSource;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default function(options: { [key: string]: any }): MozJPEGModule;
+export default function (
+  moduleOverrides?: Partial<MozJPEGModule>
+): Promise<MozJPEGModule>;

@@ -15,7 +15,7 @@ export interface Dimensions {
   depth: number;
 }
 
-export interface AVIFModule {
+export interface AVIFModule extends EmscriptenModule {
   AVIF_PIXEL_FORMAT: AVIF_PIXEL_FORMAT;
   free(): void;
   dimensions(): Dimensions;
@@ -29,5 +29,6 @@ export interface AVIFModule {
   ): BufferSource | { error: string };
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default function (options: { [key: string]: any }): AVIFModule;
+export default function (
+  moduleOverrides?: Partial<AVIFModule>
+): Promise<AVIFModule>;

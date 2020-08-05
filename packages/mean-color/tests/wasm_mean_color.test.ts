@@ -15,24 +15,12 @@ describe('Mean Color', () => {
   });
 
   beforeAll(async () => {
-    imageLoader = (await new Promise((resolve) => {
-      const wasm = wasm_image_loader({
-        noInitialRun: true,
-        onRuntimeInitialized() {
-          const { then, ...other } = wasm;
-          resolve(other);
-        },
-      });
+    imageLoader = (await wasm_image_loader({
+      noInitialRun: true,
     })) as ImageLoaderModule;
 
-    meanColor = (await new Promise((resolve) => {
-      const wasm = wasm_mean_color({
-        noInitialRun: true,
-        onRuntimeInitialized() {
-          const { then, ...other } = wasm;
-          resolve(other);
-        },
-      });
+    meanColor = (await wasm_mean_color({
+      noInitialRun: true,
     })) as MeanColorModule;
   });
 
@@ -41,15 +29,15 @@ describe('Mean Color', () => {
     const { decode, resize } = imageLoader;
 
     const img = new Uint8Array(
-      await fetch(RANDOM_URL, {}).then((res) => {
+      await fetch(RANDOM_URL, {}).then(res => {
         console.log(res.url);
         return res.buffer();
-      }),
+      })
     );
 
     const decoded = new Uint8Array(decode(img, img.length, 0) as Uint8Array);
     const buffer = new Uint8Array(
-      resize(decoded, 800, 600, 3, width, height) as Uint8Array,
+      resize(decoded, 800, 600, 3, width, height) as Uint8Array
     );
     expect(buffer).toHaveLength(width * height * 3);
 

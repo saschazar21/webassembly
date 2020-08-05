@@ -21,28 +21,16 @@ describe('AVIF', () => {
   });
 
   beforeEach(async () => {
-    imageLoaderModule = (await new Promise(resolve => {
-      const wasm = wasm_image_loader({
-        noInitialRun: true,
-        onRuntimeInitialized() {
-          const { then, ...other } = wasm;
-          return resolve(other);
-        },
-      });
+    imageLoaderModule = (await wasm_image_loader({
+      noInitialRun: true,
     })) as ImageLoaderModule;
 
     avifModule = (await wasm_avif({
       noInitialRun: true,
     })) as AVIFModule;
 
-    mozjpegModule = (await new Promise(resolve => {
-      const wasm = wasm_mozjpeg({
-        noInitialRun: true,
-        onRuntimeInitialized() {
-          const { then, ...other } = wasm;
-          return resolve(other);
-        },
-      });
+    mozjpegModule = (await wasm_mozjpeg({
+      noInitialRun: true,
     })) as MozJPEGModule;
   });
 

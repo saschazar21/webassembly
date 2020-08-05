@@ -16,24 +16,12 @@ describe('MozJPEG', () => {
   });
 
   beforeAll(async () => {
-    mozJPEGModule = (await new Promise(resolve => {
-      const wasm = wasm_mozjpeg({
-        noInitialRun: true,
-        onRuntimeInitialized() {
-          const { then, ...other } = wasm;
-          resolve(other);
-        },
-      });
+    mozJPEGModule = (await wasm_mozjpeg({
+      noInitialRun: true,
     })) as MozJPEGModule;
 
-    imageLoaderModule = (await new Promise(resolve => {
-      const wasm = wasm_image_loader({
-        noInitialRun: true,
-        onRuntimeInitialized() {
-          const { then, ...other } = wasm;
-          resolve(other);
-        },
-      });
+    imageLoaderModule = (await wasm_image_loader({
+      noInitialRun: true,
     })) as ImageLoaderModule;
   });
 

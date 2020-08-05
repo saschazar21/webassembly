@@ -16,24 +16,12 @@ describe('WebP', () => {
   });
 
   beforeAll(async () => {
-    imageLoaderModule = (await new Promise(resolve => {
-      const wasm = wasm_image_loader({
-        noInitialRun: true,
-        onRuntimeInitialized() {
-          const { then, ...other } = wasm;
-          resolve(other);
-        },
-      });
+    imageLoaderModule = (await wasm_image_loader({
+      noInitialRun: true,
     })) as ImageLoaderModule;
 
-    webpModule = (await new Promise(resolve => {
-      const wasm = wasm_webp({
-        noInitialRun: true,
-        onRuntimeInitialized() {
-          const { then, ...other } = wasm;
-          resolve(other);
-        },
-      });
+    webpModule = (await wasm_webp({
+      noInitialRun: true,
     })) as WebPModule;
   });
 
