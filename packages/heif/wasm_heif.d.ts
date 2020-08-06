@@ -13,4 +13,4 @@ export interface HEIFModule extends EmscriptenModule {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function (
   moduleOverrides?: Partial<HEIFModule>
-): Promise<HEIFModule>;
+): HEIFModule;

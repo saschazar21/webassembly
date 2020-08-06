@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/camelcase */
 import fetch from 'node-fetch';
 import wasm_heif, { HEIFModule } from '../wasm_heif';
@@ -15,8 +17,14 @@ describe('HEIF', () => {
   });
 
   beforeEach(async () => {
-    heifModule = (await wasm_heif({
-      noInitialRun: true,
+    heifModule = (await new Promise(resolve => {
+      const wasm = wasm_heif({
+        noInitialRun: true,
+        onRuntimeInitialized() {
+          const { then, ...other } = wasm as any;
+          return resolve(other);
+        }
+      });
     })) as HEIFModule;
   });
 

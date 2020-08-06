@@ -20,7 +20,7 @@
     "url": "git+https://github.com/saschazar21/webassembly.git"
   },
   "scripts": {
-    "build": "napa && docker run --rm -v $(pwd):/src -e SKIP_LIBHEIF=$SKIP_LIBHEIF emscripten/emsdk:1.40.0 ./build.sh"
+    "build": "napa && docker run --rm -v $(pwd):/src -e SKIP_LIBHEIF=$SKIP_LIBHEIF trzeci/emscripten:1.39.18-fastcomp ./build.sh"
   },
   "bugs": {
     "url": "https://github.com/saschazar21/webassembly/issues"
@@ -31,8 +31,7 @@
   },
   "napa": {
     "libde265": "strukturag/libde265#v1.0.5",
-    "libheif": "strukturag/libheif#v1.6.2",
-    "libx265": "videolan/x265#3.3"
+    "libheif": "strukturag/libheif#v1.7.0"
   },
   "devDependencies": {
     "napa": "^3.0.0"
