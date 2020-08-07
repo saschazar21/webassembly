@@ -32,23 +32,6 @@ test -n "$SKIP_LIBHEIF" || (
     libtool \
     pkg-config
 
-  # echo "======="
-  # echo ""
-  # echo "libx265"
-  # echo ""
-  # echo "======="
-  # rm -rf $LIBX265_BUILD || true
-  # mkdir -p $LIBX265_BUILD && cd $LIBX265_SRC
-  # emcmake cmake $LIBX265_SRC \
-  #   -G "Unix Makefiles" \
-  #   -DCMAKE_TOOLCHAIN_FILE=$CMAKE_TOOLCHAIN_FILE \
-  #   -DSTATIC_LINK_CRT=1 \
-  #   -DENABLE_LIBNUMA=0 \
-  #   -DENABLE_PIC=0 \
-  #   -DNATIVE_BUILD=0
-
-  # emmake make -j$(nproc)
-
   echo "======="
   echo ""
   echo "libde265"
@@ -57,6 +40,7 @@ test -n "$SKIP_LIBHEIF" || (
   cd $LIBDE265_SRC
   [ -x configure ] || ./autogen.sh
   emconfigure ./configure \
+    --disable-encoder \
     --disable-arm \
     --disable-sse \
     --disable-dec265 \
