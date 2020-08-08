@@ -62,7 +62,7 @@ describe('MozJPEG', () => {
   });
 
   it('encodes an alpha-channel image to greyscale .jpeg', async () => {
-    const channels = 4;
+    const channels = 3;
     const [inWidth, inHeight] = [800, 600];
     const options: MozJPEGOptions = { ...defaultOptions, quality: 75 };
 
@@ -78,7 +78,7 @@ describe('MozJPEG', () => {
 
     const result = encode(decoded, inWidth, inHeight, channels, {
       ...options,
-      in_color_space: 12,
+      in_color_space: 6,
       out_color_space: 1,
     }) as Uint8Array;
 

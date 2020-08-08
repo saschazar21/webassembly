@@ -48,7 +48,7 @@ describe('AVIF', () => {
   });
 
   it('encodes an AVIF image', async () => {
-    const channels = 4;
+    const channels = 3;
     const options: EncodeOptions = defaultOptions;
     const [inWidth, inHeight] = [3000, 2000];
     const buf = new Uint8Array(
@@ -58,7 +58,7 @@ describe('AVIF', () => {
     const { encode } = avifModule;
 
     const decoded = new Uint8Array(
-      jpegDecode(buf, buf.length, 0) as Uint8Array
+      jpegDecode(buf, buf.length, channels) as Uint8Array
     );
 
     expect(decoded.length).toEqual(inWidth * inHeight * channels);
