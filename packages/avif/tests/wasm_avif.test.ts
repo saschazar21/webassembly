@@ -76,9 +76,5 @@ describe('AVIF', () => {
     const encodedBuffer = new Uint8Array(encoded as Uint8Array);
 
     expect(encodedBuffer.length).toBeLessThan(buf.length);
-
-    await import('fs').then((fs) =>
-      fs.writeFileSync('/Users/sascha/Downloads/test.avif', encoded)
-    );
   });
 });
