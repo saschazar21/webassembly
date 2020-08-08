@@ -32,20 +32,22 @@ void free_buffer()
   delete[] buffer;
 }
 
-val decode(std::string img_in, int length, COLOR_CHANNELS desired_channels = COLOR_CHANNELS::DEFAULT)
+val decode(std::string img_in, int length, int desired_channels)
 {
   if (buffer != NULL)
   {
     free_buffer();
   }
   uint8_t *img_buffer = (uint8_t *)img_in.c_str();
-  buffer = stbi_load_from_memory(img_buffer, length, &width, &height, &channels, (int)desired_channels);
+  buffer = stbi_load_from_memory(img_buffer, length, &width, &height, &channels, desired_channels);
 
   if (buffer == NULL)
   {
     printf("Image loading failed!\n");
     exit(1);
   }
+
+  channels = desired_channels ? desired_channels : channels;
 
   printf("JPEG/PNG with %d x %d pixels and %d channels successfully loaded.\n", width, height, channels);
 

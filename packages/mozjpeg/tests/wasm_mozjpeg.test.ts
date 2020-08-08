@@ -26,36 +26,67 @@ describe('MozJPEG', () => {
   });
 
   it('encodes an image to .jpeg', async () => {
+    const channels = 3;
     const [inWidth, inHeight] = [6000, 4000];
     const options: MozJPEGOptions = { ...defaultOptions, quality: 75 };
 
     const img = new Uint8Array(
-      await fetch(`${RANDOM_URL}${inWidth}x${inHeight}`, {}).then(res =>
+      await fetch(`${RANDOM_URL}${inWidth}x${inHeight}`, {}).then((res) =>
         res.buffer()
       )
     );
     const { decode, resize } = imageLoaderModule;
     const { encode } = mozJPEGModule;
 
-    const decoded = new Uint8Array(decode(img, img.length, 0) as Uint8Array);
+    const decoded = new Uint8Array(
+      decode(img, img.length, channels) as Uint8Array
+    );
     const resized = new Uint8Array(
       resize(
         decoded,
         inWidth,
         inHeight,
-        3,
+        channels,
         inWidth * 0.25,
         inHeight * 0.25
       ) as Uint8Array
     );
-    expect(resized).toHaveLength(inWidth * 0.25 * (inHeight * 0.25) * 3);
+    expect(resized).toHaveLength(inWidth * 0.25 * (inHeight * 0.25) * channels);
 
     const result = encode(
       resized,
       inWidth * 0.25,
       inHeight * 0.25,
+      channels,
       options
     ) as Uint8Array;
+
+    expect(result.length).toBeGreaterThan(0);
+    expect(result.length).toBeLessThan(img.length);
+  });
+
+  it('encodes a greyscale image to greyscale .jpeg', async () => {
+    const channels = 1;
+    const [inWidth, inHeight] = [800, 600];
+    const options: MozJPEGOptions = { ...defaultOptions, quality: 75 };
+
+    const img = new Uint8Array(
+      await fetch(`${RANDOM_URL}${inWidth}x${inHeight}`, {}).then((res) =>
+        res.buffer()
+      )
+    );
+    const { decode } = imageLoaderModule;
+    const { encode } = mozJPEGModule;
+
+    const decoded = new Uint8Array(
+      decode(img, img.length, channels) as Uint8Array
+    );
+
+    const result = encode(decoded, inWidth, inHeight, channels, {
+      ...options,
+      in_color_space: 1,
+      out_color_space: 1,
+    }) as Uint8Array;
 
     expect(result.length).toBeGreaterThan(0);
     expect(result.length).toBeLessThan(img.length);

@@ -28,7 +28,7 @@ describe('Image Loader', () => {
 
   it('loads a random JPEG image', async () => {
     const buffer = new Uint8Array(
-      await fetch(RANDOM_URL, {}).then(res => res.buffer())
+      await fetch(RANDOM_URL, {}).then((res) => res.buffer())
     );
 
     const { decode, dimensions, resize } = module;
@@ -57,5 +57,23 @@ describe('Image Loader', () => {
     expect(outWidth).toEqual(400);
     expect(outHeight).toEqual(300);
     expect(resized).toHaveLength(400 * 300 * 3);
+  });
+
+  it('loads a random JPEG image and converts it to greyscale', async () => {
+    const channels = 1;
+    const buffer = new Uint8Array(
+      await fetch(RANDOM_URL, {}).then((res) => res.buffer())
+    );
+
+    const { decode, dimensions } = module;
+
+    const result = new Uint8Array(
+      decode(buffer, buffer.length, channels) as Uint8Array
+    );
+    const { width, height } = dimensions();
+
+    expect(width).toEqual(800);
+    expect(height).toEqual(600);
+    expect(result).toHaveLength(800 * 600 * channels);
   });
 });
