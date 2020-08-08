@@ -38,7 +38,7 @@ val dimensions()
   return dim;
 }
 
-val decode(std::string img, uint32_t _len)
+val decode(std::string img, uint32_t _len, bool alpha)
 {
   free_buffer();
   pixels = (uint8_t *)img.c_str();
@@ -72,7 +72,7 @@ val decode(std::string img, uint32_t _len)
 
   avifRGBImage rgb;
   avifRGBImageSetDefaults(&rgb, decoder->image);
-  rgb.format = AVIF_RGB_FORMAT_RGB;
+  rgb.format = alpha ? AVIF_RGB_FORMAT_RGBA : AVIF_RGB_FORMAT_RGB;
   rgb.depth = 8;
 
   avifRGBImageAllocatePixels(&rgb);
@@ -86,25 +86,26 @@ val decode(std::string img, uint32_t _len)
   return val(typed_memory_view(len, pixels));
 }
 
-val encode(std::string img, uint32_t _width, uint32_t _height, avifEncoder config, uint8_t format)
+val encode(std::string img, uint32_t _width, uint32_t _height, uint8_t _channels, avifEncoder config, uint8_t format)
 {
   free_buffer();
+  channels = _channels;
   width = _width;
   height = _height;
   pixels = (uint8_t *)img.c_str();
 
   avifImage *image = avifImageCreate(width, height, depth, (avifPixelFormat)format);
 
-  // image->colorPrimaries = AVIF_COLOR_PRIMARIES_BT709;
-  // image->transferCharacteristics = AVIF_TRANSFER_CHARACTERISTICS_SRGB;
-  // image->matrixCoefficients = AVIF_MATRIX_COEFFICIENTS_BT709;
-  // image->yuvRange = AVIF_RANGE_FULL;
+  image->colorPrimaries = AVIF_COLOR_PRIMARIES_BT709;
+  image->transferCharacteristics = AVIF_TRANSFER_CHARACTERISTICS_SRGB;
+  image->matrixCoefficients = AVIF_MATRIX_COEFFICIENTS_BT709;
+  image->yuvRange = AVIF_RANGE_FULL;
 
   avifRGBImage rgb;
   avifRGBImageSetDefaults(&rgb, image);
 
   rgb.chromaUpsampling = AVIF_CHROMA_UPSAMPLING_BILINEAR;
-  rgb.format = AVIF_RGB_FORMAT_RGB;
+  rgb.format = channels > 3 ? AVIF_RGB_FORMAT_RGBA : AVIF_RGB_FORMAT_RGB;
   rgb.pixels = pixels;
   rgb.rowBytes = width * avifRGBImagePixelSize(&rgb);
 

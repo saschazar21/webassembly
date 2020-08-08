@@ -1,10 +1,8 @@
 /* eslint-disable @typescript-eslint/camelcase */
-import fetch from 'node-fetch';
 import wasm_image_loader, { ImageLoaderModule } from '../../image-loader';
 import wasm_mozjpeg, { MozJPEGModule } from '../wasm_mozjpeg';
 import defaultOptions, { MozJPEGOptions } from '../options';
-
-const RANDOM_URL = 'https://source.unsplash.com/random/';
+import { unsplashRequest } from './../../../utils/request';
 
 describe('MozJPEG', () => {
   let mozJPEGModule: MozJPEGModule;
@@ -31,9 +29,7 @@ describe('MozJPEG', () => {
     const options: MozJPEGOptions = { ...defaultOptions, quality: 75 };
 
     const img = new Uint8Array(
-      await fetch(`${RANDOM_URL}${inWidth}x${inHeight}`, {}).then((res) =>
-        res.buffer()
-      )
+      await unsplashRequest({ format: 'jpg', width: inWidth, height: inHeight })
     );
     const { decode, resize } = imageLoaderModule;
     const { encode } = mozJPEGModule;
@@ -65,15 +61,13 @@ describe('MozJPEG', () => {
     expect(result.length).toBeLessThan(img.length);
   });
 
-  it('encodes a greyscale image to greyscale .jpeg', async () => {
-    const channels = 1;
+  it('encodes an alpha-channel image to greyscale .jpeg', async () => {
+    const channels = 4;
     const [inWidth, inHeight] = [800, 600];
     const options: MozJPEGOptions = { ...defaultOptions, quality: 75 };
 
     const img = new Uint8Array(
-      await fetch(`${RANDOM_URL}${inWidth}x${inHeight}`, {}).then((res) =>
-        res.buffer()
-      )
+      await unsplashRequest({ format: 'png', width: inWidth, height: inHeight })
     );
     const { decode } = imageLoaderModule;
     const { encode } = mozJPEGModule;
@@ -84,7 +78,7 @@ describe('MozJPEG', () => {
 
     const result = encode(decoded, inWidth, inHeight, channels, {
       ...options,
-      in_color_space: 1,
+      in_color_space: 12,
       out_color_space: 1,
     }) as Uint8Array;
 
