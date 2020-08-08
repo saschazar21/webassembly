@@ -39,15 +39,25 @@ val dimensions()
   return dim;
 }
 
-val decode(std::string img_in, size_t length_)
+val decode(std::string img_in, size_t _length, bool alpha)
 {
   if (buffer != NULL)
   {
     free_buffer();
   }
+  uint8_t *decoded;
   buffer = (uint8_t *)img_in.c_str();
-  length = length_;
-  uint8_t *decoded = WebPDecodeRGB(buffer, length, &width, &height);
+  length = _length;
+  channels = alpha ? 4 : 3;
+
+  if (alpha)
+  {
+    decoded = WebPDecodeRGBA(buffer, length, &width, &height);
+  }
+  else
+  {
+    decoded = WebPDecodeRGB(buffer, length, &width, &height);
+  }
   free_buffer();
 
   buffer = decoded;
@@ -56,7 +66,7 @@ val decode(std::string img_in, size_t length_)
   return val(typed_memory_view(length, buffer));
 }
 
-val encode(std::string img_in, int width_, int height_, WebPConfig config)
+val encode(std::string img_in, int _width, int _height, int _channels, WebPConfig config)
 {
   if (buffer != NULL)
   {
@@ -68,8 +78,9 @@ val encode(std::string img_in, int width_, int height_, WebPConfig config)
   int ok;
 
   buffer = (uint8_t *)img_in.c_str();
-  width = width_;
-  height = height_;
+  channels = _channels;
+  width = _width;
+  height = _height;
   row_stride = width * channels;
   length = height * row_stride;
 
@@ -86,7 +97,7 @@ val encode(std::string img_in, int width_, int height_, WebPConfig config)
   webp.writer = WebPMemoryWrite;
   webp.custom_ptr = &writer;
 
-  ok = WebPPictureImportRGB(&webp, buffer, row_stride) && WebPEncode(&config, &webp);
+  ok = (channels > 3 ? WebPPictureImportRGBA(&webp, buffer, row_stride) : WebPPictureImportRGB(&webp, buffer, row_stride)) && WebPEncode(&config, &webp);
   WebPPictureFree(&webp);
 
   if (!ok)

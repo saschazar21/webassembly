@@ -17,11 +17,12 @@ export interface WebPModule extends EmscriptenModule {
   WebPImageHint: WebPImageHint;
   free(): void;
   dimensions(): Dimensions;
-  decode(buffer: BufferSource, length: number): BufferSource;
+  decode(buffer: BufferSource, length: number, alpha: boolean): BufferSource;
   encode(
     buffer: BufferSource,
     width: number,
     height: number,
+    channels: number,
     config: EncodeOptions
   ): BufferSource;
 }
