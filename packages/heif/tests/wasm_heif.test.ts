@@ -47,7 +47,7 @@ describe('HEIF', () => {
     expect(decoded).toHaveLength(width * height * channels);
   });
 
-  xit('decodes a HEIF image into 4 channels', async () => {
+  it.skip('decodes a HEIF image into 4 channels', async () => {
     const alpha = true;
     const buf = new Uint8Array(
       await fetch(HEIF_TEST_IMAGE).then((res) => res.buffer())
