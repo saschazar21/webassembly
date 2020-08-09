@@ -17,28 +17,49 @@ describe('HEIF', () => {
   });
 
   beforeEach(async () => {
-    heifModule = (await new Promise(resolve => {
+    heifModule = (await new Promise((resolve) => {
       const wasm = wasm_heif({
         noInitialRun: true,
         onRuntimeInitialized() {
           const { then, ...other } = wasm as any;
           return resolve(other);
-        }
+        },
       });
     })) as HEIFModule;
   });
 
-  it('decodes a HEIF image', async () => {
+  it('decodes a HEIF image into 3 channels', async () => {
+    const alpha = false;
     const buf = new Uint8Array(
-      await fetch(HEIF_TEST_IMAGE).then(res => res.buffer())
+      await fetch(HEIF_TEST_IMAGE).then((res) => res.buffer())
     );
 
     const { decode, dimensions } = heifModule;
 
-    const decoded = decode(buf, buf.length);
+    const decoded = decode(buf, buf.length, alpha);
     expect(decoded).not.toHaveProperty('error');
 
     const { channels, height, width } = dimensions();
+    expect(channels).toEqual(alpha ? 4 : 3);
+    expect(width).toEqual(HEIF_TEST_IMAGE_WIDTH);
+    expect(height).toEqual(HEIF_TEST_IMAGE_HEIGHT);
+
+    expect(decoded).toHaveLength(width * height * channels);
+  });
+
+  xit('decodes a HEIF image into 4 channels', async () => {
+    const alpha = true;
+    const buf = new Uint8Array(
+      await fetch(HEIF_TEST_IMAGE).then((res) => res.buffer())
+    );
+
+    const { decode, dimensions } = heifModule;
+
+    const decoded = decode(buf, buf.length, alpha);
+    expect(decoded).not.toHaveProperty('error');
+
+    const { channels, height, width } = dimensions();
+    expect(channels).toEqual(alpha ? 4 : 3);
     expect(width).toEqual(HEIF_TEST_IMAGE_WIDTH);
     expect(height).toEqual(HEIF_TEST_IMAGE_HEIGHT);
 
