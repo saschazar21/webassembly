@@ -23,3 +23,8 @@ deploy:
     script: npx auto shipit
     on:
       branch: master
+  - provider: script
+    edge: true
+    script: npx auto shipit --dry-run
+    on:
+      condition: $TRAVIS_PULL_REQUEST || ($TRAVIS_BRANCH != master)
