@@ -4,7 +4,7 @@
 
 > A dependency-free WebP decoder/encoder written in WebAssembly
 
-It encodes raw RGB image data in a `Uint8Array` into the WebP format and vice versa.
+It encodes raw RGB(A) image data in a `Uint8Array` into the WebP format and vice versa.
 
 ## Installation
 
@@ -32,8 +32,24 @@ importScripts('wasm_webp.js');
 
 // -------- Browser/Web Worker/Node.js code below --------
 
+// Decoding example:
+// Load encoded WebP image data in Uint8Array
+const array = new Uint8Array(['some', 'encoded', 'WebP', 'image', 'data']);
+let result;
+
+// Initialize the WebAssembly Module
+const webpModule = wasm_webp({
+  onRuntimeInitialized() {
+    const alpha = true; // return RGBA Buffer, instead of RGB
+    result = webpModule.encode(array, array.length, alpha); // decode image data and return a new Uint8Array
+    webpModule.free(); // clean up memory after encoding is done
+  },
+});
+
+// Encoding example:
 // Load raw RGB image data in Uint8Array (e.g. consistently chained [R][G][B] data)
 const array = new Uint8Array(['some', 'raw', 'RGB', 'image', 'data']);
+const channels = 3; // 3 for RGB, 4 for RGBA
 const width = 800; // the image's width
 const height = 600; // the image's height
 const options = defaultOptions; // WebP's options, a complete object is crucially needed!
@@ -42,7 +58,7 @@ let result;
 // Initialize the WebAssembly Module
 const webpModule = wasm_webp({
   onRuntimeInitialized() {
-    result = webpModule.encode(array, width, height, options); // encode image data and return a new Uint8Array
+    result = webpModule.encode(array, width, height, channels, options); // encode image data and return a new Uint8Array
     webpModule.free(); // clean up memory after encoding is done
   },
 });

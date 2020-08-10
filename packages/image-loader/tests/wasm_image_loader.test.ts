@@ -1,9 +1,6 @@
 /* eslint-disable @typescript-eslint/camelcase */
-import fetch from 'node-fetch';
-
 import wasm_image_loader, { ImageLoaderModule } from '../wasm_image_loader';
-
-const RANDOM_URL = 'https://source.unsplash.com/random/800x600';
+import { unsplashRequest } from './../../../utils/request';
 
 describe('Image Loader', () => {
   let module: ImageLoaderModule;
@@ -13,14 +10,8 @@ describe('Image Loader', () => {
   });
 
   beforeAll(async () => {
-    module = (await new Promise((resolve) => {
-      const wasm = wasm_image_loader({
-        noInitialRun: true,
-        onRuntimeInitialized: () => {
-          const { then, ...other } = wasm;
-          return resolve(other);
-        },
-      });
+    module = (await wasm_image_loader({
+      noInitialRun: true,
     })) as ImageLoaderModule;
   });
 
@@ -33,35 +24,64 @@ describe('Image Loader', () => {
   });
 
   it('loads a random JPEG image', async () => {
+    const channels = 3;
+    const [inWidth, inHeight] = [800, 600];
     const buffer = new Uint8Array(
-      await fetch(RANDOM_URL, {}).then((res) => res.buffer()),
+      await unsplashRequest({
+        format: 'jpg',
+        width: inWidth,
+        height: inHeight,
+      })
     );
 
     const { decode, dimensions, resize } = module;
 
     const result = new Uint8Array(
-      decode(buffer, buffer.length, 0) as Uint8Array,
+      decode(buffer, buffer.length, channels) as Uint8Array
     );
     const { width, height } = dimensions();
 
-    expect(width).toEqual(800);
-    expect(height).toEqual(600);
-    expect(result).toHaveLength(800 * 600 * 3);
+    expect(width).toEqual(inWidth);
+    expect(height).toEqual(inHeight);
+    expect(result).toHaveLength(inWidth * inHeight * channels);
 
     const resized = new Uint8Array(
       resize(
         result,
         width,
         height,
-        3,
+        channels,
         Math.floor(width * 0.5),
-        Math.floor(height * 0.5),
-      ) as Uint8Array,
+        Math.floor(height * 0.5)
+      ) as Uint8Array
     );
     const { width: outWidth, height: outHeight } = dimensions();
 
     expect(outWidth).toEqual(400);
     expect(outHeight).toEqual(300);
-    expect(resized).toHaveLength(400 * 300 * 3);
+    expect(resized).toHaveLength(400 * 300 * channels);
+  });
+
+  it('decodes a JPEG into a greyscale image', async () => {
+    const channels = 1;
+    const [inWidth, inHeight] = [800, 600];
+    const buffer = new Uint8Array(
+      await unsplashRequest({
+        format: 'jpg',
+        width: inWidth,
+        height: inHeight,
+      })
+    );
+
+    const { decode, dimensions } = module;
+
+    const result = new Uint8Array(
+      decode(buffer, buffer.length, channels) as Uint8Array
+    );
+    const { width, height } = dimensions();
+
+    expect(width).toEqual(inWidth);
+    expect(height).toEqual(inHeight);
+    expect(result).toHaveLength(inWidth * inHeight * channels);
   });
 });

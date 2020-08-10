@@ -6,7 +6,7 @@ services:
   - docker
 
 before_install:
-  - docker pull trzeci/emscripten:1.39.10-fastcomp
+  - docker pull emscripten/emsdk:1.40.0
 
 script:
   - yarn build

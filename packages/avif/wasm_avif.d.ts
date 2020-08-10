@@ -1,11 +1,11 @@
-// import { EncodeOptions } from './options';
+import { EncodeOptions } from './options';
 
 export enum AVIF_PIXEL_FORMAT {
-  AVIF_PIXEL_FORMAT_NONE,
-  AVIF_PIXEL_FORMAT_YUV444, // default
-  AVIF_PIXEL_FORMAT_YUV422,
-  AVIF_PIXEL_FORMAT_YUV420,
-  AVIF_PIXEL_FORMAT_YUV400,
+  AVIF_PIXEL_FORMAT_NONE = 0,
+  AVIF_PIXEL_FORMAT_YUV444 = 1, // default
+  AVIF_PIXEL_FORMAT_YUV422 = 2,
+  AVIF_PIXEL_FORMAT_YUV420 = 3,
+  AVIF_PIXEL_FORMAT_YUV400 = 4,
 }
 
 export interface Dimensions {
@@ -19,15 +19,21 @@ export interface AVIFModule extends EmscriptenModule {
   AVIF_PIXEL_FORMAT: AVIF_PIXEL_FORMAT;
   free(): void;
   dimensions(): Dimensions;
-  decode(img: BufferSource, length: number): BufferSource | { error: string };
-  // encode(
-  //   buffer: BufferSource,
-  //   width: number,
-  //   height: number,
-  //   config: EncodeOptions,
-  //   format: AVIF_PIXEL_FORMAT
-  // ): BufferSource | { error: string };
+  decode(
+    img: BufferSource,
+    length: number,
+    alpha: boolean
+  ): BufferSource | { error: string };
+  encode(
+    buffer: BufferSource,
+    width: number,
+    height: number,
+    channels: number,
+    config: EncodeOptions,
+    format: AVIF_PIXEL_FORMAT
+  ): BufferSource | { error: string };
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default function (options: { [key: string]: any }): AVIFModule;
+export default function (
+  moduleOverrides?: Partial<AVIFModule>
+): Promise<AVIFModule>;

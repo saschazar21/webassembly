@@ -5,7 +5,8 @@ export interface MozJPEGOptions {
   progressive?: boolean;
   optimize_coding?: boolean;
   smoothing?: number;
-  color_space?: number;
+  in_color_space?: number;
+  out_color_space?: number;
   quant_table?: number;
   trellis_multipass?: boolean;
   trellis_opt_zero?: boolean;

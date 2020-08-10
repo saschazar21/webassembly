@@ -4,7 +4,7 @@ export enum COLOR_CHANNELS {
   GREYSCALE = 1,
   GREYSCALE_ALPHA = 2,
   RGB = 3,
-  RGB_ALPHA = 4
+  RGB_ALPHA = 4,
 }
 
 export interface ImageDimensions {
@@ -17,9 +17,21 @@ export interface ImageLoaderModule extends EmscriptenModule {
   COLOR_CHANNELS: COLOR_CHANNELS;
   free(): void;
   dimensions(): ImageDimensions;
-  decode(buffer: BufferSource, length: number, desiredChannels: COLOR_CHANNELS): BufferSource;
-  resize(buffer: BufferSource, width: number, height: number, channels: number, outputWidth: number, outputHeight: number): BufferSource;
+  decode(
+    buffer: BufferSource,
+    length: number,
+    desiredChannels: COLOR_CHANNELS
+  ): BufferSource;
+  resize(
+    buffer: BufferSource,
+    width: number,
+    height: number,
+    channels: number,
+    outputWidth: number,
+    outputHeight: number
+  ): BufferSource;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default function(options: { [key: string]: any }): ImageLoaderModule;
+export default function (
+  moduleOverrides?: Partial<ImageLoaderModule>
+): Promise<ImageLoaderModule>;

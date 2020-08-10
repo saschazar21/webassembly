@@ -8,13 +8,13 @@ All of the listed packages below will work on their own—without any external d
 
 ## Packages
 
-- **[`@saschazar/wasm-avif`](https://github.com/saschazar21/webassembly/tree/master/packages/avif)** - decodes an [AVIF](https://aomediacodec.github.io/av1-avif/)-encoded image and returns raw RGB data.
+- **[`@saschazar/wasm-avif`](https://github.com/saschazar21/webassembly/tree/master/packages/avif)** - decodes and encodes raw RGB(A) image data from/into an [AVIF](https://aomediacodec.github.io/av1-avif/)-encoded image.
 - **[`@saschazar/wasm-exif`](https://github.com/saschazar21/webassembly/tree/master/packages/exif)** - reads JPEG-encoded data and returns the included EXIF as JavaScript object.
 - **[`@saschazar/wasm-heif`](https://github.com/saschazar21/webassembly/tree/master/packages/heif)** - decodes a [HEIF/HEIC](http://nokiatech.github.io/heif/technical.html)-encoded image and returns raw RGB data.
 - **[`@saschazar/wasm-image-loader`](https://github.com/saschazar21/webassembly/tree/master/packages/image-loader)** - decodes JPEG- & PNG-encoded image data and resizes it, if desired.
 - **[`@saschazar/wasm-mean-color`](https://github.com/saschazar21/webassembly/tree/master/packages/mean-color)** - calculates the mean color from raw RGB/A image data and returns it as hex string.
 - **[`@saschazar/wasm-mozjpeg`](https://github.com/saschazar21/webassembly/tree/master/packages/mozjpeg)** - encodes raw RGB image data into JPEG using the [MozJPEG](https://github.com/mozilla/mozjpeg) encoder.
-- **[`@saschazar/wasm-webp`](https://github.com/saschazar21/webassembly/tree/master/packages/webp)** - decodes and encodes image data from/into the [WebP](https://github.com/webmproject/libwebp) format.
+- **[`@saschazar/wasm-webp`](https://github.com/saschazar21/webassembly/tree/master/packages/webp)** - decodes and encodes raw RGB(A) image data from/into the [WebP](https://github.com/webmproject/libwebp) format.
 
 ## License
 

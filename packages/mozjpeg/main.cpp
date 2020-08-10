@@ -19,7 +19,8 @@ struct MozJPEGOptions
   bool progressive;
   bool optimize_coding;
   int smoothing;
-  int color_space;
+  int in_color_space;
+  int out_color_space;
   int quant_table;
   bool trellis_multipass;
   bool trellis_opt_zero;
@@ -44,7 +45,7 @@ void free_buffer()
   delete[] buffer;
 }
 
-val encode(std::string img_in, int width_, int height_, MozJPEGOptions options)
+val encode(std::string img_in, int _width, int _height, int _channels, MozJPEGOptions options)
 {
   if (buffer != NULL)
   {
@@ -54,8 +55,9 @@ val encode(std::string img_in, int width_, int height_, MozJPEGOptions options)
   uint8_t *result;
 
   buffer = (uint8_t *)img_in.c_str();
-  width = width_;
-  height = height_;
+  channels = _channels;
+  width = _width;
+  height = _height;
   row_stride = width * channels;
 
   JSAMPROW row_pointer[1];
@@ -70,10 +72,10 @@ val encode(std::string img_in, int width_, int height_, MozJPEGOptions options)
   compress.image_width = width;
   compress.image_height = height;
   compress.input_components = channels;
-  compress.in_color_space = JCS_RGB;
+  compress.in_color_space = (J_COLOR_SPACE)options.in_color_space;
 
   jpeg_set_defaults(&compress);
-  jpeg_set_colorspace(&compress, (J_COLOR_SPACE)options.color_space);
+  jpeg_set_colorspace(&compress, (J_COLOR_SPACE)options.out_color_space);
 
   if (options.quant_table != -1)
   {
@@ -97,7 +99,7 @@ val encode(std::string img_in, int width_, int height_, MozJPEGOptions options)
 
   std::string quality_str = std::to_string(options.quality);
 
-  if (options.separate_chroma_quality && options.color_space == JCS_YCbCr)
+  if (options.separate_chroma_quality && options.out_color_space == JCS_YCbCr)
   {
     quality_str += "," + std::to_string(options.chroma_quality);
   }
@@ -106,7 +108,7 @@ val encode(std::string img_in, int width_, int height_, MozJPEGOptions options)
 
   set_quality_ratings(&compress, (char *)pqual, options.baseline);
 
-  if (!options.auto_subsample && options.color_space == JCS_YCbCr)
+  if (!options.auto_subsample && options.out_color_space == JCS_YCbCr)
   {
     compress.comp_info[0].h_samp_factor = options.chroma_subsample;
     compress.comp_info[0].v_samp_factor = options.chroma_subsample;
@@ -167,7 +169,8 @@ EMSCRIPTEN_BINDINGS(MozJPEG)
       .field("progressive", &MozJPEGOptions::progressive)
       .field("optimize_coding", &MozJPEGOptions::optimize_coding)
       .field("smoothing", &MozJPEGOptions::smoothing)
-      .field("color_space", &MozJPEGOptions::color_space)
+      .field("in_color_space", &MozJPEGOptions::in_color_space)
+      .field("out_color_space", &MozJPEGOptions::out_color_space)
       .field("quant_table", &MozJPEGOptions::quant_table)
       .field("trellis_multipass", &MozJPEGOptions::trellis_multipass)
       .field("trellis_opt_zero", &MozJPEGOptions::trellis_opt_zero)

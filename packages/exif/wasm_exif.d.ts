@@ -54,4 +54,6 @@ export interface ExifModule extends EmscriptenModule {
   exif(buffer: BufferSource, length: number): Exif;
 }
 
-export default function(options: { [key: string]: any }): ExifModule;
+export default function (
+  moduleOverrides?: Partial<ExifModule>
+): Promise<ExifModule>;

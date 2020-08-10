@@ -8,14 +8,8 @@ describe('Exif', () => {
   let exifModule: ExifModule;
 
   beforeAll(async () => {
-    exifModule = (await new Promise(resolve => {
-      const wasm = wasm_exif({
-        noInitialRun: true,
-        onRuntimeInitialized() {
-          const { then, ...other } = wasm;
-          resolve(other);
-        }
-      });
+    exifModule = (await wasm_exif({
+      noInitialRun: true,
     })) as ExifModule;
   });
 

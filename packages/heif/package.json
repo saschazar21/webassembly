@@ -31,8 +31,7 @@
   },
   "napa": {
     "libde265": "strukturag/libde265#v1.0.5",
-    "libheif": "strukturag/libheif#v1.6.2",
-    "libx265": "videolan/x265#3.3"
+    "libheif": "strukturag/libheif#v1.7.0"
   },
   "devDependencies": {
     "napa": "^3.0.0"

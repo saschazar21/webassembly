@@ -7,7 +7,8 @@ module.exports = {
   progressive: true,
   optimize_coding: true,
   smoothing: 0,
-  color_space: 3, // J_COLOR_SPACE.JCS_YCbCr
+  in_color_space: 2, // J_COLOR_SPACE.JCS_RGB
+  out_color_space: 3, // J_COLOR_SPACE.JCS_YCbCr
   quant_table: 3,
   trellis_multipass: false,
   trellis_opt_zero: false,
@@ -16,5 +17,5 @@ module.exports = {
   auto_subsample: true,
   chroma_subsample: 2,
   separate_chroma_quality: false,
-  chroma_quality: 75
+  chroma_quality: 75,
 };

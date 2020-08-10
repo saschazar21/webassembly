@@ -1,10 +1,10 @@
 [![npm](https://img.shields.io/npm/v/@saschazar/wasm-avif)](https://npmjs.org/package/@saschazar/wasm-avif)
 
-# 📦 WebAssembly AVIF decoder
+# 📦 WebAssembly AVIF decoder/encoder
 
-> A dependency-free AVIF decoder written in WebAssembly
+> A dependency-free AVIF decoder/encoder written in WebAssembly
 
-It decodes AVIF-encoded image data in a `Uint8Array` containing raw RGB pixels.
+It encodes raw RGB(A) pixels in a `Uint8Array` into [AVIF-encoded image data](https://netflixtechblog.com/avif-for-next-generation-image-coding-b1d75675fe4) and vice versa.
 
 ## Installation
 
@@ -25,12 +25,14 @@ It supports usage in the browser, in a [Web Worker](https://developer.mozilla.or
 ```javascript
 // Node.js
 import wasm_avif from '@saschazar/wasm-avif';
+import defaultOptions from '@saschazar/wasm-avif/options';
 
 // Web Worker - see: https://developer.mozilla.org/en-US/docs/Web/API/WorkerGlobalScope/importScripts
 importScripts('wasm_avif.js');
 
 // -------- Browser/Web Worker/Node.js code below --------
 
+// Decoding example:
 // Load encoded AVIF image data in Uint8Array
 const array = new Uint8Array(['some', 'encoded', 'AVIF', 'image', 'data']);
 let result;
@@ -38,7 +40,32 @@ let result;
 // Initialize the WebAssembly Module
 const avifModule = wasm_avif({
   onRuntimeInitialized() {
-    result = avifModule.decode(array, array.length); // decode image data and return a new Uint8Array
+    const alpha = true; // return RGBA buffer, instead of RGB
+    result = avifModule.decode(array, array.length, alpha); // decode image data and return a new Uint8Array
+    avifModule.free(); // clean up memory after encoding is done
+  },
+});
+
+// Encoding example:
+// Load raw RGB(A) pixels in Uint8Array
+const array = new Uint8Array(['some', 'raw', 'RGB', 'image', 'data']);
+const width = 800;
+const height = 600;
+let result;
+
+// Initialize the WebAssembly Module
+const avifModule = wasm_avif({
+  onRuntimeInitialized() {
+    const channels = 4; // 4 representing RGBA buffer in source array, 3 RGB
+    const chroma = 3; // chroma subsampling: 1 for 4:4:4, 2 for 4:2:2, 3 for 4:2:0
+    result = avifModule.encode(
+      array,
+      width,
+      height,
+      channels,
+      defaultOptions,
+      chroma
+    ); // encode image data and return a new Uint8Array
     avifModule.free(); // clean up memory after encoding is done
   },
 });
@@ -52,13 +79,13 @@ A working example is available on [RunKit](https://runkit.com/saschazar21/5e8749
 
 The main backbone of the project is the [libavif](https://github.com/AOMediaCodec/libavif) library.
 
-Currently only AVIF decoding using [dav1d](https://github.com/videolan/dav1d) is enabled. Furthermore, only 8-bit images are getting decoded reliably.
+Both decoding and encoding is done via the [AOM AV1 codec](https://aomedia.googlesource.com/aom/). Encoding is still very slow, since helpers such as multithreading and/or runtime CPU detection have to be disabled in order to successfully compile to WebAssembly.
 
 ### Help needed
 
-Concerning the encoding functionality, a few trials have been made towards using the [libaom](https://aomedia.googlesource.com/aom) and [rav1e](https://github.com/xiph/rav1e) encoder, but none of them succeeded yet.
+Concerning the encoding functionality, a few trials have been made towards using the more performant [rav1e](https://github.com/xiph/rav1e) encoder, but it constantly fails during linking.
 
-The latest progress is visible as commented-out code in the [build.sh](https://github.com/saschazar21/webassembly/blob/master/packages/avif/build.sh) and [main.cpp](https://github.com/saschazar21/webassembly/blob/master/packages/avif/main.cpp).
+As soon as encoding is done via `rav1e`, decoding could be switched back to [dav1d](https://github.com/videolan/dav1d) again.
 
 ## Credits
 

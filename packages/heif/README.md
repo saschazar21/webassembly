@@ -24,27 +24,30 @@ It supports usage in the browser, in a [Web Worker](https://developer.mozilla.or
 
 ```javascript
 // Node.js
-import wasm_heif from '@saschazar/wasm-heif'
+import wasm_heif from '@saschazar/wasm-heif';
 
 // Web Worker - see: https://developer.mozilla.org/en-US/docs/Web/API/WorkerGlobalScope/importScripts
-importScripts('wasm_heif.js')
+importScripts('wasm_heif.js');
 
 // -------- Browser/Web Worker/Node.js code below --------
 
 // Load encoded HEIF image data in Uint8Array
-const array = new Uint8Array(['some', 'encoded', 'heif', 'image', 'data'])
-let result
+const array = new Uint8Array(['some', 'encoded', 'heif', 'image', 'data']);
+let result;
 
 // Initialize the WebAssembly Module
 const heifModule = wasm_heif({
   onRuntimeInitialized() {
-    result = heifModule.decode(array, array.length) // decode image data and return a new Uint8Array
-    heifModule.free() // clean up memory after encoding is done
-  }
-})
+    const alpha = false; // RGBA somehow not yet working ¯\_(ツ)_/¯
+    result = heifModule.decode(array, array.length, alpha); // decode image data and return a new Uint8Array
+    heifModule.free(); // clean up memory after encoding is done
+  },
+});
 ```
 
 ### ⚠️ Support
+
+Although [libheif](https://github.com/strukturag/libheif) provides support for decoding HEIF images into an RGBA buffer, none of the respective tests has succeeded yet. Therefore, it is crucial to compare the `channels` property of the object returned from the `dimensions()` function, when `alpha` was set to true in the `decode()` function.
 
 Not all HEIF/HEIC-encoded images seem to be supported, as there have occurred failures while attempting to decode sample images from the [nokiatech/heif](https://github.com/nokiatech/heif/tree/gh-pages/content/images) repository.
 
