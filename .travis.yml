@@ -12,20 +12,12 @@ script:
   - yarn build
   - yarn test
 
-# before_deploy:
-#   - if [ "$TRAVIS_BRANCH" == "master" ];then
-#     git checkout master;
-#     fi;
-
 before_deploy:
-  - git checkout master;
+  - if [ "$TRAVIS_BRANCH" == "master" ];then
+    git checkout master;
+    fi;
 
 deploy:
-  - provider: script
-    edge: true
-    script: npx auto shipit --dry-run
-    on:
-      condition: $TRAVIS_PULL_REQUEST == "true" || $TRAVIS_BRANCH != "master"
   - provider: script
     edge: true
     script: npx auto shipit
