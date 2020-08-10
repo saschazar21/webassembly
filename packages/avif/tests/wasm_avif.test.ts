@@ -7,7 +7,9 @@ import defaultOptions, { EncodeOptions } from '../options';
 import { unsplashRequest } from './../../../utils/request';
 
 const AVIF_TEST_IMAGE =
-  'https://github.com/AOMediaCodec/av1-avif/blob/master/testFiles/Microsoft/still_picture.avif?raw=true';
+  'https://github.com/AOMediaCodec/av1-avif/blob/master/testFiles/Netflix/avif/cosmos_frame01000_yuv444_12bpc_bt2020_pq_qlossless.avif?raw=true';
+const AVIF_TEST_IMAGE_WIDTH = 2048;
+const AVIF_TEST_IMAGE_HEIGHT = 858;
 
 describe('AVIF', () => {
   let avifModule: AVIFModule;
@@ -35,15 +37,18 @@ describe('AVIF', () => {
   });
 
   it('decodes an AVIF image', async () => {
+    const alpha = false;
     const buf = new Uint8Array(
       await fetch(AVIF_TEST_IMAGE).then((res) => res.buffer())
     );
 
     const { decode } = avifModule;
 
-    const decoded = decode(buf, buf.length, false) as Uint8Array;
+    const decoded = decode(buf, buf.length, alpha) as Uint8Array;
 
-    expect(decoded.length).toEqual(1280 * 720 * 3);
+    expect(decoded.length).toEqual(
+      AVIF_TEST_IMAGE_WIDTH * AVIF_TEST_IMAGE_HEIGHT * (alpha ? 4 : 3)
+    );
     expect(decoded.length).toBeGreaterThan(buf.length);
   });
 
@@ -52,7 +57,7 @@ describe('AVIF', () => {
     const options: EncodeOptions = defaultOptions;
     const [inWidth, inHeight] = [3000, 2000];
     const buf = new Uint8Array(
-      await unsplashRequest({ format: 'png', width: inWidth, height: inHeight })
+      await unsplashRequest({ format: 'jpg', width: inWidth, height: inHeight })
     );
     const { decode: jpegDecode } = imageLoaderModule;
     const { encode } = avifModule;
