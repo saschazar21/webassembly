@@ -4,7 +4,7 @@
 
 > A dependency-free AVIF decoder/encoder written in WebAssembly
 
-It encodes raw RGB(A) pixels in a `Uint8Array` into AVIF-encoded image data and vice versa.
+It encodes raw RGB(A) pixels in a `Uint8Array` into [AVIF-encoded image data](https://netflixtechblog.com/avif-for-next-generation-image-coding-b1d75675fe4) and vice versa.
 
 ## Installation
 
