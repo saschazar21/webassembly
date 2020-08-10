@@ -62,9 +62,14 @@ describe('MozJPEG', () => {
   });
 
   it('encodes an alpha-channel image to greyscale .jpeg', async () => {
-    const channels = 3;
+    const channels = 4;
     const [inWidth, inHeight] = [800, 600];
-    const options: MozJPEGOptions = { ...defaultOptions, quality: 75 };
+    const options: MozJPEGOptions = {
+      ...defaultOptions,
+      in_color_space: 12,
+      out_color_space: 1,
+      quality: 75,
+    };
 
     const img = new Uint8Array(
       await unsplashRequest({ format: 'png', width: inWidth, height: inHeight })
@@ -76,11 +81,13 @@ describe('MozJPEG', () => {
       decode(img, img.length, channels) as Uint8Array
     );
 
-    const result = encode(decoded, inWidth, inHeight, channels, {
-      ...options,
-      in_color_space: 6,
-      out_color_space: 1,
-    }) as Uint8Array;
+    const result = encode(
+      decoded,
+      inWidth,
+      inHeight,
+      channels,
+      options
+    ) as Uint8Array;
 
     expect(result.length).toBeGreaterThan(0);
     expect(result.length).toBeLessThan(img.length);
