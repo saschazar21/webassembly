@@ -22,7 +22,7 @@ deploy:
     edge: true
     script: npx auto shipit --dry-run
     on:
-      condition: $TRAVIS_PULL_REQUEST == "true" || $TRAVIS_BRANCH != "master"
+      condition: $TRAVIS_BRANCH != "master"
   - provider: script
     edge: true
     script: npx auto shipit
