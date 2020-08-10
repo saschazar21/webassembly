@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/camelcase */
 import fetch from 'node-fetch';
 import wasm_image_loader, { ImageLoaderModule } from '../../image-loader';
-import wasm_mozjpeg, { MozJPEGModule } from '../../mozjpeg';
 import wasm_avif, { AVIFModule } from '../wasm_avif';
 import defaultOptions, { EncodeOptions } from '../options';
 import { unsplashRequest } from './../../../utils/request';
@@ -14,12 +13,10 @@ const AVIF_TEST_IMAGE_HEIGHT = 858;
 describe('AVIF', () => {
   let avifModule: AVIFModule;
   let imageLoaderModule: ImageLoaderModule;
-  let mozjpegModule: MozJPEGModule;
 
   afterEach(() => {
     avifModule.free();
     imageLoaderModule.free();
-    mozjpegModule.free();
   });
 
   beforeEach(async () => {
@@ -30,14 +27,10 @@ describe('AVIF', () => {
     avifModule = (await wasm_avif({
       noInitialRun: true,
     })) as AVIFModule;
-
-    mozjpegModule = (await wasm_mozjpeg({
-      noInitialRun: true,
-    })) as MozJPEGModule;
   });
 
   it('decodes an AVIF image', async () => {
-    const alpha = false;
+    const alpha = true;
     const buf = new Uint8Array(
       await fetch(AVIF_TEST_IMAGE).then((res) => res.buffer())
     );

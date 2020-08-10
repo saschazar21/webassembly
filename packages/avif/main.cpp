@@ -75,13 +75,15 @@ val decode(std::string img, uint32_t _len, bool alpha)
   rgb.format = alpha ? AVIF_RGB_FORMAT_RGBA : AVIF_RGB_FORMAT_RGB;
   rgb.depth = 8;
 
+  channels = (uint8_t)avifRGBFormatChannelCount(rgb.format);
+
   avifRGBImageAllocatePixels(&rgb);
   avifImageYUVToRGB(decoder->image, &rgb);
 
   free_buffer();
   avifDecoderDestroy(decoder);
   pixels = rgb.pixels;
-  len = width * height * 3;
+  len = width * height * channels;
 
   return val(typed_memory_view(len, pixels));
 }
