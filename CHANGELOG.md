@@ -1,3 +1,31 @@
+# (Mon Aug 10 2020)
+
+#### 💥 Breaking Change
+
+- `@saschazar/wasm-avif@1.0.0`, `@saschazar/wasm-exif@2.0.0`, `@saschazar/wasm-heif@1.0.0`, `@saschazar/wasm-image-loader@3.0.0`, `@saschazar/wasm-mean-color@2.0.0`, `@saschazar/wasm-mozjpeg@2.0.0`, `@saschazar/wasm-webp@2.0.0`
+  - feat: added AVIF encoder, updated packages to support alpha channels [#212](https://github.com/saschazar21/webassembly/pull/212) ([@saschazar21](https://github.com/saschazar21))
+
+#### 🔩 Dependency Updates
+
+- chore(deps-dev): bump @babel/core from 7.10.2 to 7.11.1 [#204](https://github.com/saschazar21/webassembly/pull/204) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @auto-it/conventional-commits from 9.49.1 to 9.50.0 [#211](https://github.com/saschazar21/webassembly/pull/211) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 9.49.3 to 9.50.0 [#210](https://github.com/saschazar21/webassembly/pull/210) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump typescript from 3.9.5 to 3.9.7 [#180](https://github.com/saschazar21/webassembly/pull/180) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 9.48.1 to 9.49.3 [#201](https://github.com/saschazar21/webassembly/pull/201) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @auto-it/conventional-commits from 9.47.0 to 9.49.1 [#194](https://github.com/saschazar21/webassembly/pull/194) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump eslint-plugin-jest from 23.18.0 to 23.19.0 [#191](https://github.com/saschazar21/webassembly/pull/191) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump eslint-plugin-jest from 23.17.1 to 23.18.0 [#162](https://github.com/saschazar21/webassembly/pull/162) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 9.47.0 to 9.48.1 [#188](https://github.com/saschazar21/webassembly/pull/188) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @babel/preset-env from 7.10.2 to 7.10.4 [#156](https://github.com/saschazar21/webassembly/pull/156) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @auto-it/conventional-commits from 9.40.6 to 9.47.0 [#178](https://github.com/saschazar21/webassembly/pull/178) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
+#### Authors: 2
+
+- [@dependabot-preview[bot]](https://github.com/dependabot-preview[bot])
+- Sascha Zarhuber ([@saschazar21](https://github.com/saschazar21))
+
+---
+
 # (Mon Jul 20 2020)
 
 #### 🚀 Enhancement

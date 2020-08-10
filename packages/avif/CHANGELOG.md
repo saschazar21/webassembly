@@ -1,3 +1,42 @@
+# v1.0.0 (Mon Aug 10 2020)
+
+#### 💥 Breaking Change
+
+- feat: added AVIF encoder, updated packages to support alpha channels [#212](https://github.com/saschazar21/webassembly/pull/212) ([@saschazar21](https://github.com/saschazar21))
+- feat(avif): added alpha channel support ([@saschazar21](https://github.com/saschazar21))
+- chore: updated emscripten emsdk ([@saschazar21](https://github.com/saschazar21))
+- feat(avif): replaced dav1d with aom, added encoding functionality ([@saschazar21](https://github.com/saschazar21))
+
+#### 🚀 Enhancement
+
+- feat(avif): updated build script to compile rav1e encoder ([@saschazar21](https://github.com/saschazar21))
+
+#### 🐛 Bug Fix
+
+- chore: fixed merge conflicts in yarn.lock ([@saschazar21](https://github.com/saschazar21))
+- chore(avif): bumped libavif version ([@saschazar21](https://github.com/saschazar21))
+- chore(avif): updated README ([@saschazar21](https://github.com/saschazar21))
+- fix(avif): fixed RGBA decoding ([@saschazar21](https://github.com/saschazar21))
+- test(avif): updated AVIF tests ([@saschazar21](https://github.com/saschazar21))
+- test: removed 4-channel PNG tests due to instability ([@saschazar21](https://github.com/saschazar21))
+- test(avif): removed write file call ([@saschazar21](https://github.com/saschazar21))
+- fix(avif): fixed rav1e flags for libavif ([@saschazar21](https://github.com/saschazar21))
+- fix(avif): fixed rav1e include dir ([@saschazar21](https://github.com/saschazar21))
+- fix(avif): fixed rav1e paths, uncommented encode function ([@saschazar21](https://github.com/saschazar21))
+- fix(avif): fixed emscripten toolchain in build file ([@saschazar21](https://github.com/saschazar21))
+
+#### 🔩 Dependency Updates
+
+- chore(deps-dev): bump eslint-plugin-jest from 23.17.1 to 23.18.0 [#162](https://github.com/saschazar21/webassembly/pull/162) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @babel/preset-env from 7.10.2 to 7.10.4 [#156](https://github.com/saschazar21/webassembly/pull/156) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
+#### Authors: 2
+
+- [@dependabot-preview[bot]](https://github.com/dependabot-preview[bot])
+- Sascha Zarhuber ([@saschazar21](https://github.com/saschazar21))
+
+---
+
 # v0.3.0 (Mon Jul 20 2020)
 
 #### 🚀 Enhancement

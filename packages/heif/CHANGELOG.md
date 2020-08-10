@@ -1,3 +1,25 @@
+# v1.0.0 (Mon Aug 10 2020)
+
+#### 💥 Breaking Change
+
+- feat: added AVIF encoder, updated packages to support alpha channels [#212](https://github.com/saschazar21/webassembly/pull/212) ([@saschazar21](https://github.com/saschazar21))
+- feat(heif): added alpha function parameter to decode ([@saschazar21](https://github.com/saschazar21))
+- chore: updated emscripten emsdk ([@saschazar21](https://github.com/saschazar21))
+
+#### 🐛 Bug Fix
+
+- chore: fixed merge conflicts in yarn.lock ([@saschazar21](https://github.com/saschazar21))
+- chore(heif): enhanced README ([@saschazar21](https://github.com/saschazar21))
+- test(heif): fix typo ([@saschazar21](https://github.com/saschazar21))
+- fix(heif): fixed build configuration ([@saschazar21](https://github.com/saschazar21))
+- fix(heif): reverted to emscripten fastcomp for HEIF ([@saschazar21](https://github.com/saschazar21))
+
+#### Authors: 1
+
+- Sascha Zarhuber ([@saschazar21](https://github.com/saschazar21))
+
+---
+
 # v0.1.2 (Wed Apr 08 2020)
 
 #### 🐛 Bug Fix
