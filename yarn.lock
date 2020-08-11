@@ -2,26 +2,26 @@
 # yarn lockfile v1
 
 
-"@auto-it/bot-list@^9.50.0":
-  version "9.50.0"
-  resolved "https://registry.yarnpkg.com/@auto-it/bot-list/-/bot-list-9.50.0.tgz#06b3d8685747f0b02dbf6dfeb17ee9d16ca51876"
-  integrity sha512-85x4SOjies1b/GFAED9FSIn/w5u+QBfzKKkmJexjRy488K9ARiGDKPV/QU4gP1fxJZsGYxDKrE9wo5AdpAm4Hg==
+"@auto-it/bot-list@9.50.1":
+  version "9.50.1"
+  resolved "https://registry.yarnpkg.com/@auto-it/bot-list/-/bot-list-9.50.1.tgz#ced842c9ce9d96e66247d6cea2ba21e392caf89c"
+  integrity sha512-GILC1JZkskPvRHdN+mXsJci27YPWExGiReCa2NXYMTX4fCTLNTk85QuNuOs9ts2cfgECF1Q+nP5dtLIIqJeuzg==
 
 "@auto-it/conventional-commits@^9.14.0":
-  version "9.50.0"
-  resolved "https://registry.yarnpkg.com/@auto-it/conventional-commits/-/conventional-commits-9.50.0.tgz#d603e6f6d4bb6b4585f9881d907611f633144979"
-  integrity sha512-P4wYj6JA8NLCO9Q6z1+0ZECAITm449Hj2s1VRkJxOsWxmZO673kRkWHw6DdIklNsYlaKvoj1vR0MgUFf7OVbuQ==
+  version "9.50.1"
+  resolved "https://registry.yarnpkg.com/@auto-it/conventional-commits/-/conventional-commits-9.50.1.tgz#ccc72bce338226433b9747acd49a867df408b0a1"
+  integrity sha512-wmprB1sX8ABOMznmMzkR6hTAMDIpVaL4qTF7KBKf5Db7l4ikuJfNS4Tjig7Bl2y0P3mQrf6XaUiGhyK3l9BDTQ==
   dependencies:
-    "@auto-it/core" "^9.50.0"
+    "@auto-it/core" "9.50.1"
     parse-commit-message "4.0.0"
     tslib "2.0.0"
 
-"@auto-it/core@^9.50.0":
-  version "9.50.0"
-  resolved "https://registry.yarnpkg.com/@auto-it/core/-/core-9.50.0.tgz#5d822cf11cc303ec8098febf9bae0d8c5fc3f0d0"
-  integrity sha512-mYmpWKgG34a8xLbd/Q5HvZt6P+Bss7WWKIaHFZ480pN0DIwhxVMajJTQSfd0vL6bibx/tCDS/mzcLD+gjJa02g==
+"@auto-it/core@9.50.1", "@auto-it/core@^9.50.0":
+  version "9.50.1"
+  resolved "https://registry.yarnpkg.com/@auto-it/core/-/core-9.50.1.tgz#d1667c1a503f4587b86532a551a3f0a85096bebb"
+  integrity sha512-HkkBRzFF5siJEyWoGHaVEEY8fBFZ8wV4tFy7pSr22SGoWZSB/q64oW6IvF6Po80fAvMdxLGZxjCkCaMEa6MTvQ==
   dependencies:
-    "@auto-it/bot-list" "^9.50.0"
+    "@auto-it/bot-list" "9.50.1"
     "@octokit/graphql" "^4.4.0"
     "@octokit/plugin-enterprise-compatibility" "^1.2.2"
     "@octokit/plugin-retry" "^3.0.1"
@@ -192,14 +192,6 @@
     "@babel/traverse" "^7.10.4"
     "@babel/types" "^7.10.4"
 
-"@babel/helper-function-name@^7.10.1":
-  version "7.10.1"
-  resolved "https://registry.yarnpkg.com/@babel/helper-function-name/-/helper-function-name-7.10.1.tgz#92bd63829bfc9215aca9d9defa85f56b539454f4"
-  dependencies:
-    "@babel/helper-get-function-arity" "^7.10.1"
-    "@babel/template" "^7.10.1"
-    "@babel/types" "^7.10.1"
-
 "@babel/helper-function-name@^7.10.4":
   version "7.10.4"
   resolved "https://registry.yarnpkg.com/@babel/helper-function-name/-/helper-function-name-7.10.4.tgz#d2d3b20c59ad8c47112fa7d2a94bc09d5ef82f1a"
@@ -208,7 +200,7 @@
     "@babel/template" "^7.10.4"
     "@babel/types" "^7.10.4"
 
-"@babel/helper-get-function-arity@^7.10.1", "@babel/helper-get-function-arity@^7.10.4":
+"@babel/helper-get-function-arity@^7.10.4":
   version "7.10.4"
   resolved "https://registry.yarnpkg.com/@babel/helper-get-function-arity/-/helper-get-function-arity-7.10.4.tgz#98c1cbea0e2332f33f9a4661b8ce1505b2c19ba2"
   dependencies:
@@ -219,12 +211,6 @@
   resolved "https://registry.yarnpkg.com/@babel/helper-hoist-variables/-/helper-hoist-variables-7.10.4.tgz#d49b001d1d5a68ca5e6604dda01a6297f7c9381e"
   dependencies:
     "@babel/types" "^7.10.4"
-
-"@babel/helper-member-expression-to-functions@^7.10.1":
-  version "7.10.1"
-  resolved "https://registry.yarnpkg.com/@babel/helper-member-expression-to-functions/-/helper-member-expression-to-functions-7.10.1.tgz#432967fd7e12a4afef66c4687d4ca22bc0456f15"
-  dependencies:
-    "@babel/types" "^7.10.1"
 
 "@babel/helper-member-expression-to-functions@^7.10.4":
   version "7.10.4"
@@ -251,7 +237,7 @@
     "@babel/types" "^7.11.0"
     lodash "^4.17.19"
 
-"@babel/helper-optimise-call-expression@^7.10.1", "@babel/helper-optimise-call-expression@^7.10.4":
+"@babel/helper-optimise-call-expression@^7.10.4":
   version "7.10.4"
   resolved "https://registry.yarnpkg.com/@babel/helper-optimise-call-expression/-/helper-optimise-call-expression-7.10.4.tgz#50dc96413d594f995a77905905b05893cd779673"
   dependencies:
@@ -277,15 +263,6 @@
     "@babel/traverse" "^7.10.4"
     "@babel/types" "^7.10.4"
 
-"@babel/helper-replace-supers@^7.10.1":
-  version "7.10.1"
-  resolved "https://registry.yarnpkg.com/@babel/helper-replace-supers/-/helper-replace-supers-7.10.1.tgz#ec6859d20c5d8087f6a2dc4e014db7228975f13d"
-  dependencies:
-    "@babel/helper-member-expression-to-functions" "^7.10.1"
-    "@babel/helper-optimise-call-expression" "^7.10.1"
-    "@babel/traverse" "^7.10.1"
-    "@babel/types" "^7.10.1"
-
 "@babel/helper-replace-supers@^7.10.4":
   version "7.10.4"
   resolved "https://registry.yarnpkg.com/@babel/helper-replace-supers/-/helper-replace-supers-7.10.4.tgz#d585cd9388ea06e6031e4cd44b6713cbead9e6cf"
@@ -301,12 +278,6 @@
   dependencies:
     "@babel/template" "^7.10.4"
     "@babel/types" "^7.10.4"
-
-"@babel/helper-split-export-declaration@^7.10.1":
-  version "7.10.1"
-  resolved "https://registry.yarnpkg.com/@babel/helper-split-export-declaration/-/helper-split-export-declaration-7.10.1.tgz#c6f4be1cbc15e3a868e4c64a17d5d31d754da35f"
-  dependencies:
-    "@babel/types" "^7.10.1"
 
 "@babel/helper-split-export-declaration@^7.10.4":
   version "7.10.4"
@@ -832,7 +803,7 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
-"@babel/template@^7.10.1", "@babel/template@^7.10.4", "@babel/template@^7.3.3", "@babel/template@^7.7.4":
+"@babel/template@^7.10.4", "@babel/template@^7.3.3", "@babel/template@^7.7.4":
   version "7.10.4"
   resolved "https://registry.yarnpkg.com/@babel/template/-/template-7.10.4.tgz#3251996c4200ebc71d1a8fc405fba940f36ba278"
   dependencies:
@@ -840,7 +811,7 @@
     "@babel/parser" "^7.10.4"
     "@babel/types" "^7.10.4"
 
-"@babel/traverse@^7.1.0", "@babel/traverse@^7.10.1", "@babel/traverse@^7.10.4", "@babel/traverse@^7.11.0", "@babel/traverse@^7.7.4":
+"@babel/traverse@^7.1.0", "@babel/traverse@^7.10.4", "@babel/traverse@^7.11.0", "@babel/traverse@^7.7.4":
   version "7.11.0"
   resolved "https://registry.yarnpkg.com/@babel/traverse/-/traverse-7.11.0.tgz#9b996ce1b98f53f7c3e4175115605d56ed07dd24"
   integrity sha512-ZB2V+LskoWKNpMq6E5UUCrjtDUh5IOTAyIl0dTjIEoXum/iKWkoIEKIRDnUucO6f+2FzNkE0oD4RLKoPIufDtg==
@@ -855,7 +826,7 @@
     globals "^11.1.0"
     lodash "^4.17.19"
 
-"@babel/types@^7.0.0", "@babel/types@^7.10.1", "@babel/types@^7.10.4", "@babel/types@^7.11.0", "@babel/types@^7.3.0", "@babel/types@^7.3.3", "@babel/types@^7.4.4":
+"@babel/types@^7.0.0", "@babel/types@^7.10.4", "@babel/types@^7.11.0", "@babel/types@^7.3.0", "@babel/types@^7.3.3", "@babel/types@^7.4.4":
   version "7.11.0"
   resolved "https://registry.yarnpkg.com/@babel/types/-/types-7.11.0.tgz#2ae6bf1ba9ae8c3c43824e5861269871b206e90d"
   integrity sha512-O53yME4ZZI0jO1EVGtF1ePGl0LHirG4P1ibcD80XyzZcKhcMFeCXmh4Xb1ifGBIV233Qg12x4rBfQgA+tmOukA==
