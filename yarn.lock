@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@auto-it/bot-list@9.50.6":
-  version "9.50.6"
-  resolved "https://registry.yarnpkg.com/@auto-it/bot-list/-/bot-list-9.50.6.tgz#19718bf46c82142f85cf74fdcc76d4abf43bfaae"
-  integrity sha512-VA2R01TIR4oERzaxE8C+4RTJPQyzeCOFj1mFJnbiYda2QMaSwBHJMlqLK5NtA4mLmr60ubo6OSDLduz2Uj4Ydw==
+"@auto-it/bot-list@9.51.0":
+  version "9.51.0"
+  resolved "https://registry.yarnpkg.com/@auto-it/bot-list/-/bot-list-9.51.0.tgz#20f0ad490b5dade79b0a73bf38998e14950eaaba"
+  integrity sha512-oqZvnQIK0Mmaxbz+UcCBanLNLwIPyKID8O+Inqs4w/L8cIzJoe84UPkJp+RKXz79CpHuxsxL+oS0L0hqYgkNEw==
 
 "@auto-it/conventional-commits@^9.14.0":
   version "9.50.0"
@@ -16,12 +16,12 @@
     parse-commit-message "4.0.0"
     tslib "2.0.0"
 
-"@auto-it/core@9.50.6", "@auto-it/core@^9.50.0":
-  version "9.50.6"
-  resolved "https://registry.yarnpkg.com/@auto-it/core/-/core-9.50.6.tgz#d71723f2b862aa6b48b7c9548eab25f0cf27848e"
-  integrity sha512-qL3q5E3OS9epeUASqdtPJ5Mo585UEZvLIYMiJqOSk28mN4lSmQYNeT4dQsUi9e0J3/gyp+KVGDMAJx1D9xU8lA==
+"@auto-it/core@9.51.0", "@auto-it/core@^9.50.0":
+  version "9.51.0"
+  resolved "https://registry.yarnpkg.com/@auto-it/core/-/core-9.51.0.tgz#8b11cf5945d48eb53e0a6af418bdcecb5b6c275b"
+  integrity sha512-ex0s+5I73+4gEQmk9ds9ZhUVmR6FVjE4GzhS83KxTDilcV12L1J5nJv4Iegy3M/Wnnadcg4hqIuNTRjX1Dhmaw==
   dependencies:
-    "@auto-it/bot-list" "9.50.6"
+    "@auto-it/bot-list" "9.51.0"
     "@octokit/plugin-enterprise-compatibility" "^1.2.2"
     "@octokit/plugin-retry" "^3.0.1"
     "@octokit/plugin-throttling" "^3.2.0"
@@ -58,12 +58,12 @@
     typescript-memoize "^1.0.0-alpha.3"
     url-join "^4.0.0"
 
-"@auto-it/npm@9.50.6":
-  version "9.50.6"
-  resolved "https://registry.yarnpkg.com/@auto-it/npm/-/npm-9.50.6.tgz#a8271706e500b19d443e938a735ffa162bba031f"
-  integrity sha512-DeU7vM/7mmdWhV5qMS3fYguq5pFq+tqwusZj3P7fIjXHx265KBkTSO1K0MCFbgm9dHGp54KR9u7Kf6+Aw5emEw==
+"@auto-it/npm@9.51.0":
+  version "9.51.0"
+  resolved "https://registry.yarnpkg.com/@auto-it/npm/-/npm-9.51.0.tgz#ca93693bd8703e1641586f649eff2f5b5157f948"
+  integrity sha512-UMJpc1UM0q7WZF03UIzA/cz/kDFn9VkVucsnNXlnvBaV81zcaphe9gxcJkskmgfh8a5Op/M5M6Z4ac/qPATGWA==
   dependencies:
-    "@auto-it/core" "9.50.6"
+    "@auto-it/core" "9.51.0"
     await-to-js "^2.1.1"
     env-ci "^5.0.1"
     fp-ts "^2.5.3"
@@ -78,12 +78,12 @@
     url-join "^4.0.0"
     user-home "^2.0.0"
 
-"@auto-it/released@9.50.6":
-  version "9.50.6"
-  resolved "https://registry.yarnpkg.com/@auto-it/released/-/released-9.50.6.tgz#ed78ac5b8decd9dc9ba97caab6773850f8867be8"
-  integrity sha512-USMZMVp5fGL9LGOsW5+KfbrRhTCW5DssnfkrtBDEF0G21V+ocoAVkH8yByR+4RAhPXjkN+HfpYc0YmweQEb+Kw==
+"@auto-it/released@9.51.0":
+  version "9.51.0"
+  resolved "https://registry.yarnpkg.com/@auto-it/released/-/released-9.51.0.tgz#b42054cad5fa0e22e0f121a78e10a134f36df543"
+  integrity sha512-D4mkOcbAQnjenWEW0KeFTjltzFO19KCL1sDg/hkwdlAWKtVSfKooDGlBvVYYY2RXVqU3w2Q14rDkjgHhGg1vVw==
   dependencies:
-    "@auto-it/core" "9.50.6"
+    "@auto-it/core" "9.51.0"
     deepmerge "^4.0.0"
     fp-ts "^2.5.3"
     io-ts "^2.1.2"
@@ -2455,13 +2455,13 @@ author-regex@^1.0.0:
   resolved "https://registry.yarnpkg.com/author-regex/-/author-regex-1.0.0.tgz#d08885be6b9bbf9439fe087c76287245f0a81450"
 
 auto@^9.14.0:
-  version "9.50.6"
-  resolved "https://registry.yarnpkg.com/auto/-/auto-9.50.6.tgz#a7092cd8eb716613899582c86d807dff4eabc9cb"
-  integrity sha512-Zej4I6KVeO0rEaNaa15NEBcwz5OSL4c04xmCH9adyknxPZh2JXj6SfY0c33c/iEQRVVp5clhJclbWTYqU7Rl0A==
+  version "9.51.0"
+  resolved "https://registry.yarnpkg.com/auto/-/auto-9.51.0.tgz#57a8043e9a2930151ca02b8255ac0b4862b8fccc"
+  integrity sha512-+OMePMztazB+WMHgjZFQkzMfsL9SNvaocbP1sH0gPu7Q1hUFVzQ+qkJ9tiSY8vLlvJfuz6ZOiAiLDrnm8Ov5+g==
   dependencies:
-    "@auto-it/core" "9.50.6"
-    "@auto-it/npm" "9.50.6"
-    "@auto-it/released" "9.50.6"
+    "@auto-it/core" "9.51.0"
+    "@auto-it/npm" "9.51.0"
+    "@auto-it/released" "9.51.0"
     await-to-js "^2.1.1"
     chalk "^4.0.0"
     command-line-application "^0.10.1"
