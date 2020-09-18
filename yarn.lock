@@ -2,66 +2,19 @@
 # yarn lockfile v1
 
 
-"@auto-it/bot-list@9.52.0":
-  version "9.52.0"
-  resolved "https://registry.yarnpkg.com/@auto-it/bot-list/-/bot-list-9.52.0.tgz#8c2eabab35fb7387a9d3a5a0f41970fc8c79d263"
-  integrity sha512-WaBGTCV+a2jrO3NVGU6+6VTYj+8dsYtodfS8OWTl/DmjcxCCvkxxAxTxvJKLXhff9Qrs6xGu6zkQ2GSoq1AKRA==
-
 "@auto-it/bot-list@9.53.1":
   version "9.53.1"
   resolved "https://registry.yarnpkg.com/@auto-it/bot-list/-/bot-list-9.53.1.tgz#1d24ef4d3d2c202acccadd7e0d425a50e5b06e1c"
   integrity sha512-zoQe27iSpGb6jRstaCbBMzU3UqcwzINX4Pi4hJLBrzA9Gd8K4BV7uKnlEqlDZruD+b4YBnrlqNsuQEB03UXP+A==
 
 "@auto-it/conventional-commits@^9.14.0":
-  version "9.52.0"
-  resolved "https://registry.yarnpkg.com/@auto-it/conventional-commits/-/conventional-commits-9.52.0.tgz#732cc0dd33d8faec2f32ea4dab1f248a30e86c82"
-  integrity sha512-cWYbe+jTGTvcaMKL2aY1YZvS21bb7X6LFWYKfqeyMUCiRBM/pqbuCwjP+e/ESr49+Pr/Sto17JxCj6zuRRMErw==
+  version "9.53.1"
+  resolved "https://registry.yarnpkg.com/@auto-it/conventional-commits/-/conventional-commits-9.53.1.tgz#ccdc50409ca2e00bfe42a6736b883caac23da9ab"
+  integrity sha512-EHC7URFg3aOvOiiPJ0EA6xSdKxfrLJtvP+JBKPUFe8CIHCgGhy42hSz3/Fbepoj2Y5UkGZPyzc32X5W84hJx3w==
   dependencies:
-    "@auto-it/core" "9.52.0"
+    "@auto-it/core" "9.53.1"
     parse-commit-message "4.0.0"
     tslib "2.0.1"
-
-"@auto-it/core@9.52.0":
-  version "9.52.0"
-  resolved "https://registry.yarnpkg.com/@auto-it/core/-/core-9.52.0.tgz#6f4bc64421c0546c78404045396dd776a33eda08"
-  integrity sha512-BYZl48PRbBjOLmCfPzaxyVBiu3TWq7lbT+no71lG9Ffb0RoH3pkTQIItnBbZRTegPYX7pxfkTEHTikMDmuwQkQ==
-  dependencies:
-    "@auto-it/bot-list" "9.52.0"
-    "@octokit/plugin-enterprise-compatibility" "^1.2.2"
-    "@octokit/plugin-retry" "^3.0.1"
-    "@octokit/plugin-throttling" "^3.2.0"
-    "@octokit/rest" "^18.0.0"
-    await-to-js "^2.1.1"
-    chalk "^4.0.0"
-    cosmiconfig "7.0.0"
-    deepmerge "^4.0.0"
-    dotenv "^8.0.0"
-    endent "^2.0.1"
-    enquirer "^2.3.4"
-    env-ci "^5.0.1"
-    fast-glob "^3.1.1"
-    fp-ts "^2.5.3"
-    fromentries "^1.2.0"
-    gitlog "^4.0.0"
-    https-proxy-agent "^5.0.0"
-    import-cwd "^3.0.0"
-    import-from "^3.0.0"
-    io-ts "^2.1.2"
-    lodash.chunk "^4.2.0"
-    log-symbols "^4.0.0"
-    node-fetch "2.6.0"
-    parse-author "^2.0.0"
-    parse-github-url "1.0.2"
-    pretty-ms "^7.0.0"
-    semver "^7.0.0"
-    signale "^1.4.0"
-    tapable "^2.0.0-beta.2"
-    terminal-link "^2.1.1"
-    tinycolor2 "^1.4.1"
-    tslib "2.0.1"
-    type-fest "^0.16.0"
-    typescript-memoize "^1.0.0-alpha.3"
-    url-join "^4.0.0"
 
 "@auto-it/core@9.53.1":
   version "9.53.1"
