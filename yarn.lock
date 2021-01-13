@@ -2,22 +2,22 @@
 # yarn lockfile v1
 
 
-"@auto-it/bot-list@10.3.0":
-  version "10.3.0"
-  resolved "https://registry.yarnpkg.com/@auto-it/bot-list/-/bot-list-10.3.0.tgz#7378db2a4e259f6ca0c71b997d5a0587b390d84a"
-  integrity sha512-r6qwKi1paPLiKsAXtm0XiEQi0bmisspmWd5siNZNx6eMr41SOZ363I5L6CjaE4VKfrFKV3jkgHlel/URd+npcg==
-
 "@auto-it/bot-list@10.4.2":
   version "10.4.2"
   resolved "https://registry.yarnpkg.com/@auto-it/bot-list/-/bot-list-10.4.2.tgz#809efbf0598450732bc19f2e7b374c97e009db5f"
   integrity sha512-LCDKoxI29qGfHS6UyZFs5Vs+LcnI4AUIpkla9FySTovpGu8KN8/0CGEhVsadt+wDKqQbYqfQKPepZ/D13uYfVQ==
 
+"@auto-it/bot-list@10.6.1":
+  version "10.6.1"
+  resolved "https://registry.yarnpkg.com/@auto-it/bot-list/-/bot-list-10.6.1.tgz#6f499117b192ac3f2c159ee1830906a24b2e7ced"
+  integrity sha512-rlSYsGtw+JO7BD/gnn1MJ3ack1FeX/GrbUktU6Dk/v/nn6Weqemd1QW4A2yLj1mOs20gEFIzFL1Nx/TEtWfyiA==
+
 "@auto-it/conventional-commits@^10.3.0":
-  version "10.3.0"
-  resolved "https://registry.yarnpkg.com/@auto-it/conventional-commits/-/conventional-commits-10.3.0.tgz#325ee28f887f23e4600d2567ce60b7955b491ef4"
-  integrity sha512-3OTjNF3ntVQGJtynyeWIncpnRmAZ0Syqs8JXXFtTAgeKokkRbp2Aia8+VzIDCcpSabm37vkabT5g9YaqPHVZaA==
+  version "10.6.1"
+  resolved "https://registry.yarnpkg.com/@auto-it/conventional-commits/-/conventional-commits-10.6.1.tgz#4a77c8fdce04f4faf2fc998c2964f6c766b0159a"
+  integrity sha512-q/sWI0IYSyZ/qAojxo+86lfDquCkvFFmQXLI6fbZWeeII17cdnRmG7wabN4i9qvVkrt45xTzN4alGFslA99hbA==
   dependencies:
-    "@auto-it/core" "10.3.0"
+    "@auto-it/core" "10.6.1"
     conventional-changelog-core "^4.2.0"
     conventional-changelog-preset-loader "^2.3.4"
     conventional-commits-parser "^3.1.0"
@@ -25,12 +25,12 @@
     io-ts "^2.1.2"
     tslib "2.0.3"
 
-"@auto-it/core@10.3.0":
-  version "10.3.0"
-  resolved "https://registry.yarnpkg.com/@auto-it/core/-/core-10.3.0.tgz#e83ccef60f69be5edb64c77bcf84a3b50e6ba494"
-  integrity sha512-W3jOleQfVCo0+9+ECHEd+FeOqrUwddYegYSbguIjdygfXaxCKAbJYr+RUggHEH+rIDr8y4Ca+0tnxD5Hrwxjuw==
+"@auto-it/core@10.4.2":
+  version "10.4.2"
+  resolved "https://registry.yarnpkg.com/@auto-it/core/-/core-10.4.2.tgz#d1e559cf514c899d088eee54d481558c698e81bd"
+  integrity sha512-3U6aCAur+utxSYFTkFeKTfkYzjcV2esznrtpD6ToWM9AAINu2DS01Le4gBmUn8Hwg51yKkNyiCU+afCrVVUsUg==
   dependencies:
-    "@auto-it/bot-list" "10.3.0"
+    "@auto-it/bot-list" "10.4.2"
     "@octokit/plugin-enterprise-compatibility" "^1.2.2"
     "@octokit/plugin-retry" "^3.0.1"
     "@octokit/plugin-throttling" "^3.2.0"
@@ -63,16 +63,16 @@
     terminal-link "^2.1.1"
     tinycolor2 "^1.4.1"
     tslib "2.0.3"
-    type-fest "^0.16.0"
+    type-fest "^0.18.0"
     typescript-memoize "^1.0.0-alpha.3"
     url-join "^4.0.0"
 
-"@auto-it/core@10.4.2":
-  version "10.4.2"
-  resolved "https://registry.yarnpkg.com/@auto-it/core/-/core-10.4.2.tgz#d1e559cf514c899d088eee54d481558c698e81bd"
-  integrity sha512-3U6aCAur+utxSYFTkFeKTfkYzjcV2esznrtpD6ToWM9AAINu2DS01Le4gBmUn8Hwg51yKkNyiCU+afCrVVUsUg==
+"@auto-it/core@10.6.1":
+  version "10.6.1"
+  resolved "https://registry.yarnpkg.com/@auto-it/core/-/core-10.6.1.tgz#717e53fcd26eed41d800df5975e573212c93c9f6"
+  integrity sha512-79Bg7ylo8+w9PpltIUwWzyna6nUcfA5nZG7pGy2TRsubMrbFkVyK30V5iInFKPnpKHAW7wuN+BdNrFynAZr3yA==
   dependencies:
-    "@auto-it/bot-list" "10.4.2"
+    "@auto-it/bot-list" "10.6.1"
     "@octokit/plugin-enterprise-compatibility" "^1.2.2"
     "@octokit/plugin-retry" "^3.0.1"
     "@octokit/plugin-throttling" "^3.2.0"
@@ -7887,11 +7887,6 @@ type-check@~0.3.2:
 type-detect@4.0.8:
   version "4.0.8"
   resolved "https://registry.yarnpkg.com/type-detect/-/type-detect-4.0.8.tgz#7646fb5f18871cfbb7749e69bd39a6388eb7450c"
-
-type-fest@^0.16.0:
-  version "0.16.0"
-  resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-0.16.0.tgz#3240b891a78b0deae910dbeb86553e552a148860"
-  integrity sha512-eaBzG6MxNzEn9kiwvtre90cXaNLkmadMWa1zQMs3XORCXNbsH/OewwbxC5ia9dCxIxnTAsSxXJaa/p5y8DlvJg==
 
 type-fest@^0.18.0:
   version "0.18.0"
