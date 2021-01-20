@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@auto-it/bot-list@10.3.0":
-  version "10.3.0"
-  resolved "https://registry.yarnpkg.com/@auto-it/bot-list/-/bot-list-10.3.0.tgz#7378db2a4e259f6ca0c71b997d5a0587b390d84a"
-  integrity sha512-r6qwKi1paPLiKsAXtm0XiEQi0bmisspmWd5siNZNx6eMr41SOZ363I5L6CjaE4VKfrFKV3jkgHlel/URd+npcg==
+"@auto-it/bot-list@10.11.0":
+  version "10.11.0"
+  resolved "https://registry.yarnpkg.com/@auto-it/bot-list/-/bot-list-10.11.0.tgz#84a4da7d832883c51ad831ca1fc58a5dc6864eb5"
+  integrity sha512-8qLYZMwNPZ8f/6lFvCxNPNDn8Osn8G3KsH3zpWkq9Byy+St5b6z3Qdf3PeKaGqJP+4BNv/7sA9A7ZhGJVv9TSQ==
 
 "@auto-it/bot-list@10.4.2":
   version "10.4.2"
@@ -13,11 +13,11 @@
   integrity sha512-LCDKoxI29qGfHS6UyZFs5Vs+LcnI4AUIpkla9FySTovpGu8KN8/0CGEhVsadt+wDKqQbYqfQKPepZ/D13uYfVQ==
 
 "@auto-it/conventional-commits@^10.3.0":
-  version "10.3.0"
-  resolved "https://registry.yarnpkg.com/@auto-it/conventional-commits/-/conventional-commits-10.3.0.tgz#325ee28f887f23e4600d2567ce60b7955b491ef4"
-  integrity sha512-3OTjNF3ntVQGJtynyeWIncpnRmAZ0Syqs8JXXFtTAgeKokkRbp2Aia8+VzIDCcpSabm37vkabT5g9YaqPHVZaA==
+  version "10.11.0"
+  resolved "https://registry.yarnpkg.com/@auto-it/conventional-commits/-/conventional-commits-10.11.0.tgz#a1565edbc50a2377623b1689a9aeb188d1d90583"
+  integrity sha512-DeSnvdBIiSZvR5O5tnPrxkOhL3mp07iSQhKB333tYCmHVgBAVPe69vf0UeTQNrhUDSqct7mnMPTUzSfeKISwPw==
   dependencies:
-    "@auto-it/core" "10.3.0"
+    "@auto-it/core" "10.11.0"
     conventional-changelog-core "^4.2.0"
     conventional-changelog-preset-loader "^2.3.4"
     conventional-commits-parser "^3.1.0"
@@ -25,12 +25,12 @@
     io-ts "^2.1.2"
     tslib "2.0.3"
 
-"@auto-it/core@10.3.0":
-  version "10.3.0"
-  resolved "https://registry.yarnpkg.com/@auto-it/core/-/core-10.3.0.tgz#e83ccef60f69be5edb64c77bcf84a3b50e6ba494"
-  integrity sha512-W3jOleQfVCo0+9+ECHEd+FeOqrUwddYegYSbguIjdygfXaxCKAbJYr+RUggHEH+rIDr8y4Ca+0tnxD5Hrwxjuw==
+"@auto-it/core@10.11.0":
+  version "10.11.0"
+  resolved "https://registry.yarnpkg.com/@auto-it/core/-/core-10.11.0.tgz#9cfa95d639e652faf9ccfee1e496228a9457bc37"
+  integrity sha512-q5on8EKKfyHxP5OXKWB/fJv6jgoMLky98yfdev7FeFrP1DUotPLgnbHIyo93LNGvvrBxUFDtk39Dka3SrPR7bw==
   dependencies:
-    "@auto-it/bot-list" "10.3.0"
+    "@auto-it/bot-list" "10.11.0"
     "@octokit/plugin-enterprise-compatibility" "^1.2.2"
     "@octokit/plugin-retry" "^3.0.1"
     "@octokit/plugin-throttling" "^3.2.0"
@@ -63,7 +63,7 @@
     terminal-link "^2.1.1"
     tinycolor2 "^1.4.1"
     tslib "2.0.3"
-    type-fest "^0.16.0"
+    type-fest "^0.18.0"
     typescript-memoize "^1.0.0-alpha.3"
     url-join "^4.0.0"
 
@@ -7887,11 +7887,6 @@ type-check@~0.3.2:
 type-detect@4.0.8:
   version "4.0.8"
   resolved "https://registry.yarnpkg.com/type-detect/-/type-detect-4.0.8.tgz#7646fb5f18871cfbb7749e69bd39a6388eb7450c"
-
-type-fest@^0.16.0:
-  version "0.16.0"
-  resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-0.16.0.tgz#3240b891a78b0deae910dbeb86553e552a148860"
-  integrity sha512-eaBzG6MxNzEn9kiwvtre90cXaNLkmadMWa1zQMs3XORCXNbsH/OewwbxC5ia9dCxIxnTAsSxXJaa/p5y8DlvJg==
 
 type-fest@^0.18.0:
   version "0.18.0"
