@@ -14,6 +14,7 @@
     "test": "yarn lint && jest"
   },
   "_moduleAliases": {
+    "@saschazar/wasm-avif": "packages/avif",
     "@saschazar/wasm-exif": "packages/exif",
     "@saschazar/wasm-image-loader": "packages/image-loader",
     "@saschazar/wasm-mean-color": "packages/mean-color",
