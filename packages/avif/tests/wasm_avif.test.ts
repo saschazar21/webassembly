@@ -6,7 +6,7 @@ import defaultOptions, { EncodeOptions } from '../options';
 import { unsplashRequest } from './../../../utils/request';
 
 const AVIF_TEST_IMAGE =
-  'https://github.com/AOMediaCodec/av1-avif/blob/master/testFiles/Netflix/avif/cosmos_frame01000_yuv444_12bpc_bt2020_pq_qlossless.avif?raw=true';
+  'https://github.com/AOMediaCodec/av1-avif/blob/cfffa52/testFiles/Netflix/avif/sdr_cosmos01650_cicp1-13-6_yuv444_full_qp10.avif?raw=true';
 const AVIF_TEST_IMAGE_WIDTH = 2048;
 const AVIF_TEST_IMAGE_HEIGHT = 858;
 
