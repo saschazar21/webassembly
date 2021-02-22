@@ -48,7 +48,16 @@ val decode(std::string img, uint32_t _len, bool alpha)
   raw.size = _len;
 
   avifDecoder *decoder = avifDecoderCreate();
-  avifResult decodeResult = avifDecoderParse(decoder, &raw);
+  avifResult decodeResult = avifDecoderSetIOMemory(decoder, raw.data, raw.size);
+  if (decodeResult != AVIF_RESULT_OK)
+  {
+    val obj = val::object();
+    obj.set("error", avifResultToString(decodeResult));
+    printf("ERROR: Cannot set IO on decoder: %s\n", avifResultToString(decodeResult));
+    return obj;
+  }
+  
+  decodeResult = avifDecoderParse(decoder);
   if (decodeResult != AVIF_RESULT_OK)
   {
     val obj = val::object();
