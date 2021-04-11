@@ -22,3 +22,14 @@ jobs:
         run: yarn build
       - name: Testing packages
         run: yarn test
+      - name: Uploading artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: packages
+          path: |
+            packages
+            !packages/**/build/
+            !packages/**/node_modules/
+            !packages/**/tests/
+            !packages/**/*.sh
+            !packages/**/*.cpp
