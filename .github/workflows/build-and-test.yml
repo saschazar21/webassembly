@@ -1,0 +1,22 @@
+name: Build and Test
+on: [push]
+jobs:
+  build:
+    name: Building packages
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x, 14.x]
+
+    steps:
+      - name: Checking out the repo
+        uses: actions/checkout@v2
+      - name: Using NodeJS ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Building packages
+        run: yarn build
+      - name: Testing packages
+        run: yarn test
