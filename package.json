@@ -8,7 +8,7 @@
   "license": "MIT",
   "repository": "https://github.com/saschazar21/webassembly",
   "publishConfig": {
-    "registry": "https://registry.npmjs.org/",
+    "registry": "https://registry.npmjs.org",
     "access": "public"
   },
   "scripts": {
