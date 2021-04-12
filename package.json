@@ -7,6 +7,10 @@
   "author": "Sascha Zarhuber <sascha.zarhuber@gmail.com>",
   "license": "MIT",
   "repository": "https://github.com/saschazar21/webassembly",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
   "scripts": {
     "install": "lerna bootstrap",
     "build": "lerna exec yarn build",
