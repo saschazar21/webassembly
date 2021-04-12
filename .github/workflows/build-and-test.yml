@@ -1,30 +1,45 @@
 name: Build and Test
-on: [push]
+on: [pull_request, push]
 jobs:
   build:
     name: Building packages
     runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')"
 
     strategy:
       matrix:
         node-version: [12.x, 14.x]
 
     steps:
-      - name: Checking out the repo
+      - name: Check out the repo
         uses: actions/checkout@v2
-      - name: Using NodeJS ${{ matrix.node-version }}
+
+      - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Installing dependencies
+
+      - name: Cache node modules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: yarn-deps-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            yarn-deps-${{ hashFiles('yarn.lock') }}
+
+      - name: Install dependencies
         run: yarn --frozen-lockfile
-      - name: Building packages
+
+      - name: Build packages
         run: yarn build
-      - name: Testing packages
+
+      - name: Test packages
         run: yarn test
-      - name: Uploading artifacts
+
+      - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
+          retention-days: 1
           name: packages
           path: |
             packages
@@ -33,3 +48,41 @@ jobs:
             !packages/**/tests/
             !packages/**/*.sh
             !packages/**/*.cpp
+
+  deploy:
+    needs: build
+    name: Deploying to NPM
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')"
+
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+
+      - name: Cache node modules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: yarn-deps-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            yarn-deps-${{ hashFiles('yarn.lock') }}
+
+      - name: Install dependencies
+        run: yarn --frozen-lockfile
+
+      - name: Download artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: packages
+
+      - name: '[DRY RUN] Create Deployment'
+        if: ${{ github.ref != 'refs/heads/main' }} && ${{ github.event_name == 'pull_request' }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npx auto shipit --dry-run
