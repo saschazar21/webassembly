@@ -59,6 +59,9 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v2
 
+      - name: Fetch tags
+        run: git fetch --tags
+
       - name: Use Node.js
         uses: actions/setup-node@v1
         with:
@@ -81,7 +84,7 @@ jobs:
           name: packages
 
       - name: '[DRY RUN] Create Deployment'
-        if: ${{ github.ref != 'refs/heads/main' }} && ${{ github.event_name == 'pull_request' }}
+        if: ${{ github.ref != 'refs/heads/main' && github.event_name == 'pull_request' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
