@@ -91,4 +91,4 @@ jobs:
         if: ${{ github.base_ref == 'master' || github.base_ref == 'main' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npx auto shipit --dry-run -vv
+        run: npx auto shipit --dry-run -v
