@@ -11,11 +11,6 @@ jobs:
         node-version: [12.x, 14.x]
 
     steps:
-      - name: Status information
-        run: |
-          echo "${{ github.event_name }}"
-          echo "${{ github.ref }}"
-
       - name: Check out the repo
         uses: actions/checkout@v2
 
@@ -90,7 +85,7 @@ jobs:
           name: packages
 
       - name: '[DRY RUN] Create Deployment'
-        # if: ${{ github.event_name == 'pull_request' }}
+        if: ${{ github.base_ref == 'master' || github.base_ref == 'main' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
