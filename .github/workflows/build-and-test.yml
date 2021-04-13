@@ -1,5 +1,14 @@
 name: Build and Test
-on: [pull_request]
+on:
+  push:
+    branches:
+      - 'master'
+      - 'main'
+  pull_request:
+    branches:
+      - 'master'
+      - 'main'
+
 jobs:
   build:
     name: Building packages
@@ -54,7 +63,7 @@ jobs:
     name: Deploying to NPM
     runs-on: ubuntu-latest
 
-    if: ${{ github.base_ref == 'master' || github.base_ref == 'main' }}
+    if: ${{ !contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci') && (startsWith(github.ref, 'refs/heads/master') || startsWith(github.ref, 'refs/heads/main') || github.event.pull_request.state == 'open') }}
 
     env:
       NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -95,5 +104,5 @@ jobs:
         run: npx auto shipit --dry-run
 
       - name: 'Create Deployment'
-        if: ${{ github.event.pull_request.merged == true }}
+        if: ${{ startsWith(github.ref, 'refs/heads/master') || startsWith(github.ref, 'refs/heads/main') }}
         run: npx auto shipit

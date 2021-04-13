@@ -80,4 +80,4 @@ This module uses the [webmproject/libwebp](https://github.com/webmproject/libweb
 
 Licensed under the MIT license.
 
-Copyright ©️ 2020 [Sascha Zarhuber](https://sascha.work)
+Copyright ©️ 2020—2021 [Sascha Zarhuber](https://sascha.work)

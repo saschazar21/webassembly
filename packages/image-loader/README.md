@@ -24,15 +24,15 @@ It supports usage in the browser, in a [Web Worker](https://developer.mozilla.or
 
 ```javascript
 // Node.js
-import wasm_image_loader from '@saschazar/wasm-image-loader'
+import wasm_image_loader from '@saschazar/wasm-image-loader';
 
 // Web Worker - see: https://developer.mozilla.org/en-US/docs/Web/API/WorkerGlobalScope/importScripts
-importScripts('wasm_image_loader.js')
+importScripts('wasm_image_loader.js');
 
 // -------- Browser/Web Worker/Node.js code below --------
 
 // Load an image into a buffer using the Fetch API
-const buffer = fetch('some JPEG or PNG').then((res) => res.buffer())
+const buffer = fetch('some JPEG or PNG').then((res) => res.buffer());
 
 // Initialize the WebAssembly Module
 const imageLoaderModule = new Promise((resolve) => {
@@ -40,28 +40,28 @@ const imageLoaderModule = new Promise((resolve) => {
     onRuntimeInitialized() {
       // remove the 'then' property from wasm_image_loader,
       // otherwise Promise runs into an endless loop.
-      const { then, ...other } = wasm
+      const { then, ...other } = wasm;
       // let Promise resolve with 'other' properties.
-      resolve(other)
-    }
-  })
-})
+      resolve(other);
+    },
+  });
+});
 
 async function loadImage() {
   // store image buffer in Uint8Array
-  const array = new Uint8Array(await buffer())
-  const channels = 3 // 3 if RGB, 4 if Alpha channel is present (e.g. PNG)
+  const array = new Uint8Array(await buffer());
+  const channels = 3; // 3 if RGB, 4 if Alpha channel is present (e.g. PNG)
 
   // let imageLoaderModule Promise resolve
-  const { decode, dimensions, free, resize } = await imageLoaderModule
+  const { decode, dimensions, free, resize } = await imageLoaderModule;
 
-  const decoded = decode(array, array.length, channels)
-  const { channels, height, width } = dimensions()
-  const resized = resize(decoded, width, height, channels, 800, 600)
-  console.log(resized) // logs the uncompressed 800x600 RGB Uint8Array
+  const decoded = decode(array, array.length, channels);
+  const { channels, height, width } = dimensions();
+  const resized = resize(decoded, width, height, channels, 800, 600);
+  console.log(resized); // logs the uncompressed 800x600 RGB Uint8Array
 
   // clean up memory, when loader is not needed anymore
-  free()
+  free();
 }
 ```
 
@@ -77,4 +77,4 @@ This package uses [nothings/stb](https://github.com/nothings/stb)'s source code 
 
 Licensed under the MIT license.
 
-Copyright ©️ 2020 [Sascha Zarhuber](https://sascha.work)
+Copyright ©️ 2020—2021 [Sascha Zarhuber](https://sascha.work)

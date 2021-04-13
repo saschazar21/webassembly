@@ -21,4 +21,4 @@ All of the listed packages below will work on their own—without any external d
 
 Licensed under the MIT license.
 
-Copyright ©️ 2020 [Sascha Zarhuber](https://sascha.work)
+Copyright ©️ 2020—2021 [Sascha Zarhuber](https://sascha.work)

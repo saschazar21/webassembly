@@ -68,4 +68,4 @@ This module uses the [mozilla/mozjpeg](https://github.com/mozilla/mozjpeg)'s sou
 
 Licensed under the MIT license.
 
-Copyright ©️ 2020 [Sascha Zarhuber](https://sascha.work)
+Copyright ©️ 2020—2021 [Sascha Zarhuber](https://sascha.work)

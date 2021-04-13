@@ -71,4 +71,4 @@ This module uses the [strukturag/libheif](https://github.com/strukturag/libheif)
 
 Licensed under the MIT license.
 
-Copyright ©️ 2020 [Sascha Zarhuber](https://sascha.work)
+Copyright ©️ 2020—2021 [Sascha Zarhuber](https://sascha.work)
