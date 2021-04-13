@@ -6,7 +6,7 @@ services:
   - docker
 
 before_install:
-  - docker pull emscripten/emsdk:latest
+  - docker pull emscripten/emsdk:1.40.0
 
 script:
   - yarn build
