@@ -1,0 +1,99 @@
+name: Build and Test
+on: [pull_request]
+jobs:
+  build:
+    name: Building packages
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x, 14.x]
+
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Cache node modules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: yarn-deps-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            yarn-deps-${{ hashFiles('yarn.lock') }}
+
+      - name: Install dependencies
+        run: yarn --frozen-lockfile
+
+      - name: Build packages
+        run: yarn build
+
+      - name: Test packages
+        run: yarn test
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          retention-days: 1
+          name: packages
+          path: |
+            packages
+            !packages/**/build/
+            !packages/**/node_modules/
+            !packages/**/tests/
+            !packages/**/yarn.lock
+            !packages/**/*.sh
+            !packages/**/*.cpp
+
+  deploy:
+    needs: build
+    name: Deploying to NPM
+    runs-on: ubuntu-latest
+
+    if: ${{ github.base_ref == 'master' || github.base_ref == 'main' }}
+
+    env:
+      NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+
+      - name: Fetch tags
+        run: git fetch --unshallow --tags
+
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Cache node modules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: yarn-deps-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            yarn-deps-${{ hashFiles('yarn.lock') }}
+
+      - name: Install dependencies
+        run: yarn --frozen-lockfile
+
+      - name: Download artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: packages
+
+      - name: '[DRY RUN] Create Deployment'
+        if: ${{ github.event.pull_request.state == 'open' }}
+        run: npx auto shipit --dry-run
+
+      - name: 'Create Deployment'
+        if: ${{ github.event.pull_request.merged == true }}
+        run: npx auto shipit

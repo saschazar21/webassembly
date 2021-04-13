@@ -19,11 +19,12 @@
   "main": "wasm_mean_color.js",
   "private": false,
   "publishConfig": {
+    "registry": "https://registry.npmjs.org",
     "access": "public"
   },
   "repository": "https://github.com/saschazar21/webassembly",
   "scripts": {
-    "build": "docker run --rm -v $(pwd):/src emscripten/emsdk:1.40.0 ./build.sh"
+    "build": "docker run --rm -v $(pwd):/src emscripten/emsdk:latest ./build.sh"
   },
   "bugs": {
     "url": "https://github.com/saschazar21/webassembly/issues"
