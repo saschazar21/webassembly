@@ -25,14 +25,13 @@
   },
   "private": false,
   "publishConfig": {
-    "registry": "https://registry.npmjs.org",
     "access": "public"
   },
   "scripts": {
-    "build": "napa && docker run --rm -v $(pwd):/src -e SKIP_LIBAVIF=$SKIP_LIBAVIF emscripten/emsdk:latest ./build.sh"
+    "build": "napa && docker run --rm -v $(pwd):/src -e SKIP_LIBAVIF=$SKIP_LIBAVIF emscripten/emsdk:1.40.0 ./build.sh"
   },
   "napa": {
-    "libavif": "AOMediaCodec/libavif#v0.9.0"
+    "libavif": "AOMediaCodec/libavif#v0.8.1"
   },
   "devDependencies": {
     "napa": "^3.0.0"

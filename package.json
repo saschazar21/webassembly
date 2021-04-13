@@ -7,10 +7,6 @@
   "author": "Sascha Zarhuber <sascha.zarhuber@gmail.com>",
   "license": "MIT",
   "repository": "https://github.com/saschazar21/webassembly",
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org",
-    "access": "public"
-  },
   "scripts": {
     "install": "lerna bootstrap",
     "build": "lerna exec yarn build",
@@ -18,7 +14,6 @@
     "test": "yarn lint && jest"
   },
   "_moduleAliases": {
-    "@saschazar/wasm-avif": "packages/avif",
     "@saschazar/wasm-exif": "packages/exif",
     "@saschazar/wasm-image-loader": "packages/image-loader",
     "@saschazar/wasm-mean-color": "packages/mean-color",

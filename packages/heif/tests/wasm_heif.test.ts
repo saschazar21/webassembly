@@ -17,8 +17,14 @@ describe('HEIF', () => {
   });
 
   beforeEach(async () => {
-    heifModule = (await wasm_heif({
-      noInitialRun: true,
+    heifModule = (await new Promise((resolve) => {
+      const wasm = wasm_heif({
+        noInitialRun: true,
+        onRuntimeInitialized() {
+          const { then, ...other } = wasm as any;
+          return resolve(other);
+        },
+      });
     })) as HEIFModule;
   });
 
