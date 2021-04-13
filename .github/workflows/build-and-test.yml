@@ -100,6 +100,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: packages
+          path: packages/
 
       - name: '[DRY RUN] Create Deployment'
         if: ${{ github.event.pull_request.state == 'open' }}
