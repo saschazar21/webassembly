@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <setjmp.h>
 #include <string.h>
-#include "jconfig.h"
+#include "config.h"
 #include "jpeglib.h"
 #include "cdjpeg.h"
 
