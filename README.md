@@ -1,4 +1,5 @@
-[![Build Status](https://travis-ci.com/saschazar21/webassembly.svg?branch=master)](https://travis-ci.com/saschazar21/webassembly) ![Github lerna version](https://img.shields.io/github/lerna-json/v/saschazar21/webassembly)
+[![Build status](https://github.com/saschazar21/webassembly/actions/workflows/build-and-test.yml/badge.svg)
+](https://github.com/saschazar21/webassembly/actions) ![Github lerna version](https://img.shields.io/github/lerna-json/v/saschazar21/webassembly)
 
 # 📦 WebAssembly Monorepo
 
@@ -20,4 +21,4 @@ All of the listed packages below will work on their own—without any external d
 
 Licensed under the MIT license.
 
-Copyright ©️ 2020 [Sascha Zarhuber](https://sascha.work)
+Copyright ©️ 2020—2021 [Sascha Zarhuber](https://sascha.work)

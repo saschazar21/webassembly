@@ -7,7 +7,7 @@ export LDFLAGS="${OPTIMIZE}"
 export CFLAGS="${OPTIMIZE}"
 export CPPFLAGS="${OPTIMIZE}"
 
-export AOM_DOWNLOAD="https://aomedia.googlesource.com/aom/+archive/bb35ba9148543f22ba7d8642e4fbd29ae301f5dc.tar.gz" #v2.0.0
+export AOM_DOWNLOAD="https://aomedia.googlesource.com/aom/+archive/cb1d48da8da2061e72018761788a18b8fa8013bb.tar.gz" #v2.0.2
 
 export CMAKE_TOOLCHAIN_FILE=/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake
 

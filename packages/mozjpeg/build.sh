@@ -7,6 +7,10 @@ export LDFLAGS="${OPTIMIZE}"
 export CFLAGS="${OPTIMIZE}"
 export CPPFLAGS="${OPTIMIZE}"
 
+export CMAKE_TOOLCHAIN_FILE=/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake
+
+export MOZJPEG_SRC="${PWD}/node_modules/mozjpeg"
+
 echo "================================================================================"
 echo "=====                                                                      ====="
 echo "=====                  Compiling @saschazar/wasm-mozjpeg                   ====="      
@@ -19,13 +23,15 @@ test -n "$SKIP_MOZJPEG" || (
   echo "mozjpeg"
   echo ""
   echo "======="
-  apt-get update
-  apt-get install -qqy autoconf libtool libpng-dev pkg-config
-  cd node_modules/mozjpeg
-  autoreconf -fiv
-  emconfigure ./configure \
-    --without-simd
-  emmake make libjpeg.la
+  
+  cd $MOZJPEG_SRC
+  emcmake cmake $MOZJPEG_SRC \
+    -DENABLE_SHARED=false \
+    -DPNG_SUPPORTED=false \
+    -DWITH_SIMD=false \
+    -DCMAKE_TOOLCHAIN_FILE=$CMAKE_TOOLCHAIN_FILE
+  
+  emmake make -j$(nproc)
 )
 
 echo "======="
@@ -48,7 +54,7 @@ echo "======="
     node_modules/mozjpeg/rdswitch.c \
     -x c++ -std=c++11 \
     main.cpp \
-    node_modules/mozjpeg/.libs/libjpeg.a
+    ${MOZJPEG_SRC}/libjpeg.a
 )
 
 

@@ -95,4 +95,4 @@ This module uses the [AOMediaCodec/libavif](https://github.com/AOMediaCodec/liba
 
 Licensed under the MIT license.
 
-Copyright ©️ 2020 [Sascha Zarhuber](https://sascha.work)
+Copyright ©️ 2020—2021 [Sascha Zarhuber](https://sascha.work)

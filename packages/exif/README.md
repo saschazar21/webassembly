@@ -32,17 +32,17 @@ importScripts('wasm_exif.js');
 // -------- Browser/Web Worker/Node.js code below --------
 
 // Load an image into a buffer using the Fetch API
-const buffer = fetch('some JPEG with EXIF data').then(res => res.buffer());
+const buffer = fetch('some JPEG with EXIF data').then((res) => res.buffer());
 
 // Initialize the WebAssembly Module
 const exifModule = wasm_exif({
   onRuntimeInitialized() {
     // Let the Fetch Promise fulfill
     buffer()
-      .then(result => new Uint8Array(result)) // Convert to a Uint8Array
-      .then(array => exifModule.exif(array, array.length)) // Read EXIF
+      .then((result) => new Uint8Array(result)) // Convert to a Uint8Array
+      .then((array) => exifModule.exif(array, array.length)) // Read EXIF
       .then(console.log); // Print result to console.log
-  }
+  },
 });
 ```
 
@@ -54,4 +54,4 @@ This package uses [mayanklahiri/easyexif](https://github.com/mayanklahiri/easyex
 
 Licensed under the MIT license.
 
-Copyright ©️ 2020 [Sascha Zarhuber](https://sascha.work)
+Copyright ©️ 2020—2021 [Sascha Zarhuber](https://sascha.work)
