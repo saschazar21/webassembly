@@ -73,9 +73,11 @@ jobs:
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
       - name: Fetch tags
-        run: git fetch --unshallow --tags
+        run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
 
       - name: Use Node.js
         uses: actions/setup-node@v1
