@@ -18,10 +18,11 @@
   "license": "MIT",
   "private": false,
   "publishConfig": {
+    "registry": "https://registry.npmjs.org",
     "access": "public"
   },
   "scripts": {
-    "build": "napa && docker run --rm -v $(pwd):/src emscripten/emsdk:1.40.0 ./build.sh"
+    "build": "napa && docker run --rm -v $(pwd):/src emscripten/emsdk:latest ./build.sh"
   },
   "napa": {
     "easyexif": "mayanklahiri/easyexif#master"

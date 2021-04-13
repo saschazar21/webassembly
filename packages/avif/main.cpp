@@ -48,7 +48,16 @@ val decode(std::string img, uint32_t _len, bool alpha)
   raw.size = _len;
 
   avifDecoder *decoder = avifDecoderCreate();
-  avifResult decodeResult = avifDecoderParse(decoder, &raw);
+  avifResult decodeResult = avifDecoderSetIOMemory(decoder, raw.data, raw.size);
+  if (decodeResult != AVIF_RESULT_OK)
+  {
+    val obj = val::object();
+    obj.set("error", avifResultToString(decodeResult));
+    printf("ERROR: Cannot set IO on decoder: %s\n", avifResultToString(decodeResult));
+    return obj;
+  }
+  
+  decodeResult = avifDecoderParse(decoder);
   if (decodeResult != AVIF_RESULT_OK)
   {
     val obj = val::object();
@@ -99,17 +108,18 @@ val encode(std::string img, uint32_t _width, uint32_t _height, uint8_t _channels
   avifImage *image = avifImageCreate(width, height, depth, (avifPixelFormat)format);
 
   image->colorPrimaries = AVIF_COLOR_PRIMARIES_BT709;
-  image->transferCharacteristics = AVIF_TRANSFER_CHARACTERISTICS_SRGB;
+  image->transferCharacteristics = AVIF_TRANSFER_CHARACTERISTICS_BT709;
   image->matrixCoefficients = AVIF_MATRIX_COEFFICIENTS_BT709;
   image->yuvRange = AVIF_RANGE_FULL;
 
   avifRGBImage rgb;
   avifRGBImageSetDefaults(&rgb, image);
 
-  rgb.chromaUpsampling = AVIF_CHROMA_UPSAMPLING_BILINEAR;
+  rgb.chromaUpsampling = AVIF_CHROMA_UPSAMPLING_AUTOMATIC;
   rgb.format = channels > 3 ? AVIF_RGB_FORMAT_RGBA : AVIF_RGB_FORMAT_RGB;
   rgb.pixels = pixels;
   rgb.rowBytes = width * avifRGBImagePixelSize(&rgb);
+  rgb.ignoreAlpha = channels > 3 ? false : true;
 
   avifResult convertedToYUV = avifImageRGBToYUV(image, &rgb);
 
@@ -134,18 +144,25 @@ val encode(std::string img, uint32_t _width, uint32_t _height, uint8_t _channels
   encoder->tileColsLog2 = config.tileColsLog2 ? config.tileColsLog2 : 0;
   encoder->speed = config.speed < AVIF_SPEED_FASTEST ? config.speed : AVIF_SPEED_FASTEST;
 
-  avifResult encodeResult = avifEncoderWrite(encoder, image, &output);
-
-  if (encodeResult != AVIF_RESULT_OK)
-  {
+  avifResult addImageResult = avifEncoderAddImage(encoder, image, 1, AVIF_ADD_IMAGE_FLAG_SINGLE);
+  if (addImageResult != AVIF_RESULT_OK) {
     val obj = val::object();
-    obj.set("error", avifResultToString(encodeResult));
-    printf("ERROR: Failed to encode: %s\n", avifResultToString(encodeResult));
+    obj.set("error", avifResultToString(addImageResult));
+    fprintf(stderr, "ERROR: Failed to add image to encoder: %s\n", avifResultToString(addImageResult));
+    return obj;
+  }
+
+  avifResult finishResult = avifEncoderFinish(encoder, &output);
+  if (finishResult != AVIF_RESULT_OK) {
+    val obj = val::object();
+    obj.set("error", avifResultToString(finishResult));
+    fprintf(stderr, "ERROR: Failed to finish encode: %s\n", avifResultToString(finishResult));
     return obj;
   }
 
   free_buffer();
   avifEncoderDestroy(encoder);
+  avifImageDestroy(image);
   pixels = output.data;
   len = output.size;
   return val(typed_memory_view(len, pixels));
