@@ -1,5 +1,5 @@
 name: Build and Test
-on: [pull_request, push]
+on: [push]
 jobs:
   build:
     name: Building packages
@@ -57,6 +57,8 @@ jobs:
     if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')"
     env:
       NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
     steps:
       - name: Check out the repo
@@ -88,7 +90,9 @@ jobs:
           name: packages
 
       - name: '[DRY RUN] Create Deployment'
-        if: ${{ github.base_ref == 'master' || github.base_ref == 'main' }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npx auto shipit --dry-run -v
+        if: ${{ github.ref != 'master' && github.ref != 'main' && !startsWith(github.ref, 'refs/heads/dependabot') }}
+        run: npx auto shipit --dry-run
+
+      # - name: 'Create Deployment'
+      #   if: ${{ github.ref == 'master' || github.ref == 'main' }}
+      #   run: npx auto shipit
