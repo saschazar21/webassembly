@@ -1,4 +1,4 @@
-[![Build status](https://github.com/github/docs/actions/workflows/build-and-test.yml/badge.svg)
+[![Build status](https://github.com/saschazar21/webassembly/actions/workflows/build-and-test.yml/badge.svg)
 ](https://github.com/saschazar21/webassembly/actions) ![Github lerna version](https://img.shields.io/github/lerna-json/v/saschazar21/webassembly)
 
 # 📦 WebAssembly Monorepo
