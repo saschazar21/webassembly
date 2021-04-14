@@ -1,7 +1,10 @@
 name: Build and Test
 on:
+  push:
+    branches:
+      - main
   pull_request:
-    types: [opened, synchronize, closed]
+    types: [opened, synchronize]
 
 jobs:
   build:
@@ -100,5 +103,5 @@ jobs:
         run: npx auto shipit --dry-run
 
       - name: Create Deployment
-        if: ${{ github.event.pull_request.merged == true }}
+        if: ${{ startsWith(github.ref, 'refs/heads/main') }}
         run: npx auto shipit
