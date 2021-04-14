@@ -1,13 +1,7 @@
 name: Build and Test
 on:
-  push:
-    branches:
-      - 'master'
-      - 'main'
   pull_request:
-    branches:
-      - 'master'
-      - 'main'
+    types: [opened, synchronize, closed]
 
 jobs:
   build:
@@ -63,8 +57,6 @@ jobs:
     name: Deploying to NPM
     runs-on: ubuntu-latest
 
-    if: ${{ !contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci') && (startsWith(github.ref, 'refs/heads/master') || startsWith(github.ref, 'refs/heads/main') || github.event.pull_request.state == 'open') }}
-
     env:
       NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -107,5 +99,5 @@ jobs:
         run: npx auto shipit --dry-run
 
       - name: 'Create Deployment'
-        if: ${{ startsWith(github.ref, 'refs/heads/master') || startsWith(github.ref, 'refs/heads/main') }}
+        if: ${{ github.event.pull_request.merged == true }}
         run: npx auto shipit
