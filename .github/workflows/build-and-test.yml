@@ -98,6 +98,12 @@ jobs:
         if: ${{ github.event.pull_request.state == 'open' }}
         run: npx auto shipit --dry-run
 
-      - name: 'Create Deployment'
+      - name: Create Deployment
         if: ${{ github.event.pull_request.merged == true }}
         run: npx auto shipit
+
+      - name: Debug (if deployment failed)
+        if: ${{ failure() }}
+        run: |
+          npm whoami
+          cat lerna-debug.log
