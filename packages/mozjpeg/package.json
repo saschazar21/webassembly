@@ -26,7 +26,7 @@
     "build": "napa && docker run --rm -v $(pwd):/src -e SKIP_MOZJPEG=$SKIP_MOZJPEG emscripten/emsdk:latest ./build.sh"
   },
   "napa": {
-    "mozjpeg": "mozilla/mozjpeg#v4.0.2"
+    "mozjpeg": "mozilla/mozjpeg#v4.0.3"
   },
   "devDependencies": {
     "napa": "^3.0.0"
