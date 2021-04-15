@@ -27,7 +27,7 @@
     "build": "napa && docker run --rm -v $(pwd):/src -e SKIP_LIBWEBP=$SKIP_LIBWEBP emscripten/emsdk:latest ./build.sh"
   },
   "napa": {
-    "libwebp": "webmproject/libwebp#v1.2.0"
+    "libwebp": "webmproject/libwebp#v1.1.0"
   },
   "devDependencies": {
     "napa": "^3.0.0"

@@ -84,6 +84,10 @@ val encode(std::string img_in, int _width, int _height, int _channels, WebPConfi
   row_stride = width * channels;
   length = height * row_stride;
 
+  if (!WebPValidateConfig(&config)) {
+    throw std::runtime_error("WebP config is invalid!");
+  }
+
   if (!WebPPictureInit(&webp))
   {
     throw std::runtime_error("WebP picture init failed!");
