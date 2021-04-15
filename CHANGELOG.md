@@ -1,5 +1,18 @@
 # (Thu Apr 15 2021)
 
+#### 🐛 Bug Fix
+
+- `@saschazar/wasm-webp@3.0.1`
+  - fix(webp): downgraded libwebp to 1.1.0 due to image quality issues [#419](https://github.com/saschazar21/webassembly/pull/419) ([@saschazar21](https://github.com/saschazar21))
+
+#### Authors: 1
+
+- Sascha Zarhuber ([@saschazar21](https://github.com/saschazar21))
+
+---
+
+# (Thu Apr 15 2021)
+
 #### 💥 Breaking Change
 
 - `@saschazar/wasm-avif@2.0.0`, `@saschazar/wasm-exif@3.0.0`, `@saschazar/wasm-heif@2.0.0`, `@saschazar/wasm-image-loader@4.0.0`, `@saschazar/wasm-mean-color@3.0.0`, `@saschazar/wasm-mozjpeg@3.0.0`, `@saschazar/wasm-webp@3.0.0`

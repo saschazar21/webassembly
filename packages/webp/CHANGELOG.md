@@ -1,3 +1,15 @@
+# v3.0.1 (Thu Apr 15 2021)
+
+#### 🐛 Bug Fix
+
+- fix(webp): downgraded libwebp to 1.1.0 due to image quality issues [#419](https://github.com/saschazar21/webassembly/pull/419) ([@saschazar21](https://github.com/saschazar21))
+
+#### Authors: 1
+
+- Sascha Zarhuber ([@saschazar21](https://github.com/saschazar21))
+
+---
+
 # v3.0.0 (Thu Apr 15 2021)
 
 #### 💥 Breaking Change
