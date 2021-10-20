@@ -32,7 +32,7 @@
     "build": "napa && docker run --rm -v $(pwd):/src -e SKIP_LIBAVIF=$SKIP_LIBAVIF emscripten/emsdk:latest ./build.sh"
   },
   "napa": {
-    "libavif": "AOMediaCodec/libavif#v0.9.0"
+    "libavif": "AOMediaCodec/libavif#v0.9.2"
   },
   "devDependencies": {
     "napa": "^3.0.0"
