@@ -1,3 +1,15 @@
+# v2.0.1 (Wed Oct 20 2021)
+
+#### 🐛 Bug Fix
+
+- fix(avif): updated AOM codec to v3.2.0, libavif to v0.9.2 [#512](https://github.com/saschazar21/webassembly/pull/512) ([@saschazar21](https://github.com/saschazar21))
+
+#### Authors: 1
+
+- Sascha Zarhuber ([@saschazar21](https://github.com/saschazar21))
+
+---
+
 # v2.0.0 (Thu Apr 15 2021)
 
 #### 💥 Breaking Change

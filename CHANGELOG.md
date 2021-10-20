@@ -1,3 +1,34 @@
+# (Wed Oct 20 2021)
+
+#### 🐛 Bug Fix
+
+- chore: updated node versions in Github workflow [#511](https://github.com/saschazar21/webassembly/pull/511) ([@saschazar21](https://github.com/saschazar21))
+- `@saschazar/wasm-avif@2.0.1`
+  - fix(avif): updated AOM codec to v3.2.0, libavif to v0.9.2 [#512](https://github.com/saschazar21/webassembly/pull/512) ([@saschazar21](https://github.com/saschazar21))
+
+#### 🔩 Dependency Updates
+
+- chore(deps-dev): bump @types/node-fetch from 2.5.10 to 2.5.11 [#466](https://github.com/saschazar21/webassembly/pull/466) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- chore(deps-dev): bump @babel/preset-typescript from 7.13.0 to 7.14.5 [#456](https://github.com/saschazar21/webassembly/pull/456) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- chore(deps-dev): bump auto from 10.27.0 to 10.29.2 [#447](https://github.com/saschazar21/webassembly/pull/447) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- chore(deps-dev): bump @babel/preset-env from 7.13.15 to 7.14.4 [#452](https://github.com/saschazar21/webassembly/pull/452) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- chore(deps-dev): bump @babel/core from 7.14.0 to 7.14.3 [#441](https://github.com/saschazar21/webassembly/pull/441) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- chore(deps-dev): bump @auto-it/conventional-commits from 10.25.0 to 10.27.0 [#435](https://github.com/saschazar21/webassembly/pull/435) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- chore(deps-dev): bump auto from 10.25.0 to 10.27.0 [#436](https://github.com/saschazar21/webassembly/pull/436) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Upgrade to GitHub-native Dependabot [#429](https://github.com/saschazar21/webassembly/pull/429) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @babel/core from 7.13.16 to 7.14.0 [#431](https://github.com/saschazar21/webassembly/pull/431) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @babel/core from 7.13.15 to 7.13.16 [#422](https://github.com/saschazar21/webassembly/pull/422) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @types/node-fetch from 2.5.7 to 2.5.10 [#403](https://github.com/saschazar21/webassembly/pull/403) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @auto-it/conventional-commits from 10.24.3 to 10.25.0 [#412](https://github.com/saschazar21/webassembly/pull/412) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
+#### Authors: 3
+
+- [@dependabot-preview[bot]](https://github.com/dependabot-preview[bot])
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Sascha Zarhuber ([@saschazar21](https://github.com/saschazar21))
+
+---
+
 # (Thu Apr 15 2021)
 
 #### 🐛 Bug Fix
