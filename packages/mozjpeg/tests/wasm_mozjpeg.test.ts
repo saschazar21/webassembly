@@ -25,7 +25,7 @@ describe('MozJPEG', () => {
 
   it('encodes an image to .jpeg', async () => {
     const channels = 3;
-    const [inWidth, inHeight] = [6000, 4000];
+    const [inWidth, inHeight] = [4000, 3000];
     const options: MozJPEGOptions = { ...defaultOptions, quality: 75 };
 
     const img = new Uint8Array(
