@@ -30,19 +30,21 @@ import wasm_heif from '@saschazar/wasm-heif';
 importScripts('wasm_heif.js');
 
 // -------- Browser/Web Worker/Node.js code below --------
+(async function() {
+  // Load encoded HEIF image data in Uint8Array
+  const array = new Uint8Array(['some', 'encoded', 'heif', 'image', 'data']);
+  let result;
 
-// Load encoded HEIF image data in Uint8Array
-const array = new Uint8Array(['some', 'encoded', 'heif', 'image', 'data']);
-let result;
-
-// Initialize the WebAssembly Module
-const heifModule = wasm_heif({
-  onRuntimeInitialized() {
-    const alpha = false; // RGBA somehow not yet working ¯\_(ツ)_/¯
-    result = heifModule.decode(array, array.length, alpha); // decode image data and return a new Uint8Array
-    heifModule.free(); // clean up memory after encoding is done
-  },
-});
+  // Initialize the WebAssembly Module
+  const heifModule = await wasm_heif({
+    onRuntimeInitialized() {
+      console.log('Runtime Initialized');
+    },
+  });
+  const alpha = false; // RGBA somehow not yet working ¯\_(ツ)_/¯
+  result = heifModule.decode(array, array.length, alpha); // decode image data and return a new Uint8Array
+  heifModule.free(); // clean up memory after encoding is done
+})();
 ```
 
 ### ⚠️ Support
