@@ -41,7 +41,7 @@
     "eslint-plugin-jest": "^24.0.2",
     "jest": "^25.2.6",
     "lerna": "^4.0.0",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^3.2.7",
     "ts-jest": "^25.3.0",
     "typescript": "^3.7.5"
   },
