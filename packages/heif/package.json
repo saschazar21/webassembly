@@ -1,6 +1,6 @@
 {
   "name": "@saschazar/wasm-heif",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A WebAssembly powered HEIF/HEIC decoder",
   "keywords": [
     "heif",
@@ -20,7 +20,7 @@
     "url": "git+https://github.com/saschazar21/webassembly.git"
   },
   "scripts": {
-    "build": "napa && docker run --rm -v $(pwd):/src -e SKIP_LIBHEIF=$SKIP_LIBHEIF emscripten/emsdk:latest ./build.sh"
+    "build": "napa && docker run --rm -v $(pwd):/src -e SKIP_LIBHEIF=$SKIP_LIBHEIF emscripten/emsdk:2.0.34 ./build.sh"
   },
   "bugs": {
     "url": "https://github.com/saschazar21/webassembly/issues"
