@@ -4,7 +4,7 @@
 
 using namespace emscripten;
 
-uint8_t *image;
+uint8_t *image = NULL;
 uint32_t width;
 uint32_t height;
 uint32_t length;
@@ -22,6 +22,7 @@ void free_buffer()
   if (image != NULL)
   {
     delete[] image;
+    image = NULL;
   }
 }
 
